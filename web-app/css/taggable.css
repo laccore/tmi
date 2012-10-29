@@ -1,0 +1,197 @@
+.tagCloud { 
+	padding: 2px; 
+	line-height: 3em; 
+	text-align: center; 
+	margin: 0; 
+}
+.tagCloud li { 
+	padding: 3px;
+	display: inline;
+}
+
+
+/*li.smallest{ font-size: 0.7em; font-weight: 100; }
+ #cloud a.tag2 { font-size: 0.8em; font-weight: 200; }
+li.small { font-size: 0.9em; font-weight: 300; }
+ #cloud a.tag4 { font-size: 1.0em; font-weight: 400; }
+li.medium{ font-size: 1.2em; font-weight: 500; }
+ #cloud a.tag6 { font-size: 1.4em; font-weight: 600; }
+li.large { font-size: 1.6em; font-weight: 700; }
+ #cloud a.tag8 { font-size: 1.8em; font-weight: 800; }
+li.largest  { font-size: 2.2em; font-weight: 900; }
+ #cloud a.tag10 { font-size: 2.5em; font-weight: 900; }*/
+ 
+ li.smallest{ font-size: 1.1em; font-weight: 100; }
+ #cloud a.tag2 { font-size: 1.1em; font-weight: 200; }
+li.small { font-size: 1.5em; font-weight: 300; }
+ #cloud a.tag4 { font-size: 1.5em; font-weight: 400; }
+li.medium{ font-size: 2.0em; font-weight: 500; }
+ #cloud a.tag6 { font-size: 2.0em; font-weight: 600; }
+li.large { font-size: 2.5em; font-weight: 700; }
+ #cloud a.tag8 { font-size: 2.5em; font-weight: 800; }
+li.largest  { font-size: 3.0em; font-weight: 900; }
+ #cloud a.tag10 { font-size: 3.0em; font-weight: 900; }
+ 
+  /* for searchable plugin text field */
+.inset {border-style:inset}
+
+div.warn {
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+}
+
+.menuButton a.meta {
+    background: url(../images/fam/tag.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.images {
+    background: url(../images/fam/images.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.link {
+    background: url(../images/fam/link.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.excel {
+    background: url(../images/fam/page_white_excel.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton input.addLink {
+    background: url(../images/fam/link_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+
+/*Information plugin styles from Confluence 
+
+
+
+
+.noteMessage, .warningMessage, .infoMessage, .tipMessage {
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden; 
+}
+
+.noteMessage {
+    border-color: #f0c000;
+    background: #ffffce;
+}
+
+.warningMessage {
+    border-color: #c00;
+    background: #fcc;
+}
+
+.infoMessage {
+    border-color: #69c;
+    background: #d8e4f1;
+}
+
+.tipMessage {
+    border-color: #090;
+    background-color: #dfd;
+}
+
+table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td {
+    border: none;
+}
+
+.informationMacroPadding {
+    padding: 5px 0 0 5px;
+}
+
+.noteMacro, .warningPanel {
+    background-color: #ffffce;
+}
+#addition .noteMacro {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #f0c000;
+    background-color: #ffffce;
+    text-align:left;
+    padding: 10px;
+    width: 100%;
+    margin: 5px 20px;
+}
+
+#addition .noteMacro td {
+    font-size: 10pt;
+    padding: 2px;
+    padding-right: 15px;
+}
+
+#addition .noteMacro p {
+    font-size: 10pt;
+}
+
+#addition .noteMacro b {
+    font-size: 10pt;
+}
+
+#addition table.noteMacro td {
+    border: none;
+}
+
+#replying .noteMacro {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #f0c000;
+    background-color: #ffffce;
+    text-align:left;
+    padding: 10px;
+    width: 100%;
+    margin: 5px 20px;
+}
+
+#replying .noteMacro td {
+    font-size: 10pt;
+    padding: 2px;
+    padding-right: 15px;
+}
+
+#replying .noteMacro p {
+    font-size: 10pt;
+}
+
+#replying .noteMacro b {
+    font-size: 10pt;
+}
+
+#replying table.noteMacro td {
+    border: none;
+}
+
+.tipMacro {
+    background-color: #dfd;
+}
+
+.warningMacro {
+    background-color: #fcc;
+}
+
+.infoMacro {
+    background-color: #d8e4f1;
+}
+
+.warningPanel {
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px;
+    margin: 10px;
+}
+
+.warningPanel {
+    border-color: #f0c000;
+}
+*/
+        
