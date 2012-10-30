@@ -1,5 +1,5 @@
 plugins/core/
-web-app/WEB-INF/
+web-app/WEB-INF/tld
 target/
 target-eclipse/
 web-app/components/
