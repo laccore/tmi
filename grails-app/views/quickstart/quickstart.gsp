@@ -45,7 +45,7 @@
 			<p style="margin-left:3em; margin-top:1em;">
             	Can you describe it? Select a tag and dive in!
             </p>
-			<p><tags:tagCloud controller="tags" action="find" tags="${taggableService.getTagCounts('uniqueIdentification') }"/></p>
+			<p><tags:tagCloud controller="tags" action="find" tags="${taggableService.getTagCounts('uniqueIdentification').sort()}"/></p>
         </div>
     </body>
 </html>
