@@ -55,10 +55,7 @@
             	Smear slides are a simple and powerful tool for the characterization of unconsolidated sediment. Used as a part of visual core descripton, they provide a tremendous amount of information about past depositional environments, geochemistry and mineralogy, and flora and fauna.
 			</p>
 			<p style="margin-left:3em; margin-top:1em;">
-				TMI is designed to help the novice or expert identify sedimentary components as viewed in the polarizing light (petrographic) microscope, with reflected light as necessary. Our focus is on minerals and mineraloids, but the tool also briefly covers biological components that may be encountered while analyzing smear slides.
-			</p>
-			<p style="margin-left:3em; margin-top:1em;">
-				This resource grew out of the need for a lacustrine smear slide resource, but TMI  includes many components that occur in marine sediments as well.
+				TMI is designed to help the novice or expert identify lacustrine and marine sedimentary components as viewed in the polarizing light (petrographic) microscope, with reflected light as necessary. Our focus was originally solely on minerals and mineraloids, but the tool is expanding to cover some biological components that may be encountered while analyzing smear slides, as well as "macro" components typically viewed under a dissecting microscope.
 			</p>
 		</div>
 		<div  id="pageBody">
