@@ -37,11 +37,23 @@
 		
 			<!-- Question -->
 			<g:if test="${nodeInstance?.class.name.equals('edu.umn.laccore.tmi.Question')}">
-				<ul style="list-style-type:none; margin-top:2em;">
-					<g:each in="${nodeInstance?.edges.sort {it.id}}" var="e">
-						<li style="font-size: 2em; line-height:1.2em;"><g:link controller="node" action="show" id="${fieldValue(bean: e, field: 'targetNode.id')}">${e?.description?.encodeAsHTML()}</g:link></li>
-					</g:each>
-				</ul>
+				<table style="border:0px">
+				<tr>
+					<td>
+						<ul style="list-style-type:none; margin-top:2em;">
+							<g:each in="${nodeInstance?.edges.sort {it.id}}" var="e">
+							<li style="font-size: 2em; line-height:1.2em;"><g:link controller="node" action="show" id="${fieldValue(bean: e, field: 'targetNode.id')}">${e?.description?.encodeAsHTML()}</g:link></li>
+							</g:each>
+						</ul>
+					</td>
+
+					<g:if test="${nodeInstance?.exampleImage}">
+						<td>
+						<img align="left" src="${resource(dir:'images/examples', file:nodeInstance.exampleImage)}" alt="${nodeInstance?.exampleAltText}">
+						</td>
+					</g:if>
+				</tr>
+				</table>
 				<div style="height:3em;"></div>
 			</g:if>
 			
