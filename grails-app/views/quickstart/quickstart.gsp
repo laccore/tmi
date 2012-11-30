@@ -19,6 +19,9 @@
             margin-bottom:15px;
             font-size:1.2em;
         }
+        .tagCloud li {
+        	display: inline-block;
+        }
         </style>
     </head>
     <body>
