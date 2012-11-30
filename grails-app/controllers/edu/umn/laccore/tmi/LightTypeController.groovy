@@ -6,8 +6,11 @@ import grails.plugins.springsecurity.Secured
 class LightTypeController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	
+	static scaffold = true
 
-    def index = {
+/*
+	def index = {
         redirect(action: "list", params: params)
     }
 
@@ -100,4 +103,5 @@ class LightTypeController {
             redirect(action: "list")
         }
     }
+*/
 }

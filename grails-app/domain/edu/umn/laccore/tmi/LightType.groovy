@@ -4,7 +4,7 @@ class LightType {
 
     static constraints = {
 		name()
-		abbr(maxSize:2)
+		abbr(maxSize:6)
     }
 	
 	static mapping = {
