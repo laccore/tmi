@@ -111,11 +111,13 @@
                         				<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameMedium)}" 
                         					alt="${imageInstance.filenameMedium}"
 title="
+Taxon: ${imageInstance.taxon?:'not specified' }
+Site name: ${imageInstance.lakeName?:'not specified' }
 Light type: ${imageInstance.lightType?:'not specified'}
 Magnification: ${imageInstance.magnification?:'not specified'}
 Submitted by: ${imageInstance.submittedBy?:'not specified' }
-Lake name: ${imageInstance.lakeName?:'not specified' }
-Notes: ${imageInstance.notes?:'none' }"/>
+Notes: ${imageInstance.notes?:'none' }
+"/>
                         							
                         			</a>
                         		</td>
