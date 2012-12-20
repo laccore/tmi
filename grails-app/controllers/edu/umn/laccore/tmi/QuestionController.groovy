@@ -1,10 +1,14 @@
 package edu.umn.laccore.tmi
 
 import grails.plugins.springsecurity.Secured
+import org.apache.commons.fileupload.disk.DiskFileItem
+import org.apache.commons.fileupload.disk.DiskFileItemFactory
+import org.apache.commons.fileupload.FileItem
 
 @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class QuestionController {
-
+	def utilsService
+	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -24,6 +28,26 @@ class QuestionController {
 
     def save = {
         def questionInstance = new Question(params)
+		
+		def uploadedFile = request.getFile('payload')
+
+		if (!uploadedFile.empty) {
+			if (!utilsService.isAllowedImageFile(uploadedFile.originalFilename)) {
+				flash.message = "Couldn't save ${uploadedFile.originalFilename}, extension must be one of ${UtilsService.getAllowedExtensions()}"
+				render(view: "create", model: [imageInstance: imageInstance])
+				return
+			}
+		
+			// save and process image
+			def exampleDir = new File(utilsService.getExampleImagesDir())
+			if ( !exampleDir.exists() )
+				Runtime.runtime.exec("/bin/mkdir -m g+rwxs,o= " + exampleDir.path)
+			def exampleFile = new File(exampleDir.path, uploadedFile.originalFilename)
+			uploadedFile.transferTo(exampleFile)
+			questionInstance.exampleImage = uploadedFile.originalFilename
+		}
+		
+		
         if (questionInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])}"
             redirect(action: "show", id: questionInstance.id)
@@ -56,7 +80,7 @@ class QuestionController {
     }
 
     def update = {
-        def questionInstance = Question.get(params.id)
+		def questionInstance = Question.get(params.id)
         if (questionInstance) {
             if (params.version) {
                 def version = params.version.toLong()
@@ -67,7 +91,26 @@ class QuestionController {
                     return
                 }
             }
-            questionInstance.properties = params
+
+			def uploadedFile = request.getFile('payload')
+			
+			if (!uploadedFile.empty) {
+				if (!utilsService.isAllowedImageFile(uploadedFile.originalFilename)) {
+					flash.message = "Couldn't save ${uploadedFile.originalFilename}, extension must be one of ${UtilsService.getAllowedExtensions()}"
+					render(view: "edit", model: [questionInstance: questionInstance])
+					return
+				}
+			
+				// save and process image
+				def exampleDir = new File(utilsService.getExampleImagesDir())
+				if ( !exampleDir.exists() )
+					Runtime.runtime.exec("/bin/mkdir -m g+rwxs,o= " + exampleDir.path)
+				def exampleFile = new File(exampleDir.path, uploadedFile.originalFilename)
+				uploadedFile.transferTo(exampleFile)
+				questionInstance.exampleImage = uploadedFile.originalFilename
+			}
+			
+			questionInstance.properties = params
             if (!questionInstance.hasErrors() && questionInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'question.label', default: 'Question'), questionInstance.id])}"
                 redirect(action: "show", id: questionInstance.id)

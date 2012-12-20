@@ -46,9 +46,21 @@
                                 </g:each>
                                 </ul>
                             </td>
-                            
                         </tr>
                     
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="question.name.exampleImage" default="Example Image" /></td>
+                            <td valign="top" class="value">
+                            <g:if test="${questionInstance?.exampleImage}">
+                            	<img src="${createLinkTo(dir:'components/examples/', file:questionInstance.exampleImage)}">
+	                    	</g:if>
+	                    	</td>
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="question.name.exampleAltText" default="Example Tooltip Text" /></td>
+                            <td valign="top" class="value">${fieldValue(bean: questionInstance, field: "exampleAltText")}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

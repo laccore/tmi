@@ -24,7 +24,7 @@
                 <g:renderErrors bean="${questionInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form method="post" >
+            <g:uploadForm method="post" >
                 <g:hiddenField name="id" value="${questionInstance?.id}" />
                 <g:hiddenField name="version" value="${questionInstance?.version}" />
                 <div class="dialog">
@@ -55,6 +55,24 @@
 
                                 </td>
                             </tr>
+                            
+                            <tr class="prop">
+						    	<td valign="top" class="name">
+						    		<label for="payload">Example Image</label>
+						    	</td>
+						    	<td valign="top">
+									<input type="file" id="payload" name="payload" value="${params?.payload}"/>
+								</td>
+							</tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="name"><g:message code="question.exampleAltText.label" default="Example Tooltip Text" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: questionInstance, field: 'exampleAltText', 'errors')}">
+                                    <g:textField name="exampleAltText" value="${questionInstance?.exampleAltText}" />
+                                </td>
+                            </tr>
                         
                         </tbody>
                     </table>
@@ -63,7 +81,7 @@
                     <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
                     <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </body>
 </html>

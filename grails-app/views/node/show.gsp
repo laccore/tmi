@@ -49,7 +49,7 @@
 
 					<g:if test="${nodeInstance?.exampleImage}">
 						<td>
-						<img align="left" src="${resource(dir:'images/examples', file:nodeInstance.exampleImage)}" alt="${nodeInstance?.exampleAltText}">
+						<img align="left" src="${createLinkTo(dir:'components/examples/', file:nodeInstance.exampleImage)}" alt="${nodeInstance?.exampleAltText}">
 						</td>
 					</g:if>
 				</tr>

@@ -23,7 +23,7 @@
                 <g:renderErrors bean="${questionInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form action="save" >
+            <g:uploadForm action="save" >
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -36,6 +36,24 @@
                                     <g:textField name="name" value="${questionInstance?.name}" />
                                 </td>
                             </tr>
+                            
+                            <tr class="prop">
+						    	<td valign="top" class="name">
+						    		<label for="payload">Example Image</label>
+						    	</td>
+						    	<td valign="top">
+									<input type="file" id="payload" name="payload" value="${params?.payload}"/>
+								</td>
+							</tr>
+							
+							<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="altText"><g:message code="question.exampleAltText.label" default="Example Tooltip Text" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: questionInstance, field: 'exampleAltText', 'errors')}">
+                                    <g:textField name="exampleAltText" value="${questionInstance?.exampleAltText}" />
+                                </td>
+                            </tr>
                         
                         </tbody>
                     </table>
@@ -43,7 +61,7 @@
                 <div class="buttons">
                     <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </body>
 </html>
