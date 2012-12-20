@@ -3,7 +3,6 @@ package edu.umn.laccore.tmi
 import grails.plugins.springsecurity.Secured
 
 import org.grails.plugins.imagetools.*
-import grails.plugins.springsecurity.Secured
 import org.apache.commons.fileupload.disk.DiskFileItem
 import org.apache.commons.fileupload.disk.DiskFileItemFactory
 import org.apache.commons.fileupload.FileItem
@@ -11,9 +10,8 @@ import org.apache.commons.fileupload.FileItem
 
 @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class EdgeController {
-	def allowedExtensions = ["JPG", "JPEG", "GIF", "PNG"]
-	def EDGE_DIR = grailsApplication.config.edge.images.location
-    
+	def utilsService
+	
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -36,18 +34,16 @@ class EdgeController {
         
 		def uploadedFile = request.getFile('payload')
 			// update file, if new file one provided
-			if(!uploadedFile.empty) {
-				def fileExtension = "${uploadedFile.originalFilename}".split("\\.")[-1].toUpperCase()
-				if (!allowedExtensions.contains(fileExtension)) {
-					def extensions = "${allowedExtensions}"
-					flash.message = "Filetype extension not in permitted list - ${allowedExtensions}"
+			if (!uploadedFile.empty) {
+				if (!utilsService.isAllowedImageFile(uploadedFile.originalFilename))
+				{
+					flash.message = "Filetype extension not in permitted list - ${utilsService.getAllowedExtensions()}"
 					render(view: "create", model: [edgeInstance: edgeInstance])
 					return
 				}
 				// save and process image
-				uploadedFile.transferTo(new File(EDGE_DIR, uploadedFile.originalFilename))
+				uploadedFile.transferTo(new File(utilsService.getEdgeImagesDir(), uploadedFile.originalFilename))
 				edgeInstance.imageName = uploadedFile.originalFilename
-				//PermissionSetter.assignReadWriteToContents(EDGE_DIR)
 			}
 		
 		if (edgeInstance.save(flush: true)) {
@@ -96,20 +92,19 @@ class EdgeController {
             edgeInstance.properties = params
 			def uploadedFile = request.getFile('payload')
 			// update file, if new file one provided
-			if(!uploadedFile.empty) {
-				def fileExtension = "${uploadedFile.originalFilename}".split("\\.")[-1].toUpperCase()
-				if (!allowedExtensions.contains(fileExtension)) {
-					def extensions = "${allowedExtensions}"
-					flash.message = "Filetype extension not in permitted list - ${allowedExtensions}"
+			if (!uploadedFile.empty) {
+				if (!utilsService.isAllowedImageFile(uploadedFile.originalFilename))
+				{
+					flash.message = "Filetype extension not in permitted list - ${utilsService.getAllowedExtensions()}"
 					render(view: "create", model: [edgeInstance: edgeInstance])
 					return
 				}
-				//del existing file
-				if (edgeInstance.imageName) new File(EDGE_DIR + "/" + edgeInstance.imageName).delete()
+
+				// delete existing file
+				if (edgeInstance.imageName) new File(utilsService.getEdgeImagesDir() + "/" + edgeInstance.imageName).delete()
 				// save and process image
-				uploadedFile.transferTo(new File(EDGE_DIR, uploadedFile.originalFilename))
+				uploadedFile.transferTo(new File(utilsService.getEdgeImagesDir(), uploadedFile.originalFilename))
 				edgeInstance.imageName = uploadedFile.originalFilename
-				//PermissionSetter.assignReadWriteToContents(EDGE_DIR)
 			}
 			
             if (!edgeInstance.hasErrors() && edgeInstance.save(flush: true)) {
@@ -131,7 +126,7 @@ class EdgeController {
         if (edgeInstance) {
             try {
 				//del existing file
-				if (edgeInstance.imageName) new File(EDGE_DIR + "/" + edgeInstance.imageName).delete()
+				if (edgeInstance.imageName) new File(utilsService.getEdgeImagesDir() + "/" + edgeInstance.imageName).delete()
                 edgeInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'edge.label', default: 'Edge'), params.id])}"
                 redirect(action: "list")
