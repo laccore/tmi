@@ -10,7 +10,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook
 @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class ExcelUploaderController {
 
-	def searchableService 
+	def searchableService
+	def excelImportService
 	
 	static scaffold = false
 	
@@ -76,7 +77,7 @@ class ExcelUploaderController {
 		def file = request.getFile('file')
 		//def fs = new POIFSFileSystem(file.getInputStream())
 		def workbook = new XSSFWorkbook(file.getInputStream())
-		List imageParamsList = ExcelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP, null, PROPERTY_CONFIGURATION_MAP)
+		List imageParamsList = excelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP, null, PROPERTY_CONFIGURATION_MAP)
 		
 		imageParamsList.each { Map imageParamMap ->
 			//replace strings with persistent objects where possible
