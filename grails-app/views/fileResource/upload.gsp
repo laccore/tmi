@@ -5,6 +5,7 @@
 <title>File Resource</title>
 </head>
 <body>
+	<g:javascript src="utils.js" />
 	<div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="images" controller="fileResource" action="upload">Upload Images</g:link></span>
@@ -23,40 +24,19 @@
 	</g:if>
 	<div class="body">
 		<h1>Upload Images</h1>
+		Multiple images can be selected and uploaded in a single Upload control.<br/>
+		Shift- or Control-click on Windows, Shift- or Command-click on Mac.<br/><br/>
 		<g:form method="post" enctype="multipart/form-data">
 			<div class="dialog">
 				<table>
-					<tbody>
+					<tbody id="uploadTableBody">
 						<tr class="prop">
-							<td valign="top" class="name"><label for="fileUpload.1">Upload:</label>
+							<td valign="top" class="name"><label for="fileUpload">Upload:</label>
 							</td>
 							<td valign="top"
 								class="value ${hasErrors(bean:fileResourceInstance,field:'upload','errors')}">
-								<input type="file" id="fileUpload.1" name="fileUpload.1" /></td>
-						</tr>
-						<tr class="prop">
-							<td valign="top" class="name"></td>
-							<td valign="top"
-								class="value ${hasErrors(bean:fileResourceInstance,field:'upload','errors')}">
-								<input type="file" id="fileUpload.2" name="fileUpload.2" /></td>
-						</tr>
-						<tr class="prop">
-							<td valign="top" class="name"></td>
-							<td valign="top"
-								class="value ${hasErrors(bean:fileResourceInstance,field:'upload','errors')}">
-								<input type="file" id="fileUpload.3" name="fileUpload.3" /></td>
-						</tr>
-						<tr class="prop">
-							<td valign="top" class="name"></td>
-							<td valign="top"
-								class="value ${hasErrors(bean:fileResourceInstance,field:'upload','errors')}">
-								<input type="file" id="fileUpload.4" name="fileUpload.4" /></td>
-						</tr>
-						<tr class="prop">
-							<td valign="top" class="name"></td>
-							<td valign="top"
-								class="value ${hasErrors(bean:fileResourceInstance,field:'upload','errors')}">
-								<input type="file" id="fileUpload.5" name="fileUpload.5" /></td>
+								<input type="file" id="fileUpload" name="fileUpload" onChange="addUploadField();" multiple/>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -67,5 +47,6 @@
 				</span>
 			</div>
 		</g:form>
+	</div>
 </body>
 </html>
