@@ -4,20 +4,13 @@ import grails.plugins.springsecurity.Secured
 import org.apache.commons.fileupload.disk.DiskFileItem
 import org.apache.commons.fileupload.disk.DiskFileItemFactory
 import org.apache.commons.fileupload.FileItem
-//import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class ImageController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
-	//def IMAGES_DIR = servletContext.getRealPath("/")+grailsApplication.config.images.parent.location
-	//def UNASSIGNED_IMAGES_DIR = servletContext.getRealPath("/")+grailsApplication.config.unlinked.images.location
-	def IMAGES_DIR = (grailsApplication.config.images.location.isRelative)?servletContext.getRealPath("/"):"" + grailsApplication.config.images.parent.location
-	//def UNASSIGNED_IMAGES_DIR = (grailsApplication.config.images.location.isRelative)?servletContext.getRealPath("/"):"" + grailsApplication.config.unlinked.images.location
-	def UNASSIGNED_IMAGES_DIR = (grailsApplication.config.images.location.isRelative)?servletContext.getRealPath("/"):"" + grailsApplication.config.unlinked.images.location
-	
-	def allowedExtensions = ["JPG", "JPEG", "GIF"]
+	def utilsService
 	
 	/*def deleteAllImagesYouBetterBeSure = {
 		Image.list().each{ imageInstance ->
@@ -30,19 +23,16 @@ class ImageController {
 	
 	private createDirForImage(imageInstance) {
 		//def webRootDir = servletContext.getRealPath("/")
-		def componentSpecificDir = new File(IMAGES_DIR, imageInstance.imagesDir())
+		def componentSpecificDir = new File(utilsService.getImagesDir(), imageInstance.imagesDir())
 		if ( !componentSpecificDir.exists() && !componentSpecificDir.parentFile.exists() )  {
 			//componentSpecificDir.mkdirs()
 			Runtime.runtime.exec("/bin/mkdir -m g+rwxs,o= " + componentSpecificDir.parentFile.path)
 			Runtime.runtime.exec("/bin/mkdir -m g+rwxs,o= " + componentSpecificDir.path)
 		} else {
 			if ( componentSpecificDir.parentFile.exists() && !componentSpecificDir.exists() )  {
-				//componentSpecificDir.mkdir()
 				Runtime.runtime.exec("/bin/mkdir -m g+rwxs,o= " + componentSpecificDir.path)
 			}
 		}
-		//PermissionSetter.assignOwnerGroupFullToDir(componentSpecificDir)
-		//PermissionSetter.assignOwnerGroupFullToDir(componentSpecificDir.parentFile)
 		println "${componentSpecificDir}"
 		return componentSpecificDir
     }
@@ -54,52 +44,11 @@ class ImageController {
 		PermissionSetter.assignReadWriteToFile(file)
 		imageInstance.filename = file.originalFilename
     }*/
-	
-	//assumes org.springframework.web.multipart.commons.CommonsMultipartFile
-	def processUploadedImage = { file, imageInstance, imageDir ->
-		// Image resizing, etc.
-		def imageTool = new ImageTool()
-		//imageTool.t
-		imageTool.load("${imageDir}" + File.separatorChar + "${file.originalFilename}")
-		imageTool.thumbnail(600)
-		def resizedName = file.originalFilename.substring(0, file.originalFilename.lastIndexOf('.')) + "-600.jpg"
-		imageInstance.filenameMedium = resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
 		
-		imageTool.thumbnail(200)
-		imageTool.swapSource()
-		imageTool.square()
-		resizedName = file.originalFilename.substring(0, file.originalFilename.lastIndexOf('.')) + "-200s.jpg"
-		imageInstance.filenameThumb =  resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
-		PermissionSetter.assignReadWriteToContents(imageDir)
-	}
-	
-	//assumes java.io.File
-	def processExistingImage = { file, imageInstance, imageDir ->
-		// Image resizing, etc.
-		imageInstance.filename = file.name
-		def imageTool = new ImageTool()
-		imageTool.load("${imageDir}" + File.separatorChar + "${file.name}")
-		imageTool.thumbnail(600)
-		def resizedName = file.name.substring(0, file.name.lastIndexOf('.')) + "-600.jpg"
-		imageInstance.filenameMedium = resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
-		
-		imageTool.thumbnail(200)
-		imageTool.swapSource()
-		imageTool.square()
-		resizedName = file.name.substring(0, file.name.lastIndexOf('.')) + "-200s.jpg"
-		imageInstance.filenameThumb =  resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
-		PermissionSetter.assignReadWriteToContents(imageDir)
-	}
-	
 	def moveExistingFile = { file, destinationDir, imageDir -> 
 		// Move file to new directory
 		boolean success = file.renameTo(new File(imageDir, file.getName()));
 		if (!success) {
-			// File was not successfully moved
 			println "file move FAILED"
 		}
     }
@@ -123,25 +72,19 @@ class ImageController {
 
     def create = {
         def imageInstance = new Image()
-        imageInstance.properties = params
-        return [imageInstance: imageInstance]
+		imageInstance.properties = params
+		return [imageInstance: imageInstance]
     }
 
     def save = {
-        def imageInstance = new Image(params)
-		//def allowedExtensions = ["JPG", "JPEG", "GIF"] // "PNG"
-		// The current image processing library handles PNGs with transparency
-		// horribly, but that should be very, very unlikely for our purposes.
-		
-		// File handling
+		// uploadedFile is of type org.springframework.web.multipart.commons.CommonsMultipartFile
 		def uploadedFile = request.getFile('payload')
 		
-		if(!uploadedFile.empty) {
-			def fileExtension = "${uploadedFile.originalFilename}".split("\\.")[-1].toUpperCase()
+		def imageInstance = new Image(params)
+		if (!uploadedFile.empty) {
 			
-			if (!allowedExtensions.contains(fileExtension)) {
-				def extensions = "${allowedExtensions}"
-				flash.message = "Filetype extension not in permitted list - ${allowedExtensions}"
+			if (!utilsService.isAllowedImageFile(uploadedFile.originalFilename)) {
+				flash.message = "Couldn't save ${uploadedFile.originalFilename}, extension must be one of ${utilsService.getAllowedExtensions()}"
 				render(view: "create", model: [imageInstance: imageInstance])
 				return
 			}
@@ -150,22 +93,7 @@ class ImageController {
 			def componentSpecificDir = createDirForImage(imageInstance)
 			uploadedFile.transferTo(new File(componentSpecificDir, uploadedFile.originalFilename))
 			
-			// Image resizing, etc.
-			imageInstance.filename = uploadedFile.originalFilename
-			def imageTool = new ImageTool()
-			imageTool.load("${componentSpecificDir}" + File.separatorChar + "${uploadedFile.originalFilename}")
-			imageTool.thumbnail(600)
-			def resizedName = uploadedFile.originalFilename.substring(0, uploadedFile.originalFilename.lastIndexOf('.')) + "-600.jpg"
-			imageInstance.filenameMedium = resizedName
-			imageTool.writeResult("${componentSpecificDir}" + File.separatorChar + resizedName, "JPEG")
-			
-			imageTool.thumbnail(200)
-			imageTool.swapSource()
-			imageTool.square()
-			resizedName = uploadedFile.originalFilename.substring(0, uploadedFile.originalFilename.lastIndexOf('.')) + "-200s.jpg"
-			imageInstance.filenameThumb =  resizedName
-			imageTool.writeResult("${componentSpecificDir}" + File.separatorChar + resizedName, "JPEG")
-			PermissionSetter.assignReadWriteToContents(componentSpecificDir)
+			utilsService.createImageThumbnails(uploadedFile.originalFilename, imageInstance, componentSpecificDir)
 		}
 		
         if (imageInstance.save(flush: true)) {
@@ -234,13 +162,6 @@ class ImageController {
             try {
                 imageInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'image.label', default: 'Image'), params.id])}"
-				//safe to assume OK to delete associated images
-				//def dir = new File(IMAGES_DIR + "/" + imageInstance.imagesDir())
-				//println "delete: " + imageInstance.imagesDir()
-				//dir.listFiles().each { 
-				//	println it.path
-				//	it.delete() 
-				//}
 				removeImagesFromDisk(imageInstance)
                 redirect(action: "list")
             }
@@ -256,10 +177,17 @@ class ImageController {
     }
 	
 	private removeImagesFromDisk(imageInstance) {
-			//assumes there is an image to delete - should be tightened up
-			new File(IMAGES_DIR + "/" + imageInstance.imagesDir(), imageInstance.filename).delete()
-			new File(IMAGES_DIR + "/" + imageInstance.imagesDir(), imageInstance.filenameMedium).delete()
-			new File(IMAGES_DIR + "/" + imageInstance.imagesDir(), imageInstance.filenameThumb).delete()
+		def fileOriginal = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filename)
+		if ( fileOriginal.exists() )
+			fileOriginal.delete()
+			
+		def fileMedium = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filenameMedium)
+		if ( fileMedium.exists() )
+			fileMedium.delete()
+		
+		def fileThumb =	new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filenameThumb)
+		if ( fileThumb.exists() )
+			fileThumb.delete()
 	}
 	
 	def linkImage = {
@@ -275,7 +203,7 @@ class ImageController {
 		
 		//refactor - pass params to ImageService.linkImage()
 		def imageInstance = Image.get(params.image.id)
-		def javaIoFile = new File(UNASSIGNED_IMAGES_DIR + File.separatorChar +  params.filename)
+		def javaIoFile = new File(utilsService.getUnlinkedImagesDir() + File.separatorChar +  params.filename)
 		
 		println "orig image name: " + imageInstance.originalImageName
 		println "file to be moved: " + params.filename
@@ -283,10 +211,9 @@ class ImageController {
 		def destDir = createDirForImage(imageInstance)
 		println "destination dir: " + destDir
 		moveExistingFile(javaIoFile,imageInstance,destDir)
-		processExistingImage(javaIoFile,imageInstance,destDir)
+		utilsService.createImageThumbnails(file.name, imageInstance, imageDir)
+
 		if (imageInstance.save(flush: true))
-		//PermissionSetter.assignPermissionsPerMSI(new File(grailsApplication.config.images.parent.location))
-		redirect(view:"list", controller:"fileResource")
+			redirect(view:"list", controller:"fileResource")
 	}
-	
 }
