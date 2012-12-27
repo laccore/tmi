@@ -35,6 +35,7 @@ class InorganicController {
 			like("name", params.id+"%")
 			createAlias("identificationType", "idt")
 			eq("idt.supertype", "Inorganic")
+			order("name")
 			//'in'("identificationType",[IdentificationType.findByName("Mineral"), IdentificationType.findByName("Mineraloid")])
 			//eq("identificationType.supertype","Inorganic")
 		}
