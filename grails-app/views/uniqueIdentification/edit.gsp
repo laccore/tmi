@@ -97,14 +97,36 @@
                                   <label for="images"><g:message code="uniqueIdentification.images.label" default="Images" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: uniqueIdentificationInstance, field: 'images', 'errors')}">
-                                    
-<ul>
-<g:each in="${uniqueIdentificationInstance?.images?}" var="i">
-    <li><g:link controller="image" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-</g:each>
-</ul>
-<g:link controller="image" action="create" params="['uniqueIdentification.id': uniqueIdentificationInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'image.label', default: 'Image')])}</g:link>
 
+			<!--  Table of UniqueIdentification's images -->
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>${message(code: 'image.name.label', default: 'Name')}</th>
+                        	<th>Thumbnail</th>
+							<th>${message(code: 'image.displayOrder.label', default: 'Display Order')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <g:each in="${imageInstances}" status="i" var="imageInstance">
+                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                            <td>${fieldValue(bean: imageInstance, field: "name")}</td>
+                        	<td>
+                        		<g:link action="show" id="${imageInstance.id}">
+                        			<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameThumb)}" 
+									alt="${imageInstance.filename}" title="${imageInstance.filename}" style="max-height:100px; max-width:100px;" />
+								</g:link>
+							</td>
+                            <td><g:textField name="displayOrder" size="3" value="${imageInstance?.displayOrder}" /></td>
+                            <!-- <td>${fieldValue(bean: imageInstance, field: "displayOrder")}</td> -->
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
+
+<g:link controller="image" action="create" params="['uniqueIdentification.id': uniqueIdentificationInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'image.label', default: 'Image')])}</g:link>
                                 </td>
                             </tr>
                         

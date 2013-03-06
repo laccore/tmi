@@ -74,7 +74,28 @@ class UniqueIdentificationController {
 			
 			if (uniqueIdentificationInstance.uiTags) uniqueIdentificationInstance.parseTags(uniqueIdentificationInstance.uiTags, " ")
 			if (uniqueIdentificationInstance.distinguishingFeatures) uniqueIdentificationInstance.parseTags(uniqueIdentificationInstance.distinguishingFeatures, "\n")
-            if (!uniqueIdentificationInstance.hasErrors() && uniqueIdentificationInstance.save(flush: true)) {
+
+			// update image display order where it differs from the database
+			if ( uniqueIdentificationInstance.imagesInDisplayOrder().size() == params.displayOrder.size() ) {
+				uniqueIdentificationInstance.imagesInDisplayOrder().eachWithIndex() { imageInstance, index ->
+					def displayIndex
+					try {
+						displayIndex = new Integer(params.displayOrder[index])
+					} catch (Exception e) {
+						displayIndex = imageInstance.displayOrder
+					}
+					
+					if ( displayIndex != imageInstance.displayOrder ) {
+						println "updating ${imageInstance.name} from ${imageInstance.displayOrder} to ${displayIndex}"
+						imageInstance.displayOrder = displayIndex
+						if (imageInstance.hasErrors() || !imageInstance.save(flush: true)) {
+							flash.message = "Saving new image display order failed"
+						}
+					}
+				}
+			}
+			
+			if (!uniqueIdentificationInstance.hasErrors() && uniqueIdentificationInstance.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'uniqueIdentification.label', default: 'UniqueIdentification'), uniqueIdentificationInstance.id])}"
                 redirect(action: "show", id: uniqueIdentificationInstance.id)
             }
