@@ -60,7 +60,11 @@
 		</div>
 		<div  id="pageBody">
 			<p style="margin-left:3em; margin-top:1em;">
-				<a href="${resource(dir:'resources',file:'TMIposterweb.pdf')}">2011 GSA Poster</a> and associated <a href="${resource(dir:'resources',file:'tmi_flyer_sm.pdf')}">flyer</a>
+				<a href="${resource(dir:'resources',file:'TMI_flyer_2012_sm.pdf')}">TMI Flyer</a><br/>
+				<a href="${resource(dir:'resources',file:'TMIposterweb.pdf')}">2011 GSA Poster</a>
+			</p>
+			<p style="margin-left:3em; margin-top:1em;">
+			TMI is funded by NSF Geoinformatics (EAR-1226265) and a University of Minnesota Interdisciplinary Informatics Seed Grant.
 			</p>
 		</div>
             

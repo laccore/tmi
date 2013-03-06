@@ -26,10 +26,10 @@
     </head>
     <body>
         <div id="pageBody">
-            <h1 style="font-size:3em; color:#031040">Four ways to get started</h1>
             <h1>Interactive Key</h1>
             <p style="margin-left:3em; margin-top:1em;">
-            	Don't know what you're looking at? Use the <g:link controller="node" action="show" id="1">interactive key</g:link> to get your identification started!
+            	Don't know what you're looking at? Use the <g:link controller="node" action="show" id="1">interactive key</g:link> 
+            	to get your identification started! (Minerals and mineraloids only.)
             </p>
             <h1>Search</h1>
             <p style="margin-left:3em; margin-top:1em;">
