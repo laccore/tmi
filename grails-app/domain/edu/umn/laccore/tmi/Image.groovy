@@ -38,8 +38,8 @@ class Image implements Taggable {
 	//static belongsTo = [uniqueIdentification:UniqueIdentification, lightType:LightType, corerType:CorerType]
 	static belongsTo = [uniqueIdentification:UniqueIdentification]
 	
-	static chooseSome = {
-		Image.executeQuery('from Image order by rand()', [max: 12])
+	static chooseSome(number = 12) {
+		Image.executeQuery('from Image order by rand()', [max: number])
 	}
 	
 	String name

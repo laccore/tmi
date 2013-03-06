@@ -66,17 +66,26 @@
             
         <div id="pageBody">
             <h2 style="font-weight:700; color:#031040;">Random Components</h2>
-					<p style="margin-left:1.5em; margin-top:1em;">
-					<g:each in="${Image.chooseSome()}" var="imageInstance">
-							<g:link controller="uniqueIdentification" action="show" id="${imageInstance.uniqueIdentification.id}">
-							<img style="max-height:125px; max-width:125px;"
-							src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameThumb)}"
-							alt="${imageInstance.filenameThumb}"
-							title="${imageInstance.uniqueIdentification?.name}" />
-						    </g:link>
-						    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</g:each>
-					</p>
+			<p style="margin-left:1.5em; margin-top:1em;">
+			<table style="border:0px">
+			<tbody>
+			<tr>
+			<g:each in="${Image.chooseSome(12)}" var="imageInstance" status="count">
+				<td style="text-align:center">
+					<g:link controller="uniqueIdentification" action="show" id="${imageInstance.uniqueIdentification.id}">
+					<img style="max-height:125px; max-width:125px;"
+					src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameThumb)}"
+					alt="${imageInstance.filenameThumb}"
+					title="${imageInstance.uniqueIdentification?.name}" />
+				    </g:link>
+				</td>
+			    
+			    <g:if test="${count == 5}">
+			    	</tr><tr>
+			    </g:if>
+			</g:each>
+			</tr></tbody></table>
+			</p>
         </div>
     </body>
 </html>
