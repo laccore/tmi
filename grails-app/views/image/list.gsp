@@ -31,8 +31,8 @@
 							<th><a href="http://lrc.geo.umn.edu/laccore/assets/pdf/sops/LacCore_naming_code.pdf">LacCore ID</a></th>
 							<g:sortableColumn property="submittedBy" title="${message(code: 'image.submittedBy.label', default: 'Submitted By')}" />
 							<g:sortableColumn property="notes" title="${message(code: 'image.notes.label', default: 'Notes')}" />
-							<g:sortableColumn property="uiTags" title="${message(code: 'image.notes.label', default: 'Tags')}" />
-							<g:sortableColumn property="taxon" title="${message(code: 'image.notes.label', default: 'Taxon')}" />
+							<g:sortableColumn property="uiTags" title="${message(code: 'image.uiTags.label', default: 'Tags')}" />
+							<g:sortableColumn property="taxon" title="${message(code: 'image.taxon.label', default: 'Taxon')}" />
                         	<th>Thumbnail</th>
                         </tr>
                     </thead>
