@@ -24,8 +24,8 @@
 	</g:if>
 	<div class="body">
 		<h1>Upload Images</h1>
-		Multiple images can be selected and uploaded in a single Upload control.<br/>
-		Shift- or Control-click on Windows, Shift- or Command-click on Mac.<br/><br/>
+		Multiple image files can be uploaded in a single Upload control using multiple selection.<br/>
+		Windows: Shift- or Control-click. Mac: Shift- or &#8984;-click.<br/><br/>
 		<g:form method="post" enctype="multipart/form-data">
 			<div class="dialog">
 				<table>
