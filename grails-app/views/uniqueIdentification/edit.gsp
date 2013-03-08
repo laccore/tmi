@@ -109,7 +109,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${imageInstances}" status="i" var="imageInstance">
+                    <g:each in="${uniqueIdentificationInstance?.imagesInDisplayOrder()}" status="i" var="imageInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                             <td>${fieldValue(bean: imageInstance, field: "name")}</td>
                         	<td>
