@@ -109,16 +109,7 @@
                         			<g:link controller="image" action="show" id="${imageInstance.id}">${i?.encodeAsHTML()}</g:link>
                                     <a href="${createLinkTo(dir:imageInstance.viewDir(), file:''+imageInstance.filename)}">
                         				<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameMedium)}" 
-                        					alt="${imageInstance.filenameMedium}"
-title="
-Taxon: ${imageInstance.taxon?:'not specified' }
-Site name: ${imageInstance.lakeName?:'not specified' }
-Light type: ${imageInstance.lightType?:'not specified'}
-Magnification: ${imageInstance.magnification?:'not specified'}
-Submitted by: ${imageInstance.submittedBy?:'not specified' }
-Notes: ${imageInstance.notes?:'none' }
-"/>
-                        							
+                        					alt="${imageInstance.filenameMedium}" title="${imageInstance.tooltip()}"/>
                         			</a>
                         		</td>
                         	</tr>

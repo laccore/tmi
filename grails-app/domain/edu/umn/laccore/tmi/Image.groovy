@@ -68,6 +68,19 @@ class Image implements Taggable {
 		"${name}"
 	}
 	
+	String tooltip() {
+		String result = "Unique Identification: ${uniqueIdentification?.name}\n";
+		
+		if ( taxon?.length() > 0 )
+			result += "Taxon: ${taxon}\n";
+		
+		result += """Site name: ${lakeName?:'not specified'}
+Light type: ${lightType?:'not specified'}
+Magnification: ${magnification?:'not specified'}
+Submitted by: ${submittedBy?:'not specified'}
+Notes: ${notes?:'none'}""";
+	}
+	
 	String imagesDir() {
 		//Image.componentImagesDir + File.separatorChar + uniqueIdentification?.identificationType?.noWhitespace()+ File.separatorChar + uniqueIdentification?.noWhitespace()
 		uniqueIdentification?.identificationType?.noWhitespace()+ File.separatorChar + uniqueIdentification?.noWhitespace()
