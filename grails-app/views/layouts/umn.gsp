@@ -139,34 +139,9 @@
 				<tmi:mineralLinks/>
 		</li>
 		<li><g:link controller="organic" action="all">Organic</g:link>
-			<!-- <ul>
-				<li><g:link controller="organic" action="list" id="algae">Algae</g:link></li>
-				<li><g:link controller="organic" action="list" id="arthropod">Arthropod</g:link></li>
-				<li><g:link controller="organic" action="list" id="fish">Fish</g:link></li>
-				<li><g:link controller="organic" action="list" id="invertebrate">Other invertebrate/protist</g:link></li>
-				<li><g:link controller="organic" action="list" id="plant">Plant</g:link></li>
-				<li><g:link controller="organic" action="list" id="pollen and spores">Pollen and spores</g:link></li>
-			</ul> -->
 			<tmi:organicLinks/>
 		</li>
-		<li><g:link controller="tutorial" action="analysis">Smear Slide Tutorials</g:link>
-			<ul>
-				<li><g:link controller="tutorial" action="preparation">Smear Slide Preparation (video)</g:link></li>
-				<li><g:link controller="tutorial" action="analysis">Smear Slide Analysis</g:link></li>
-				<li><g:link controller="tutorial" action="templates">Smear Slide Templates</g:link></li>
-			</ul>
-		</li>
-		<li><g:link controller="module" action="diatoms">Interpretive Modules</g:link>
-			<ul>
-				<li><g:link controller="module" action="diatoms">Diatoms Overview</g:link></li>
-				<li><g:link controller="module" action="abundance">Diatom Abundance</g:link></li>
-				<li><g:link controller="module" action="preservation">Diatom Preservation</g:link></li>
-			</ul>
-		</li>
-		<%--<li><g:link controller="glossary" action="index">Glossary</g:link>
-			<tmi:glossaryLinks/>
-		</li>
-		--%>
+		<li><g:link controller="module" action="blog">Tutorials</g:link></li>
 		<li><g:link controller="help" action="show">Help</g:link>
 			<ul>
 				<li><g:link controller="help" action="show" fragment="contribute">How to Contribute</g:link></li>
@@ -182,6 +157,10 @@
 		<sec:ifAllGranted roles="ROLE_ADMIN">
 		<li><g:link controller="admin" action="index">Admin</g:link></li>
 		</sec:ifAllGranted>
+		<li id="tmiMenuSearchItem"><span><g:form url='[controller: "searchable", action: "index"]' id="searchableForm"  name="searchableForm" method="get">
+        	<g:textField class="input" name="q" value="${params.q}" size="30" style="border-style:inset;"/> <input id="tmiMenuSearchButton" type="submit" value="Search"/>
+        	<g:hiddenField name="max" value="25"/></g:form></span>
+        </li>
 	</ul>
 	
 	<!-- Space for second menu row -->

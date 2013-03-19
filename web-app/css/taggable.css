@@ -69,129 +69,52 @@ div.warn {
     padding-left: 25px;
 }
 
-/*Information plugin styles from Confluence 
+/* 3/15/2013 brg: The following blocks modify properties of the main TMI menu, which
+   was implemented using the CSS Dropdown module, whose CSS files live in the
+   umn-web-template plugin's web-app/css directory. Rather than modifying those files
+   directly, we're overriding here. */
 
-
-
-
-.noteMessage, .warningMessage, .infoMessage, .tipMessage {
-    border-style: solid;
-    border-width: 1px;
-    text-align: center;
-    padding: 5px;
-    overflow: hidden; 
+ul.dropdown ul {
+ /* Existing properties (in dropdown.css):
+ visibility: hidden;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ z-index: 598;
+ width: 100%;*/
+ 
+ /* 3/13/2013 brg: Fade out dropdowns so user has a chance to correct if they
+    inadvertently lose mouseover */   
+ opacity: 0;
+ transition:visibility 0s linear .5s, opacity .5s linear;
+ -webkit-transition:visibility 0s linear .5s, opacity .5s linear;
+ -moz-transition:visibility 0s linear .5s, opacity .5s linear;
+ -o-transition:visibility 0s linear .5s, opacity .5s linear;
 }
 
-.noteMessage {
-    border-color: #f0c000;
-    background: #ffffce;
+ul.dropdown li:hover > ul { 
+ /* Existing properties (in dropdown.css):
+ visibility: visible; */
+ 
+ /* 3/13/2013 brg: Due to fading, two dropdowns can be simultaneously visible. If they have
+    the same z-index, browsers appear to consider the last-added item (rightmost in this case)
+    on top. This can cause a fading dropdown to take precedence over the currently-hovered
+    item's dropdown on mouseover. */
+ z-index: 600;
+ opacity: 1;
+
+ /* 3/13/2013 brg: Seems to be necessary to cause dropdowns to appear instantly, without
+    this they fade in, as dictated by transition properties in above block. */
+ transition:opacity 0s linear;
+ -webkit-transition:opacity 0s linear;
+ -moz-transition:opacity 0s linear;
+ -o-transition:opacity 0s linear;
 }
 
-.warningMessage {
-    border-color: #c00;
-    background: #fcc;
+#tmiMenuSearchItem
+{
+	font-weight: normal;
+	float: right;
+	background-color: #2f6cab;
+	height: 35px; /* Otherwise Firefox makes it 36px, leaving a 1px line between menu and submenu */
 }
-
-.infoMessage {
-    border-color: #69c;
-    background: #d8e4f1;
-}
-
-.tipMessage {
-    border-color: #090;
-    background-color: #dfd;
-}
-
-table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td {
-    border: none;
-}
-
-.informationMacroPadding {
-    padding: 5px 0 0 5px;
-}
-
-.noteMacro, .warningPanel {
-    background-color: #ffffce;
-}
-#addition .noteMacro {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #f0c000;
-    background-color: #ffffce;
-    text-align:left;
-    padding: 10px;
-    width: 100%;
-    margin: 5px 20px;
-}
-
-#addition .noteMacro td {
-    font-size: 10pt;
-    padding: 2px;
-    padding-right: 15px;
-}
-
-#addition .noteMacro p {
-    font-size: 10pt;
-}
-
-#addition .noteMacro b {
-    font-size: 10pt;
-}
-
-#addition table.noteMacro td {
-    border: none;
-}
-
-#replying .noteMacro {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #f0c000;
-    background-color: #ffffce;
-    text-align:left;
-    padding: 10px;
-    width: 100%;
-    margin: 5px 20px;
-}
-
-#replying .noteMacro td {
-    font-size: 10pt;
-    padding: 2px;
-    padding-right: 15px;
-}
-
-#replying .noteMacro p {
-    font-size: 10pt;
-}
-
-#replying .noteMacro b {
-    font-size: 10pt;
-}
-
-#replying table.noteMacro td {
-    border: none;
-}
-
-.tipMacro {
-    background-color: #dfd;
-}
-
-.warningMacro {
-    background-color: #fcc;
-}
-
-.infoMacro {
-    background-color: #d8e4f1;
-}
-
-.warningPanel {
-    border-style: solid;
-    border-width: 1px;
-    padding: 8px;
-    margin: 10px;
-}
-
-.warningPanel {
-    border-color: #f0c000;
-}
-*/
-        
