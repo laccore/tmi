@@ -69,13 +69,6 @@
         font-size: larger;
       }
 
-      .paging a.step {
-        padding: 0 .3em;
-      }
-
-      .paging span.currentStep {
-          font-weight: bold;
-      }
 
       ul {
         margin: 1em 2em;
@@ -85,6 +78,17 @@
         margin-bottom: 1em;
       }
     </style> -->
+
+ 	<style type="text/css">
+	.paging a.step {
+	  padding: 0 .3em;
+	}
+	
+	.paging span.currentStep {
+	    font-weight: bold;
+	}
+	</style>
+
     <script type="text/javascript">
         var focusQueryInput = function() {
             document.getElementById("q").focus();
@@ -95,6 +99,7 @@
   <div id="header">
     <g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get">
         <g:textField class="inset" name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
+        <g:hiddenField name="max" value="25"/>
     </g:form>
   </div>
   <h4>&nbsp;</h4>
