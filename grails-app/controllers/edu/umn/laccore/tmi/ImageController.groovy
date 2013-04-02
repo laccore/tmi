@@ -45,12 +45,12 @@ class ImageController {
 		imageInstance.filename = file.originalFilename
     }*/
 		
-	def moveExistingFile = { file, destinationDir, imageDir -> 
+	def moveExistingFile = { file, imageDir -> 
 		// Move file to new directory
-		boolean success = file.renameTo(new File(imageDir, file.getName()));
-		if (!success) {
+		if ( file.renameTo(new File(imageDir, file.getName())) )
+			PermissionSetter.assignReadWriteToFile(file)
+		else
 			println "file move FAILED"
-		}
     }
 
     def index = {
@@ -210,8 +210,8 @@ class ImageController {
 		println "fluffed-up file: " + javaIoFile.absolutePath
 		def destDir = createDirForImage(imageInstance)
 		println "destination dir: " + destDir
-		moveExistingFile(javaIoFile,imageInstance,destDir)
-		utilsService.createImageThumbnails(file.name, imageInstance, imageDir)
+		moveExistingFile(javaIoFile, destDir)
+		utilsService.createImageThumbnails(javaIoFile.name, imageInstance, destDir)
 
 		if (imageInstance.save(flush: true))
 			redirect(view:"list", controller:"fileResource")

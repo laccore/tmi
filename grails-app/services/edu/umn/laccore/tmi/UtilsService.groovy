@@ -36,15 +36,18 @@ class UtilsService {
 		imageTool.thumbnail(600)
 		def resizedName = filename.substring(0, filename.lastIndexOf('.')) + "-600.jpg"
 		imageInstance.filenameMedium = resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
+		def filePath = "${imageDir}" + File.separatorChar + resizedName;
+		imageTool.writeResult(filePath, "JPEG")
+		PermissionSetter.assignReadWriteToFile( new File(filePath) )
 		
 		imageTool.thumbnail(200)
 		imageTool.swapSource()
 		imageTool.square()
 		resizedName = filename.substring(0, filename.lastIndexOf('.')) + "-200s.jpg"
 		imageInstance.filenameThumb =  resizedName
-		imageTool.writeResult("${imageDir}" + File.separatorChar + resizedName, "JPEG")
-		PermissionSetter.assignReadWriteToContents(imageDir)
+		filePath = "${imageDir}" + File.separatorChar + resizedName
+		imageTool.writeResult(filePath, "JPEG")
+		PermissionSetter.assignReadWriteToFile( new File(filePath) )
 	}
 	
 	static allowedExtensions = ["JPG", "JPEG", "GIF", "PNG"]
