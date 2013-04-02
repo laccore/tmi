@@ -23,7 +23,7 @@ class AdminController {
 	}
 	
 	def reindexSearch = {
-		reindexSearch()
+		_reindexSearch()
 		flashHelper.info "Search indices have been reindexed"
 		redirect(view:"index")
 	}
@@ -34,7 +34,8 @@ class AdminController {
 		redirect(view:"index")
 	}
 	
-	private reindexSearch () {
+	// 4/2/2013 brg: Prefixed with underscore to avoid name collision with Groovy reindexSearch closure
+	private _reindexSearch() {
 		searchableService.startMirroring()
 		Image.reindex()
 		UniqueIdentification.reindex()
