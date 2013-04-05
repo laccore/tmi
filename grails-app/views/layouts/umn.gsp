@@ -180,7 +180,7 @@
     <!-- BEGIN OPTIONAL UNIT FOOTER -->
     <div class="grid_12" id="unit_footer2">
         <ul class="unit_footer_links">
-            <li>Address: 500 Pillsbury <acronym class="acronym_border" title="Drive South-East">Dr SE</acronym>, Minneapolis, MN 55455 Phone: 612-626-7889 Fax: 612-626-7750</li><li><script type="text/javascript">Rot13.write("<n uers='znvygb:nzleob@hza.rqh?fhowrpg=GZV%20jrofvgr'>Pbagnpg</n>");</script></li>
+            <li>Address: 310 Pillsbury <acronym class="acronym_border" title="Drive South-East">Dr SE</acronym>, Minneapolis, MN 55455 Phone: 612-626-7889</li><li><script type="text/javascript">Rot13.write("<n uers='znvygb:nzleob@hza.rqh?fhowrpg=GZV%20jrofvgr'>Pbagnpg</n>");</script></li>
         </ul>
     </div>
     <!-- END OPTIONAL UNIT FOOTER -->
