@@ -52,10 +52,22 @@
             <h1 style="font-size:3em; color:#031040">Tool for Microscopic Identification</h1>
             <br/>
             <p style="margin-left:3em; margin-top:1em;">
-            	Smear slides are a simple and powerful tool for the characterization of unconsolidated sediment. Used as a part of visual core descripton, they provide a tremendous amount of information about past depositional environments, geochemistry and mineralogy, and flora and fauna.
+            	TMI is designed to help both the novice and expert identify lacustrine and marine sedimentary components using microscopy.
+            	The tool emphasizes visual reference materials supported by written expert guidance on identification and interpretation.
 			</p>
 			<p style="margin-left:3em; margin-top:1em;">
-				TMI is designed to help the novice or expert identify lacustrine and marine sedimentary components as viewed in the polarizing light (petrographic) microscope, with reflected light as necessary. Our focus was originally solely on minerals and mineraloids, but the tool is expanding to cover some biological components that may be encountered while analyzing smear slides, as well as "macro" components typically viewed under a dissecting microscope.
+				Our original focus was solely on smear slides of minerals and mineraloids as viewed in the polarizing light (petrographic) 
+				microscope, but the tool has expanded to include biological components that may be encountered while analyzing smear slides, 
+				as well as macroscopic components typically viewed under a dissecting microscope, and some SEM images.
+			</p>
+			<p style="margin-left:3em; margin-top:1em;">
+				Smear slides are a simple and powerful tool for the characterization of unconsolidated sediment. Used as a part of visual 
+				core description, they provide a tremendous amount of information about past depositional environments, geochemistry 
+				and mineralogy, and flora and fauna.
+			</p>
+			<p style="margin-left:3em; margin-top:1em;">
+				The launch of TMI 2.0 in April 2013 improves usability and introduces the first tutorials. TMI is an evolving resource and 
+				would benefit from your feedback and contributions. Please email amyrbo_at_umn.edu.
 			</p>
 		</div>
 		<div  id="pageBody">
