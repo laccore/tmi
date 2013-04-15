@@ -67,6 +67,15 @@
                                     <g:select name="lightType.id" from="${edu.umn.laccore.tmi.LightType.list()}" optionKey="id" value="${imageInstance?.lightType?.id}" noSelection="['null': '']" />
                                 </td>
                             </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="lightType"><g:message code="image.magnification.label" default="Magnification" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: imageInstance, field: 'magnification', 'errors')}">
+                                    <g:textField name="magnification" value="${imageInstance?.magnification}" />
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -86,6 +95,15 @@
                                 </td>
                             </tr>
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="lakeName"><g:message code="image.lakeName.label" default="Lake Name" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: imageInstance, field: 'lakeName', 'errors')}">
+                                    <g:textField name="lakeName" value="${imageInstance?.lakeName}" />
+                                </td>
+                            </tr>
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="year"><g:message code="image.year.label" default="Year" /></label>

@@ -48,6 +48,11 @@
                         </tr>
                     
                         <tr class="prop">
+                        	<td valign="top" class="name"><g:message code="image.magnification.label" default="Magnification" /></td>
+                        	<td valign="top" class="value">${fieldValue(bean: imageInstance, field: "magnification")}</td>
+                        </tr>
+
+                        <tr class="prop">
                             <td valign="top" class="name"><a href="http://lrc.geo.umn.edu/laccore/assets/pdf/sops/LacCore_naming_code.pdf">LacCore ID</a></td>
                             <td valign="top" class="value">${fieldValue(bean: imageInstance, field: "expeditionCode")}-${fieldValue(bean: imageInstance, field: "lakeCode")}<script type="text/javascript">
 									var str="${fieldValue(bean: imageInstance, field: "year")}";
