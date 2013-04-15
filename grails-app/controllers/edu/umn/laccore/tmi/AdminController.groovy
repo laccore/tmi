@@ -8,22 +8,22 @@ class AdminController {
 
     static scaffold = false
 	
+	def adminService
 	def searchableService
 	
 	def index = {
-		//log.error "controller and action: $controllerName $actionName"
 		[contentInstanceList: Content.findAllByGrailsControllerAndGrailsAction("${controllerName}","${actionName}")]
 	}
 	
-	def reindexTags = {
-		deleteTags()
-		recreateTags()
+	def reindexTags() {
+		adminService.deleteTags()
+		adminService.recreateTags()
 		flashHelper.info "Tags have been reindexed"
 		redirect(view:"index")	
 	}
 	
 	def reindexSearch = {
-		_reindexSearch()
+		adminService.reindexSearch()
 		flashHelper.info "Search indices have been reindexed"
 		redirect(view:"index")
 	}
@@ -34,28 +34,4 @@ class AdminController {
 		redirect(view:"index")
 	}
 	
-	// 4/2/2013 brg: Prefixed with underscore to avoid name collision with Groovy reindexSearch closure
-	private _reindexSearch() {
-		searchableService.startMirroring()
-		Image.reindex()
-		UniqueIdentification.reindex()
-    }
-	
-	private deleteTags() {
-		TagLink.executeUpdate("delete from TagLink")//TagLink
-		Tag.executeUpdate("delete from Tag")//Tag
-		
-	}
-	
-	private recreateTags() {
-		def uiList = UniqueIdentification.getAll()
-		uiList.each { ui ->
-			if (ui.uiTags) ui.parseTags(ui.uiTags, " ")
-			if (ui.distinguishingFeatures) ui.parseTags(ui.distinguishingFeatures, "\n")
-		}
-		def imageList = Image.getAll()
-		imageList.each { i ->
-			if (i.uiTags) i.parseTags(i.uiTags, " ")
-		}
-	}
 }
