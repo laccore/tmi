@@ -278,8 +278,8 @@ environments {
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
 	}
 	development {
-		//grails.serverURL = "http://localhost:8080/${appName}"
-		grails.serverURL = "http://localhost:8888/${appName}"
+		grails.serverURL = "http://localhost:8080/${appName}"
+		//grails.serverURL = "http://localhost:8888/${appName}"
 		images.parent.location = "/Users/rmcewan/Desktop/TMI/dev-images"
 		unlinked.images.location = "/Users/rmcewan/Desktop/TMI/dev-images/unlinked"
 		edge.images.location = "/Users/rmcewan/Desktop/TMI/dev-images/edges"
@@ -344,7 +344,7 @@ grails {
 		host = "smtp.umn.edu"
 		port = 465
 		username = "laccore"
-		password = ""
+		password = "Shepbury17!"
 		props = ["mail.smtps.auth":"true",
 			"mail.smtp.socketFactory.port":"465",
 			"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
