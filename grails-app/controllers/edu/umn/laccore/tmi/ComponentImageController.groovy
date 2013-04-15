@@ -9,27 +9,16 @@ import javax.servlet.http.HttpServletResponse
 class ComponentImageController {
 	
     def index = { 
-		//def resourceRealPath
-		println "\n\nforwardURI:"+request.forwardURI
+		//println "\n\nforwardURI:"+request.forwardURI
 		def modifiedForwardURI = request.forwardURI.replaceFirst(request.contextPath+"/components","")
-		println "modified forwardURI: "+modifiedForwardURI
+		//println "modified forwardURI: "+modifiedForwardURI
 		//String containerRelativePath = modifiedForwardURI.replaceFirst("/","")
 		//def resourcePath = servletContext.getRealPath("/")+grailsApplication.config.images.parent.location + modifiedForwardURI
 		def resourcePath = (grailsApplication.config.images.location.isRelative)?servletContext.getRealPath("/"):"" + grailsApplication.config.images.parent.location + modifiedForwardURI
 		
-		//println "containerRelativePath:"+containerRelativePath
-		println "resourcePath:"+resourcePath
+		//println "resourcePath:"+resourcePath
 
 		ServletContext sc = getServletContext();
-		//if (containerResourceExists(containerRelativePath)) {
-			// Get the absolute path of the image
-			//ServletContext sc = getServletContext();
-		//	resourceRealPath = sc.getRealPath(containerRelativePath)
-		//} else {
-			//assign real path to configured real path
-		//	resourceRealPath = externalRealPath
-		//}
-		
 		
 		File file = new File(resourcePath);
 		if (file.exists()) {
@@ -37,16 +26,14 @@ class ComponentImageController {
 			response.setContentLength((int)file.length());
 			// Get the MIME type of the image
 			def mimeType = sc.getMimeType(resourcePath);
-			println mimeType
+			//println mimeType
 			// Set content type
 			response.setContentType(mimeType);
 		} else {
-			println "resource does not exist: "+resourcePath
+			log.error "resource does not exist: "+resourcePath
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND)
 			return
 		}
-	
-		
 	
 		// Open the file and output streams
 		FileInputStream ins = new FileInputStream(file);
