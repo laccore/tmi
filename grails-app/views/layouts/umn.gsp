@@ -125,8 +125,9 @@
     <!-- End search div -->
     
     <!-- Navigation stuff, header image, menu -->
-	<div class="main_head">
-		<h1 class="nopadding" id="nospace"><a href="https://tmi.laccore.umn.edu"><img style="width: 960px; height: 95px;" src="${resource(dir:'images',file:'tmiHeader.jpg')}" alt="Tool for Microscopic Identification Home" /></a></h1>
+	<div class="main_head" style="height:95px">
+		<h1 class="nopadding" id="nospace"><a href="https://tmi.laccore.umn.edu"><img style="position:absolute; width: 960px; height: 95px;" src="${resource(dir:'images',file:'tmiHeader.jpg')}" alt="Tool for Microscopic Identification Home" /></a></h1>
+		<a href="http://www.nsf.gov" target="_blank"><img style="position:relative;left:820px;bottom:10px;z-index:1000;width:115px;height:115px;" src="${resource(dir:'images',file:'nsf1.gif')}" /></a>
 	</div>
 	<!-- Gigantic Menu -->
 	<ul id="nav" class="dropdown dropdown-linear" style="margin-top:0px; margin-left:0px; width:960px;">
