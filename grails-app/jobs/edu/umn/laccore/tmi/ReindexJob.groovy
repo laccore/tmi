@@ -11,8 +11,8 @@ class ReindexJob {
 		adminService.deleteTags()
 		adminService.recreateTags()
 		log.info "reindexing tags complete"
-		log.info "reindexing serach"
+		log.info "reindexing search"
 		adminService.reindexSearch()
-		log.info "reindexing serach complete"
+		log.info "reindexing search complete"
     }
 }
