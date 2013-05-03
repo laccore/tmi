@@ -59,8 +59,8 @@
             <span class="menuButton"><g:link action="reindexSearch">Reindex Search</g:link></span>
         	<span class="menuButton"><g:link action="startMirroring">Restart Search Mirroring</g:link></span>
         	<span class="menuButton"><g:link action="reindexTags">Reindex Tags</g:link></span>
-        	<%--<span class="menuButton"><g:link action="deleteAllImages" value="${message(code: 'default.button.delete.label', default: 'Delete ALL Images')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
-        --%></div>
+        	<span class="menuButton"><g:link controller="tags" action="show">Tag List</g:link></span>
+        	</div>
     
 	
         <div id="nav">

@@ -62,4 +62,18 @@ class UtilsService {
 	static getAllowedExtensions() {
 		return allowedExtensions
 	}
+	
+	/*
+	 * used in when image domain class is edited, image knows new location
+	 */
+	def moveImages(from, image) {
+		def files = [image.filename,image.filenameMedium,image.filenameThumb] 
+		 
+		//full
+		files.each { filename ->
+			File file = new File("${this.imagesDir}${File.separatorChar}${from}",filename)
+			println file.getAbsolutePath()
+			file.renameTo(new File("${this.imagesDir}${File.separatorChar}${image.imagesDir()}", filename))
+		}
+	}
 }

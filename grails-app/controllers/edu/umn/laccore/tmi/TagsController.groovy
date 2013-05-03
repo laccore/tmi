@@ -1,8 +1,8 @@
 package edu.umn.laccore.tmi
 
-import org.apache.catalina.startup.TldConfig;
-
 import grails.plugins.springsecurity.Secured
+
+import org.grails.taggable.Tag
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 class TagsController {
@@ -42,6 +42,13 @@ class TagsController {
 		entitiesMap.put('images',i)
 		return entitiesMap
 	}
+	
+	def show() {
+		def allTags = Tag.list(sort:'name')
+		[tags:allTags]
+	}
+	
+	
 }
 
 /*

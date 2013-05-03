@@ -64,4 +64,9 @@ class UniqueIdentification extends Node implements Taggable {
 		return images
 	}
 	
+	String imagesDir() {
+		//Image.componentImagesDir + File.separatorChar + uniqueIdentification?.identificationType?.noWhitespace()+ File.separatorChar + uniqueIdentification?.noWhitespace()
+		identificationType?.noWhitespace()+ File.separatorChar + this.noWhitespace()
+	}
+	
 }
