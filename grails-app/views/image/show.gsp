@@ -36,6 +36,11 @@
                             <td valign="top" class="name"><g:message code="image.name.label" default="Name" /></td>
                             <td valign="top" class="value">${fieldValue(bean: imageInstance, field: "name")}</td>
                         </tr>
+                        
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="image.commonName.label" default="Common Name" /></td>
+                            <td valign="top" class="value">${fieldValue(bean: imageInstance, field: "commonName")}</td>
+                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="image.uniqueIdentification.label" default="Unique Identification" /></td>
@@ -83,6 +88,11 @@
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="image.taxon.label" default="Taxon" /></td>
                             <td valign="top" class="value">${fieldValue(bean: imageInstance, field: "taxon")}</td>
+                        </tr>
+                        
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="image.family.label" default="Family" /></td>
+                            <td valign="top" class="value">${fieldValue(bean: imageInstance, field: "family")}</td>
                         </tr>
                         
 						<tr class="prop">

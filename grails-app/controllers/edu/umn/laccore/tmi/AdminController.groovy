@@ -11,6 +11,7 @@ class AdminController {
 	def adminService
 	def searchableService
 	
+	
 	def index = {
 		[contentInstanceList: Content.findAllByGrailsControllerAndGrailsAction("${controllerName}","${actionName}")]
 	}

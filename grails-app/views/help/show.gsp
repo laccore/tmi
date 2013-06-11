@@ -85,7 +85,7 @@
 		<a name="contact"></a>
 		<h1>Contact</h1>
 		<p style="margin-left:3em; margin-top:1em;">
-			If you have questions or comments about this site, or if you would like to contribute images or information, please contact Amy Myrbo, amyrbo_at_umn_dot_edu, using the <g:link controller="contactForm">feedback form</g:link>.
+			If you have questions or comments about this site, or if you would like to contribute images or information, please contact Amy Myrbo, amyrbo_at_umn_dot_edu.<!-- , using the <g:link controller="contactForm">feedback form</g:link>. -->
 		</p>
 		<p style="margin-left:3em; margin-top:1em;">
 			To subscribe to the TMI discussion listserv:<br/>
@@ -102,7 +102,7 @@
 			Image Management: HTML image tags require that the src attribute use paths relative to the file they are in or "absolute paths" relative to the server name, e.g. src="/Users/rmcewan/images/img.jpg" translates to http://localhost/Users/rmcewan/images/img.jpg.  Absolute file paths on the filesystem are not an option.
 			Therefore, the best way to get test in sync with prod is to scp the images dir on prod to your local dev environment, then place it in the STS project and deploy a copy of the app to the test environment.
 			This approach also covers getting your dev environment to reflect the images in prod - but you will need the current prod db to make the most use of the copied images.
-			<br/>Use something like ""scp -r mcewanr@db2.msi.umn.edu:/website/tmi.msi.umn.edu/prod/apache-tomcat-6.0.33/webapps/ROOT/images/* Desktop/prodImages
+			<br/>Use something like "scp -r mcewanr@db2.msi.umn.edu:/website/tmi.msi.umn.edu/prod/apache-tomcat-6.0.33/webapps/ROOT/images/* Desktop/prodImages"
 			or Fugu/WinSCP, etc.
 		</p>
 		<h1>Editing the Interactive Key</h1>

@@ -39,6 +39,15 @@
                             
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="name"><g:message code="image.commonName.label" default="Common Name" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: imageInstance, field: 'commonName', 'errors')}">
+                                    <g:textField name="commonName" value="${imageInstance?.commonName}" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="displayOrder">Display Order</label>
                                 </td>
                                 <td valign="top" class="value ">
@@ -195,7 +204,16 @@
                                     <label for="taxon"><g:message code="image.taxon.label" default="Taxon" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: imageInstance, field: 'taxon', 'errors')}">
-                                    <g:textField name="taxon" size="50" value="${imageInstance?.uiTags}" />
+                                    <g:textField name="taxon" size="50" value="${imageInstance?.taxon}" />
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="taxon"><g:message code="image.family.label" default="Family" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: imageInstance, field: 'family', 'errors')}">
+                                    <g:textField name="family" size="50" value="${imageInstance?.family}" />
                                 </td>
                             </tr>
                         

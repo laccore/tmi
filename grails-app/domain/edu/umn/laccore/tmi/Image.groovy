@@ -32,6 +32,8 @@ class Image implements Taggable {
 		originalImageName(blank:true,nullable:true)
 		magnification(blank:true,nullable:true)
 		taxon(blank:true,nullable:true)
+		commonName(blank:true,nullable:true)
+		family(blank:true,nullable:true)
 		
 	}
 
@@ -63,6 +65,8 @@ class Image implements Taggable {
 	String originalImageName
 	String magnification
 	String taxon
+	String commonName
+	String family
 	
 	String toString() {
 		"${name}"
