@@ -60,6 +60,7 @@
         	<span class="menuButton"><g:link action="startMirroring">Restart Search Mirroring</g:link></span>
         	<span class="menuButton"><g:link action="reindexTags">Reindex Tags</g:link></span>
         	<span class="menuButton"><g:link controller="tags" action="show">Tag List</g:link></span>
+        	<span class="menuButton"><g:link controller="xapResource" action="refreshXap">Refresh Pivot Viewer</g:link></span>
         	</div>
     
 	
