@@ -190,6 +190,15 @@
 								</td>
 							</tr>
 							
+                            <tr class="prop">
+						    	<td valign="top" class="name">
+						    		<label for="overlayPayload">Annotation Overlay</label>
+						    	</td>
+						    	<td valign="top">
+									<input type="file" id="overlayPayload" name="overlayPayload" value="${params?.overlayPayload}"/>
+								</td>
+							</tr>
+
 							<tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="uiTags"><g:message code="image.uiTags.label" default="Tags" /></label>

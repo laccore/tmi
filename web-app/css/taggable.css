@@ -118,3 +118,19 @@ ul.dropdown li:hover > ul {
 	background-color: #2f6cab;
 	height: 35px; /* Otherwise Firefox makes it 36px, leaving a 1px line between menu and submenu */
 }
+
+.uiImage {
+    position: relative;
+    width: 600px;
+}
+
+.uiImageOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.uiImage:hover .uiImageOverlay {
+    display: block;
+}

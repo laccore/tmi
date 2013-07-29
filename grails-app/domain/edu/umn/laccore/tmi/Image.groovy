@@ -28,13 +28,13 @@ class Image implements Taggable {
 		filename(blank:true, nullable:true)
 		filenameMedium(blank:true, nullable:true)
 		filenameThumb(blank:true, nullable:true)
+		filenameOverlay(blank:true, nullable:true)
 		uiTags(blank:true, nullable:true)
 		originalImageName(blank:true,nullable:true)
 		magnification(blank:true,nullable:true)
 		taxon(blank:true,nullable:true)
 		commonName(blank:true,nullable:true)
 		family(blank:true,nullable:true)
-		
 	}
 
 	//static belongsTo = [uniqueIdentification:UniqueIdentification, lightType:LightType, corerType:CorerType]
@@ -59,6 +59,7 @@ class Image implements Taggable {
 	String filename
 	String filenameMedium
 	String filenameThumb
+	String filenameOverlay
 	LightType lightType
 	CorerType corerType
 	String uiTags

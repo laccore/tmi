@@ -54,13 +54,22 @@ class UtilsService {
 	static isAllowedImageFile(filename) {
 		// The current image processing library handles PNGs with transparency
 		// horribly, but that should be very, very unlikely for our purposes.
-		def fileExtension = "${filename}".split("\\.")[-1].toUpperCase()
+		//def fileExtension = "${filename}".split("\\.")[-1].toUpperCase()
+		def fileExtension = getExtension(filename)
 		
 		return allowedExtensions.contains(fileExtension)
 	}
 	
 	static getAllowedExtensions() {
 		return allowedExtensions
+	}
+	
+	static stripExtension(filename) {
+		return "${filename}".split("\\.")[0]
+	}
+	
+	static getExtension(filename) {
+		return "${filename}".split("\\.")[-1]
 	}
 	
 	/*

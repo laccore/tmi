@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="umn" />
         <g:set var="entityName" value="${message(code: 'uniqueIdentification.label', default: 'UniqueIdentification')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <title><g:message code="default.show.label" args="[entityName]" /></title>        
     </head>
     <body>
         <div class="nav">
@@ -97,25 +97,40 @@
                                
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+                <table>
+                	<tablebody>
                         <g:each in="${uniqueIdentificationInstance.imagesInDisplayOrder()}" var="imageInstance">
                         	<tr>
-                        		<td style="text-align:right"><%--
-                        			Magnification: ${imageInstance.magnification}<br/>
-                        			Submitted by: ${imageInstance.submittedBy }<br/>
-                        			Lake name: ${imageInstance.lakeName }<br/>
-                        			Notes: ${imageInstance.notes }<br/>
-                        		--%></td>
                         		<td>
                         			<g:link controller="image" action="show" id="${imageInstance.id}">${i?.encodeAsHTML()}</g:link>
+                                    <div class="uiImage">
                                     <a href="${createLinkTo(dir:imageInstance.viewDir(), file:''+imageInstance.filename)}">
                         				<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameMedium)}" 
                         					alt="${imageInstance.filenameMedium}" title="${imageInstance.tooltip()}"/>
+	                       				<g:if test="${imageInstance.filenameOverlay != null}">
+                        				<img class="uiImageOverlay" src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameOverlay)}" 
+                        					alt="${imageInstance.filenameOverlay}" title="${imageInstance.tooltip()}"/>
+	                       				</g:if>
                         			</a>
+                        			</div>
+                        		</td>
+                        		<td style="text-align:left">
+                        	        Unique Identification: ${uniqueIdentificationInstance?.name}<br/>
+                        	        <g:if test="${imageInstance.taxon?.length() > 0}">
+                        	        	Taxon: ${imageInstance.taxon}<br/>
+                        	        </g:if>
+                    	        	Site name: ${imageInstance.lakeName?:'not specified'}<br/>
+                    	        	Light type: ${imageInstance.lightType?:'not specified' }<br/>
+                    	        	Magnification: ${imageInstance.magnification?:'not specified'}<br/>
+									Submitted by: ${imageInstance.submittedBy?:'not specified'}<br/>
+									Notes: ${imageInstance.notes?:'none'}
                         		</td>
                         	</tr>
                         </g:each>
-                    </tbody>
-                </table>
+					</tablebody>
+				</table>
             </div>
             <div class="buttons">
                 <g:form>

@@ -1,16 +1,20 @@
 package edu.umn.laccore.tmi
-import org.grails.plugins.imagetools.*
 import grails.plugins.springsecurity.Secured
-import org.apache.commons.fileupload.disk.DiskFileItem
-import org.apache.commons.fileupload.disk.DiskFileItemFactory
-import org.apache.commons.fileupload.FileItem
+import groovy.sql.Sql
+
+import java.sql.*
+
+import org.grails.plugins.imagetools.*
+
+import au.com.bytecode.opencsv.*
 
 @Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class ImageController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-	
+	def dataSource
 	def utilsService
+	
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]	
 	
 	/*def deleteAllImagesYouBetterBeSure = {
 		Image.list().each{ imageInstance ->
@@ -82,6 +86,7 @@ class ImageController {
     def save = {
 		// uploadedFile is of type org.springframework.web.multipart.commons.CommonsMultipartFile
 		def uploadedFile = request.getFile('payload')
+		def overlayFile = request.getFile('overlayPayload')
 		
 		def imageInstance = new Image(params)
 		if (!uploadedFile.empty) {
@@ -97,6 +102,19 @@ class ImageController {
 			uploadedFile.transferTo(new File(componentSpecificDir, uploadedFile.originalFilename))
 			
 			utilsService.createImageThumbnails(uploadedFile.originalFilename, imageInstance, componentSpecificDir)
+		}
+		
+		if (!overlayFile.empty) {
+			if (!overlayFile.originalFilename.endsWith('.png')) {
+				flash.message = "Annotation Overlay file ${overlayFile.originalFilename} must be a PNG image"
+				render(view: "create", model: [imageInstance: imageInstance])
+				return
+			}
+			
+			// save overlay
+			def componentSpecificDir = createDirForImage(imageInstance)
+			overlayFile.transferTo(new File(componentSpecificDir, overlayFile.originalFilename))
+			imageInstance.filenameOverlay = overlayFile.originalFilename
 		}
 		
         if (imageInstance.save(flush: true)) {
@@ -210,6 +228,10 @@ class ImageController {
 		def fileThumb =	new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filenameThumb)
 		if ( fileThumb.exists() )
 			fileThumb.delete()
+			
+		def fileOverlay = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.fileOverlay)
+		if ( fileOverlay.exists() )
+			fileOverlay.delete()
 	}
 	
 	def linkImage = {

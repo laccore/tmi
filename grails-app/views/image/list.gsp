@@ -14,6 +14,7 @@
             <span class="menuButton"><g:link class="images" controller="fileResource" action="upload">Upload Images</g:link></span>
         	<span class="menuButton"><g:link class="link" controller="fileResource" action="list">Link Images</g:link></span>
         	<span class="menuButton"><g:link class="meta" controller="excelUploader" action="index">Upload Metadata</g:link></span>
+        	<span class="menuButton"><g:link class="images" controller="fileResource" action="uploadOverlays">Upload Image Overlays</g:link></span>
         </div>
         <div class="body">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
