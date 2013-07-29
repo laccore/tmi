@@ -3,7 +3,8 @@ package edu.umn.laccore.tmi
 class ReindexJob {
 	def adminService
 	static triggers = {
-      cron name: 'reindexTrigger', cronExpression: "0 0/15 * * * ?"
+      //cron name: 'reindexTrigger', cronExpression: "0 0/15 * * * ?"
+	  cron name: 'reindexTrigger', cronExpression: "0 0 12 * * ?"
     }
 
     def execute() {

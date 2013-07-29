@@ -277,6 +277,7 @@ environments {
 		//images.parent.location = "images"
 		//unlinked.images.location = "images/unlinked"
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
+		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
 	}
 	development {
 		grails.serverURL = "http://localhost:8080/${appName}"
@@ -288,6 +289,7 @@ environments {
 		//images.parent.location = "images"
 		//unlinked.images.location = "images/unlinked"
 		training.video = "/Users/rmcewan/Desktop/tmi-images/mov/training_video_small.mov"
+		pivot.staging.dir = "/Users/rmcewan/pivot"
 	}
 	test {
 		grails.serverURL = "http://dbw23.msi.umn.edu:8081/${appName}-${version}"
