@@ -50,7 +50,22 @@
 					TMI is funded by NSF-Geoinformatics (EAR-1226265), and was previously supported by a University of Minnesota Interdisciplinary Informatics Seed Grant.  The application is hosted at the Minnesota Supercomputer Institute, and benefits from the infrastructure provided by LacCore, funded by the National Science Foundation and the University of Minnesota.
 				</li>
 				<li>
-					Subject matter experts have contributed images and information to TMI. We deeply appreciate their time and energy, and the support of their institutions. Thanks to: Dick Baker, University of Iowa; Andy Breckenridge, Univ of Wisconsin-Superior; Jordan Bright, University of Arizona; Andy Cohen, Univ. of Arizona; Ed Cushing, University of Minnesota; Mark Edlund, St. Croix Watershed Research Station; Hedy Kling, Algal Taxonomy & Ecology Inc., Michael Rosen, USGS; Guy Rothwell, BOSCORF, NOC, UK; Mark Shapley, Idaho State Univ.; Joe Smoot, USGS; Vania Stefanova, University of Minnesota; Robert Thompson, University of Minnesota; Blas Valero-Garces, Pyrenean Inst. of Ecology, and Ian Walker, University of British Columbia. 
+					Subject matter experts have contributed images and information to TMI. We deeply appreciate their 
+					time and energy, and the support of their institutions. Thanks to: Dick Baker, University of Iowa;
+					Andy Breckenridge, University of Wisconsin-Superior;
+					Jordan Bright, University of Arizona;
+					Andy Cohen, University of Arizona;
+					Ed Cushing, University of Minnesota;
+					Mark Edlund, St. Croix Watershed Research Station;
+					Hedy Kling, Algal Taxonomy & Ecology Inc., Michael Rosen, USGS;
+					Guy Rothwell, BOSCORF, NOC, UK;
+					Mark Shapley, Idaho State University;
+					Joe Smoot, USGS; Vania Stefanova, University of Minnesota;
+					Robert Thompson, University of Minnesota;
+					Blas Valero-Garces, Pyrenean Inst. of Ecology;
+					Ian Walker, University of British Columbia;
+					James Marty, Utah State University, and
+					Val Stanley, Minnesota Geological Survey.
 				</li>
 				<li>
 					TMI is dedicated to the memory of Mike Talbot, whom we wish were here to help us, and of course to Kerry Kelts, whose project we are trying to complete.
