@@ -2,7 +2,7 @@ package edu.umn.laccore.tmi
 
 import groovy.sql.Sql
 
-class InteractiveController {
+class ImageSieveController {
 	def dataSource
 	def grailsApplication
 	
