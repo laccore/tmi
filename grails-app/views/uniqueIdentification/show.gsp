@@ -108,10 +108,10 @@
                                     <div class="uiImage">
                                     <a href="${createLinkTo(dir:imageInstance.viewDir(), file:''+imageInstance.filename)}">
                         				<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameMedium)}" 
-                        					alt="${imageInstance.filenameMedium}" title="${imageInstance.tooltip()}"/>
+                        					alt="${imageInstance.filenameMedium}"/>
 	                       				<g:if test="${imageInstance.filenameOverlay != null}">
                         				<img class="uiImageOverlay" src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameOverlay)}" 
-                        					alt="${imageInstance.filenameOverlay}" title="${imageInstance.tooltip()}"/>
+                        					alt="${imageInstance.filenameOverlay}"/>
 	                       				</g:if>
                         			</a>
                         			</div>
@@ -125,7 +125,8 @@
                     	        	Light type: ${imageInstance.lightType?:'not specified' }<br/>
                     	        	Magnification: ${imageInstance.magnification?:'not specified'}<br/>
 									Submitted by: ${imageInstance.submittedBy?:'not specified'}<br/>
-									Notes: ${imageInstance.notes?:'none'}
+									Notes: ${imageInstance.notes?:'none'}<br/>
+									Image Tags: ${imageInstance.uiTags?:'none'}
                         		</td>
                         	</tr>
                         </g:each>
