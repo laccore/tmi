@@ -21,7 +21,6 @@
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'dropdown.linear.css')}" />
 		<!-- taggable plugin CSS -->
 		<link rel="stylesheet" type="text/css" href="${resource(dir:'css',file:'taggable.css')}" />
-		<!-- contact-form plugin -->
 		
 		
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
