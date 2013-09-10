@@ -11,5 +11,7 @@ class UrlMappings {
 
 		"/"(view:"/index")
 		"500"(view:'/error')
+
+		"/is"(controller:"imageSieve")
 	}
 }
