@@ -17,6 +17,22 @@
 	    text-align:center;
     }
     </style>
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_reset.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_text.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_template.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_optional.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_grails.css')}" />
+	<link rel="stylesheet" type="text/css" href="${createLink(controller:'css',action:'template')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'umn_print.css')}" media="print" />
+	<link rel="stylesheet" type="text/css" href="${createLink(controller:'css',action:'print')}" media="print" />
+	<!-- Menu CSS -->
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'default.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'default.ultimate.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'default.ultimate.linear.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'dropdown.css')}" />
+	<link rel="stylesheet" type="text/css" href="${resource(dir:'css',plugin:'umn-web-template',file:'dropdown.linear.css')}" />
+    <link rel="stylesheet" type="text/css" href="${resource(dir:'css',file:'taggable.css')}" />
+    
     
     <script type="text/javascript">
         function onSilverlightError(sender, args) {
