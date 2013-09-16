@@ -33,7 +33,7 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
+		build 'commons-collections:commons-collections:3.1'	//for image tools
         runtime 'mysql:mysql-connector-java:5.1.20'
     }
 

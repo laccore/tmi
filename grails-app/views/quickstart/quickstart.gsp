@@ -39,6 +39,10 @@
         		<g:textField class="inset" name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
         		<g:hiddenField name="max" value="25"/>
     		</g:form>
+    		<h1>ImageSieve</h1>
+            <p style="margin-left:3em; margin-top:1em;">
+            	Filter by multiple tags! <a href="${createLink(controller:"is")}">Sort, zoom, slice and dice</a> the database.  (Machine intensive.)
+            </p>
 			<h1>Browse Images</h1>
             <p style="margin-left:3em; margin-top:1em;">
             	Gallery - images of <g:link controller="inorganic" action="gallery">inorganic components</g:link><br/>
