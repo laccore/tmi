@@ -49,9 +49,6 @@
         </style>
         <![endif]-->
         
-        <g:layoutHead />
-        <g:javascript library="application" />
-        
         <!-- Google Analytics -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
@@ -69,6 +66,10 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 		</script>
+
+		<g:layoutHead />
+        <g:javascript library="application" />
+        <r:layoutResources />
 	</head>
     <body class="center">
     
@@ -174,13 +175,9 @@
     <div id="spinner" class="spinner" style="display:none;">
 		<img src="${resource(dir:'images',plugin:'umn-web-template',file:'spinner.gif')}" alt="Spinner" />
 	</div>	
-	
 
-
-	<g:layoutBody />
+    <g:layoutBody />
 	<r:layoutResources disposition="defer"/>
-
-
 
     <!-- BEGIN OPTIONAL UNIT FOOTER -->
     <div class="grid_12" id="unit_footer2">
@@ -211,5 +208,5 @@
         <br class="clearabove" />
     </div>
     <!-- END UofM FOOTER -->
-    </body>	
+    </body> 
 </html>
