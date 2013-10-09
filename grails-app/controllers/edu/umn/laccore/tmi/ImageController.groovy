@@ -216,22 +216,18 @@ class ImageController {
         }
     }
 	
-	private removeImagesFromDisk(imageInstance) {
-		def fileOriginal = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filename)
+	private removeImageFile(imageInstanceDir, filename) {
+		def fileOriginal = new File(utilsService.getImagesDir() + "/" + imageInstanceDir, filename)
 		if ( fileOriginal.exists() )
 			fileOriginal.delete()
-			
-		def fileMedium = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filenameMedium)
-		if ( fileMedium.exists() )
-			fileMedium.delete()
-		
-		def fileThumb =	new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.filenameThumb)
-		if ( fileThumb.exists() )
-			fileThumb.delete()
-			
-		def fileOverlay = new File(utilsService.getImagesDir() + "/" + imageInstance.imagesDir(), imageInstance.fileOverlay)
-		if ( fileOverlay.exists() )
-			fileOverlay.delete()
+	}
+	
+	private removeImagesFromDisk(imageInstance) {
+		imageInstanceDir = imageInstance.imagesDir()
+		removeImageFile(imageInstanceDir, imageInstance.filename)
+		removeImageFile(imageInstanceDir, imageInstance.filenameMedium)
+		removeImageFile(imageInstanceDir, imageInstance, filenameThumb)
+		removeImageFile(imageInstanceDir, imageInstance, filenameOverlay)
 	}
 	
 	def linkImage = {
