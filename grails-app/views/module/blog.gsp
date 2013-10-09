@@ -21,7 +21,7 @@
     <body>
 		<div id="pageBody">
 			<g:each in="${postList}" var="post">
-				<h1><g:link action="blogpost" params="[postURL:"${post.url}"]">${post.title}</g:link></h1>
+				<h1><g:link action="blogpost" params="[postURL:"${post.selfLink}"]">${post.title}</g:link></h1>
 			</g:each>
         </div>
     </body>
