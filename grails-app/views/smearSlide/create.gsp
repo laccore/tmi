@@ -28,10 +28,13 @@
         <g:render template="smearSlide" model="['smearSlideInstance':smearSlideInstance]"/>
 
         <div class="buttons">
-          <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
+ 			<span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
+			<span class="button"><g:submitToRemote value="Preview Sedclass" update="sedclasszone" url="[controller:'smearSlide', action:'sedclass']"/></span>
         </div>
       </g:form>
     </div>
+    
+    <div id="sedclasszone"></div>
     
     <!-- Render the smear slide component template as hidden, provides us a base to clone from -->
     <g:render template='sscomp' model="['sscomp':null,'i':'_clone','hidden':true]"/>

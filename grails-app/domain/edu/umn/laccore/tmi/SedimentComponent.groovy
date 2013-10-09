@@ -22,13 +22,6 @@ class SedimentComponent {
 	SedimentType type
 	String speechToTextMappings		// list of "misheard" strings for this component, e.g. "Vivian Knight" for "vivianite"
 	boolean isStandardComponent		// is component a standard, TMI-provided component (true), or user-created (false)?
-
-	static final int CARBONATE = 0;
-	static final int SILICICLASTICS = 1;
-	static final int MICROFOSSILS = 2;
-	static final int ORGANIC_FINE = 3;
-	static final int ORGANIC_COARSE = 4;
-	static final int OTHER = 5;
 	
 	static constraints = {
 		name(blank:false, nullable:false, unique:true)
@@ -37,7 +30,7 @@ class SedimentComponent {
 		isStandardComponent(blank:false, nullable:false)
 	}
 
-	boolean isOrganic() { return (type == ORGANIC_FINE || type == ORGANIC_COARSE) }
+	boolean isOrganic() { return (type == SedimentType.OF || type == SedimentType.OC) }
 	String toString() {	"${name} (${type})" }
 	static descendingList() { SedimentComponent.list().sort{a,b -> a.name.compareTo(b.name)} }
 }

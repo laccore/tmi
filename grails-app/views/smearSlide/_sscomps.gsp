@@ -21,6 +21,7 @@ function addSmearSlideComponent()
     ssCompInput.attr('id',htmlId + 'component.id')
             .attr('name',htmlId + 'component.id');
     clone.find("input[id$=percentage]")
+    		.val(0)
             .attr('id',htmlId + 'percentage')
             .attr('name',htmlId + 'percentage');
 
@@ -44,7 +45,7 @@ $('.del-sscomp').live('click', function() {
 
 <div id="childList">
 	<g:if test="${smearSlideInstance.components.size() > 0}">
-	    <g:each var="sscomp" in="${smearSlideInstance.componentList()}" status="i">
+	    <g:each var="sscomp" in="${smearSlideInstance.components}" status="i">
 	        <g:render template='sscomp' model="['sscomp':sscomp,'i':i,'hidden':false]"/>
 	    </g:each>
     </g:if>

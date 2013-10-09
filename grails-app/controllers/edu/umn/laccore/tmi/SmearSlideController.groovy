@@ -111,32 +111,25 @@ class SmearSlideController {
 			redirect(action: "list")
 		}
 	}
-
-	def makeComponents = {
-		def prims = ["calcite", "aragonite", // calcite
-					"quartz", "biotite", // s'tics
-					"diatoms", "phytolith", // microfossils
-					 "algal material", // organic fine
-					 "cactus chunks", // organic coarse
-					 "pyrite"] // other
-		def secs = ["calcitey", "aragonitic",
-					"quartzey", "biotitey",
-					"diatomaceous", "phytolithic",
-					"algal materially",
-					"cactus chunky",
-					"pyritic"]
-		def types = [0, 0, 1, 1, 2, 2, 3, 4, 5]
-		def percs = [15, 11, 17, 16, 5, 2, 1, 33, 2]
-		def components = []
-		prims.eachWithIndex() { name, index ->
-			components.add(new SmearSlideComponent(name:name, modifier:secs[index], type:types[index], percentage:percs[index]))
+	
+	def sedclass() {
+		def curSmearSlide = SmearSlide.get(params.id)
+		if (!curSmearSlide)
+			curSmearSlide = new SmearSlide(params)
+		else
+			curSmearSlide.properties = params
+		
+		def _toBeRemoved = curSmearSlide.components.findAll {it?.deleted || (it == null)}
+		
+		// if there are components to be deleted
+		if (_toBeRemoved) {
+			curSmearSlide.components.removeAll(_toBeRemoved)
 		}
 		
-		components
-	}
-	
-	def sedtest = {
-		def componentList = makeComponents()
-		sedClassService.sedimentName("silty sand", componentList)
+		curSmearSlide.discard()
+		def sedclassName = sedClassService.sedimentName(curSmearSlide.grainSize, curSmearSlide.components)
+		print "sedclassName: " + sedclassName 
+		
+		render "<br/><h3>Sediment classification: ${sedclassName}</h3><br/>"
 	}
 }
