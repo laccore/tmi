@@ -65,11 +65,13 @@ class UtilsService {
 	}
 	
 	static stripExtension(filename) {
-		return "${filename}".split("\\.")[0]
+		def lastDotIdx = "${filename}".lastIndexOf('.')
+		def result = (lastDotIdx == -1) ? filename : "${filename}".substring(0, lastDotIdx)
 	}
 	
 	static getExtension(filename) {
-		return "${filename}".split("\\.")[-1]
+		def lastDotIdx = "${filename}".lastIndexOf('.')
+		def result = (lastDotIdx == -1) ? "" : "${filename}".split("\\.")[-1]
 	}
 	
 	/*

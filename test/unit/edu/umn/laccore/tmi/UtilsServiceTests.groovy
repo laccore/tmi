@@ -1,7 +1,5 @@
 package edu.umn.laccore.tmi
 
-
-
 import grails.test.mixin.*
 import org.junit.*
 
@@ -12,6 +10,14 @@ import org.junit.*
 class UtilsServiceTests {
 
     void testSomething() {
-        fail "Implement me"
+        def fname1 = "superfile.png"
+		def fname2 = "super.file.png"
+		def fname3 = "superfile"
+		assert UtilsService.getExtension(fname1) == "png"
+		assert UtilsService.stripExtension(fname1) == "superfile"
+		assert UtilsService.getExtension(fname2) == "png"
+		assert UtilsService.stripExtension(fname2) == "super.file"
+		assert UtilsService.getExtension(fname3) == ""
+		assert UtilsService.stripExtension(fname3) == "superfile"
     }
 }
