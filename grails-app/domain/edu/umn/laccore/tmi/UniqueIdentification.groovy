@@ -55,11 +55,16 @@ class UniqueIdentification extends Node implements Taggable {
 	}
 	
 	List imagesInDisplayOrder() {
+		def sortByTaxon = false
+		if (identificationType.name == "Plant")
+			if (this.name == "Pollen" || this.name == "Plant Macrofossil")
+				sortByTaxon = true
+				
 		def c = Image.createCriteria()
 		def images = c.list {
 			eq('uniqueIdentification.id',id)
 			and { gt('displayOrder',0) }
-			order("displayOrder","asc")
+			sortByTaxon ? order("taxon","asc") : order("displayOrder","asc")
 		}
 		return images
 	}
