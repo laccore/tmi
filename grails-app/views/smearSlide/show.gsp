@@ -38,6 +38,7 @@
             			<g:each in="${smearSlideInstance.components.sort {a,b -> b.percentage.compareTo(a.percentage)}}" var="sscomp">
             				<span class="property-value" aria-labelledby="components-label">${sscomp.toString()}</br></span>
 						</g:each>
+						<br/>Total: ${smearSlideInstance.totalPercentage()}%
             		</td>
             	</tr>
 				<tr class="prop">

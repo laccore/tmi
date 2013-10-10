@@ -25,4 +25,9 @@ class SmearSlide {
 	
 	// list components in descending order
 	def componentList() { new ArrayList(components).sort {a,b -> b.percentage.compareTo(a.percentage)} }
+	def totalPercentage() {
+		def sum = 0
+		components.each { sum += it.percentage }
+		return sum
+	}
 }

@@ -3,7 +3,7 @@ package edu.umn.laccore.tmi
 class SedClassService {
 
     // String grainSize - silty clay, clayey sand, sandy silt, etc.
-	// components - list of SmearSlideComponents (for now) 
+	// components - list of SmearSlideComponents
 	def sedimentName = { grainSize, components -> 
 		// count all buckets
 		def abundances = [:]
@@ -17,7 +17,6 @@ class SedClassService {
 				abundances[countType] = it.percentage
 			else
 				abundances[countType] += it.percentage
-			println it.toString()
 		}
 		
 		// find two most abundant types
@@ -66,7 +65,6 @@ class SedClassService {
 		def secName = ""
 		if (secTypeEntry != null)
 		{
-			println "secTypeEntry key = " + secTypeEntry.key
 			switch (secTypeEntry.key)
 			{
 				case SedimentComponent.SedimentType.C:
@@ -89,7 +87,6 @@ class SedClassService {
 		}
 		
 		def sedclassName = secName + " " + primaryName
-		println "Sediment Name: " + sedclassName
 		sedclassName
     }
 	
@@ -107,7 +104,7 @@ class SedClassService {
 			result = adjectifyGrainMap[words[0]]
 		}
 		else // something is wrong
-			println "0 or 2+ words in provided grain size [${grainSize}], what the?"
+			println "problem generating sedclass: 0 or 2+ words in provided grain size [${grainSize}], what the?"
 		
 		result
 	}

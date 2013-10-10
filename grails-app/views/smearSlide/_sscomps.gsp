@@ -32,11 +32,29 @@ function addSmearSlideComponent()
     childCount++;
 }
 
+// update total component % text
+function sumPercentages()
+{
+	var sum = 0;
+	$("input[name$='percentage']").each(function() {
+		var strPct = $(this).val();
+		if (strPct != "")
+			sum += parseInt(strPct);
+	});
+	
+	$("#totalPercentage").html("Total: " + sum.toString() + "%")
+}
+
+$(document).ready(sumPercentages()); // call as soon as page is loaded to update % text
+
 //bind click event on delete buttons using jquery live
 $('.del-sscomp').live('click', function() {
     var prnt = $(this).parents(".sscomp-div"); //find the parent div
-    var delInput = prnt.find("input[id$=deleted]"); //find the deleted hidden input
-
+    var delInput = prnt.find("input[id$='deleted']"); //find the deleted hidden input
+	
+	// set value to zero so we don't need to check deleted status in sumPercentages()
+	prnt.find("input[name$='percentage']").val(0)
+	
 	//  mark as deleted and hide div (removing div prevents proper deletion)
 	delInput.attr('value','true');
 	prnt.hide();
@@ -49,6 +67,9 @@ $('.del-sscomp').live('click', function() {
 	        <g:render template='sscomp' model="['sscomp':sscomp,'i':i,'hidden':false]"/>
 	    </g:each>
     </g:if>
+    
 </div>
 
 <input type="button" value="Add SmearSlideComponent" onclick="addSmearSlideComponent();" />
+<span id="totalPercentage" style="display:block;text-align:right;">Total: 0</span>
+

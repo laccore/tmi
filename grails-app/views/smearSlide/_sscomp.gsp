@@ -4,7 +4,7 @@
     <g:hiddenField name='components[${i}].new' value="${sscomp?.id == null?'true':'false'}"/>
 
     <g:select name='components[${i}].component.id' from="${edu.umn.laccore.tmi.SedimentComponent.descendingList()}" optionKey="id" value='${sscomp?.component?.id}' />
-	<g:textField name='components[${i}].percentage' value='${sscomp?.percentage}' />
+	<g:textField type='number' size='4' name='components[${i}].percentage' value='${sscomp?.percentage}' onchange='sumPercentages()' />
     <span class="del-sscomp">
 	<img src="${resource(dir:'images/skin', file:'icon_delete.png')}"
             style="vertical-align:middle;"/>
