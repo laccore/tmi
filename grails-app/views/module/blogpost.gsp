@@ -20,7 +20,14 @@
     </head>
     <body>
         <div id="pageBody">
-			<iframe width="100%" height="1000px" src="${params.postURL}"></iframe>
+			<div id="content"></div>
+		    <script>
+		      function handleResponse(response) {
+		        document.getElementById("content").innerHTML += "<h1>" + response.title + "</h1>" + response.content;
+		      }
+		    </script>
+		    <script src="${params.postURL}?callback=handleResponse&key=AIzaSyAXz1Gqzse2gLB63Y7JHP6ISkdiJN_lRTo"></script>
+		    <!-- <iframe width="100%" height="1000px" src="${params.postURL}"></iframe> -->
         </div>
     </body>
 </html>
