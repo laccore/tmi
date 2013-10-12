@@ -54,6 +54,7 @@ $('.del-sscomp').live('click', function() {
 	
 	// set value to zero so we don't need to check deleted status in sumPercentages()
 	prnt.find("input[name$='percentage']").val(0)
+	sumPercentages();
 	
 	//  mark as deleted and hide div (removing div prevents proper deletion)
 	delInput.attr('value','true');
