@@ -65,11 +65,13 @@ class ImageController {
     }
 
     def list = {
+		def sortBy = params.sort ?: "ui.name"
+		def orderBy = params.order ?: "asc"
+		print "sort by ${sortBy}, order ${orderBy}"
 		def c = Image.createCriteria()
 		def results = c.list {
 			createAlias("uniqueIdentification", "ui")
-			order("ui.name", "asc")
-			//order("id","asc")
+			order(sortBy, orderBy)
 		}
         //params.max = Math.min(params.max ? params.int('max') : 50, 100)
         //[imageInstanceList: Image.list(params), imageInstanceTotal: Image.count()]

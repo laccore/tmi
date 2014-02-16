@@ -26,15 +26,11 @@
                     <thead>
                         <tr>
                             <g:sortableColumn property="id" title="${message(code: 'image.id.label', default: 'Id')}" />
-                            <g:sortableColumn property="name" title="${message(code: 'image.name.label', default: 'Name')}" />
-                            <th><g:message code="image.uniqueIdentification.label" default="Unique Identification" /></th>
-                            <th><g:message code="image.lightType.label" default="Light Type" /></th>
-							<th><a href="http://lrc.geo.umn.edu/laccore/assets/pdf/sops/LacCore_naming_code.pdf">LacCore ID</a></th>
-							<g:sortableColumn property="submittedBy" title="${message(code: 'image.submittedBy.label', default: 'Submitted By')}" />
-							<g:sortableColumn property="notes" title="${message(code: 'image.notes.label', default: 'Notes')}" />
-							<g:sortableColumn property="uiTags" title="${message(code: 'image.uiTags.label', default: 'Tags')}" />
-							<g:sortableColumn property="taxon" title="${message(code: 'image.taxon.label', default: 'Taxon')}" />
                         	<th>Thumbnail</th>
+                            <g:sortableColumn property="name" title="Metadata"/>
+                            <g:sortableColumn property="ui.name" title="Unique ID" />
+                            <g:sortableColumn property="notes" title="Tags and Notes" />
+							<g:sortableColumn property="taxon" title="${message(code: 'image.taxon.label', default: 'Taxon')}" />
                         </tr>
                     </thead>
                     <tbody>
@@ -42,33 +38,31 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
                             <td><g:link action="show" id="${imageInstance.id}">${fieldValue(bean: imageInstance, field: "id")}</g:link></td>
-                            <td>${fieldValue(bean: imageInstance, field: "name")}</td>
-                            <td><g:link controller="uniqueIdentification" action="show" id="${imageInstance.uniqueIdentification.id}">${fieldValue(bean: imageInstance, field: "uniqueIdentification")}</g:link></td>
-                            <td>${fieldValue(bean: imageInstance, field: "lightType")}</td>
-                            <td>
-                            	${fieldValue(bean: imageInstance, field: "expeditionCode")}-${fieldValue(bean: imageInstance, field: "lakeCode")}<script type="text/javascript">
-									var str="${fieldValue(bean: imageInstance, field: "year")}";
-									document.write(str.substr(2));
-								</script>-${fieldValue(bean: imageInstance, field: "siteHole")}-${fieldValue(bean: imageInstance, field: "drive")}${fieldValue(bean: imageInstance, field: "corerType.corerShort")}-${fieldValue(bean: imageInstance, field: "section")}
-                            </td>
-                            <td>${fieldValue(bean: imageInstance, field: "submittedBy")}</td>
-                            <td>${fieldValue(bean: imageInstance, field: "notes")}</td>
-                            <td>${fieldValue(bean: imageInstance, field: "uiTags")}</td>
-                            <td>${fieldValue(bean: imageInstance, field: "taxon")}</td>
                         	<td>
                         		<g:link action="show" id="${imageInstance.id}">
                         			<img src="${createLinkTo(dir:imageInstance.viewDir(), file:imageInstance.filenameThumb)}" 
-									alt="${imageInstance.filename}" title="${imageInstance.filename}" style="max-height:100px; max-width:100px;" />
+									alt="[no image]" title="${imageInstance.filename}" style="max-height:100px; max-width:100px;" />
 								</g:link>
 							</td>
+                            <td>Filename: ${fieldValue(bean: imageInstance, field: "name")}<br/>
+                            	Light Type: ${fieldValue(bean: imageInstance, field: "lightType")}<br/>
+                            	Magnification: ${fieldValue(bean: imageInstance, field: "magnification")}<br/>
+                            	
+                            	<!--  nutty code to generate LacCore ID, better with a custom tag in Grails? -->
+                            	LacCore ID: ${fieldValue(bean: imageInstance, field: "expeditionCode")}-${fieldValue(bean: imageInstance, field: "lakeCode")}<script type="text/javascript">
+									var str="${fieldValue(bean: imageInstance, field: "year")}";
+									document.write(str.substr(2));
+								</script>-${fieldValue(bean: imageInstance, field: "siteHole")}-${fieldValue(bean: imageInstance, field: "drive")}${fieldValue(bean: imageInstance, field: "corerType.corerShort")}-${fieldValue(bean: imageInstance, field: "section")}</br>
+								Submitted by: ${fieldValue(bean: imageInstance, field: "submittedBy")}</br>
+							</td>
+                            <td><g:link controller="uniqueIdentification" action="show" id="${imageInstance.uniqueIdentification.id}">${fieldValue(bean: imageInstance, field: "uniqueIdentification")}</g:link></td>
+                            <td>Tags: ${fieldValue(bean: imageInstance, field: "uiTags")}<br/><br/>
+                            Notes: ${fieldValue(bean: imageInstance, field: "notes")}</td>
+                            <td>${fieldValue(bean: imageInstance, field: "taxon")}</td>
                         </tr>
                     </g:each>
                     </tbody>
                 </table>
-            </div>
-            <div class="paginateButtons">
-                <g:paginate total="${imageInstanceTotal}" />
-                <!--<g:paginate next="Next" prev="Prev" maxsteps="10" controller="image" action="list" max="50" offset="50" total="${imageInstanceTotal}" />-->
             </div>
         </div>
     </body>
