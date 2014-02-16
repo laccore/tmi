@@ -34,11 +34,11 @@
             <h1>Search</h1>
             <p style="margin-left:3em; margin-top:1em;">
             	Think it's in here, but don't know where? Search for it!
-            </p>
-			<g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get" style="margin-left:3em; margin-top:1em;">
+				<g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get" style="margin-left:3.7em; margin-top:1em;">
         		<g:textField class="inset" name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
         		<g:hiddenField name="max" value="25"/>
-    		</g:form>
+    			</g:form>
+    		</p>
     		<h1>ImageSieve</h1>
             <p style="margin-left:3em; margin-top:1em;">
             	Filter by multiple tags! <a href="${createLink(controller:"is")}">Sort, zoom, slice and dice</a> the database.  (Machine intensive.)
