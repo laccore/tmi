@@ -3,6 +3,8 @@ package edu.umn.laccore.tmi
 class SmearSlideController {
 	def sedClassService
 	
+	static scaffold=true
+	
 	def index() {
 		redirect(action: "list", params: params)
 	}

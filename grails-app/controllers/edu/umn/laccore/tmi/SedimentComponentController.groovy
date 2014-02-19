@@ -6,7 +6,9 @@ class SedimentComponentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
+    static scaffold=true
+	
+	/*def index() {
         redirect(action: "list", params: params)
     }
 
@@ -99,4 +101,5 @@ class SedimentComponentController {
             redirect(action: "show", id: id)
         }
     }
+    */
 }

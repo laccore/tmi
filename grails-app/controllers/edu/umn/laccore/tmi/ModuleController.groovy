@@ -35,6 +35,7 @@ class ModuleController {
 	
 	def blogpost() {
 		//mixed content woes https://blog.mozilla.org/tanvi/2013/04/10/mixed-content-blocking-enabled-in-firefox-23/
+		//https://developers.google.com/blogger/docs/3.0/getting_started#REST
 		render(view:"blogpost")
 	}
 	

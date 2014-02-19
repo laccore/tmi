@@ -11,6 +11,7 @@ class SmearSlide {
 	List components = new ArrayList()
 
 	static hasMany = [components:SmearSlideComponent]
+	static belongsTo = [driveSection:DriveSection]
 	
 	static mapping = {
 		// when we remove items from this.components, they become orphaned - delete them automatically

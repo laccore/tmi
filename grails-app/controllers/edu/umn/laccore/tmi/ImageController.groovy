@@ -163,18 +163,17 @@ class ImageController {
             }
 			//first get the imagesDir for persisted image in case we need to move them if the uid has changed
 			def oldImagesDir = imageInstance.imagesDir()
-			println oldImagesDir
+			log.debug oldImagesDir
 			
             imageInstance.properties = params
 			
-			println "about to check"
 			if (imageInstance.isDirty('uniqueIdentification')) { //println imageInstance.getDirtyPropertyNames()
 				try {
 					def newImagesDir = imageInstance.imagesDir()
-					//println newImagesDir
+					log.debug newImagesDir
 					utilsService.moveImages(oldImagesDir,imageInstance)
 				} catch (Exception e) {
-					e.printStackTrace()
+					log.fatal e
 					flash.message = "Problem moving image ${imageInstance.filename} to new location"
 					redirect(action: "show", id: imageInstance.id)
 					return
