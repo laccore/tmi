@@ -57,9 +57,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="paginateButtons">
-                <g:paginate total="${uniqueIdentificationInstanceTotal}" />
-            </div>
         </div>
     </body>
 </html>
