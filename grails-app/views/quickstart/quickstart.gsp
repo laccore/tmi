@@ -46,7 +46,8 @@
 			<h1>Browse Images</h1>
             <p style="margin-left:3em; margin-top:1em;">
             	Gallery - images of <g:link controller="inorganic" action="gallery">inorganic components</g:link><br/>
-            	Gallery - images of <g:link controller="organic" action="gallery">organic components</g:link>
+            	Gallery - images of <g:link controller="organic" action="gallery">organic components</g:link><br/>
+            	Gallery - images of <g:link controller="quickstart" action="contaminantGallery">contaminants</g:link>
             </p>
             <h1>Tags</h1>
 			<p style="margin-left:3em; margin-top:1em;">

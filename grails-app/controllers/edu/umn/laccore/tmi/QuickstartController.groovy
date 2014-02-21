@@ -11,6 +11,13 @@ class QuickstartController {
     def index = {
 		render(view:"quickstart",model:[taggableService:taggableService])
     }
-
-    
+	
+	def contaminantGallery = {
+		def results = UniqueIdentification.withCriteria {
+			createAlias("identificationType", "idt")
+			eq("idt.name", "Contaminant")
+			order("name", "asc")
+		}
+		render(view:"gallery", model:[uniqueIdentificationInstanceList: results, uniqueIdentificationInstanceTotal: results.size()])
+	}
 }
