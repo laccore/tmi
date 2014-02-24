@@ -5,7 +5,9 @@ import org.grails.taggable.*
 
 class Image implements Taggable {
 
-	static searchable = true
+	static searchable = {
+		spellCheck "include"
+	}
 	
 	static componentPathPrefix = "components/"
 	

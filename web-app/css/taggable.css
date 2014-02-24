@@ -119,6 +119,16 @@ ul.dropdown li:hover > ul {
 	height: 35px; /* Otherwise Firefox makes it 36px, leaving a 1px line between menu and submenu */
 }
 
+.tmiSearchField
+{
+	border: 1px solid #CCCCCC;
+}
+
+.tmiSearchField:focus
+{
+	border: 1px solid #AAAAAA;
+}
+
 .uiImage {
     position: relative;
     width: 600px;

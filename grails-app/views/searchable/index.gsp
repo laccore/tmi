@@ -98,8 +98,10 @@
   <body onload="focusQueryInput();">
   <div id="header">
     <g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get">
-        <g:textField class="inset" name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
+        <g:textField class="tmiSearchField" name="q" value="${params.q}" size="50"/>
+        <button type="submit">Search</button>
         <g:hiddenField name="max" value="25"/>
+        <g:hiddenField name="suggestQuery" value="true"/>
     </g:form>
   </div>
   <h4>&nbsp;</h4>
@@ -120,16 +122,6 @@
 
     <g:if test="${haveQuery && !haveResults && !parseException}">
       <p>Nothing matched your query - <strong>${params.q}</strong></p>
-      <g:if test="${!searchResult?.suggestedQuery}">
-        <p>Suggestions:</p>
-        <ul>
-          <li>Try a suggested query: <g:link controller="searchable" action="index" params="[q: params.q, suggestQuery: true]">Search again with the <strong>suggestQuery</strong> option</g:link><br />
-            <em>Note: Suggestions are only available when classes are mapped with <strong>spellCheck</strong> options, either at the class or property level.<br />
-		The simplest way to do this is add <strong>spellCheck "include"</strong> to the domain class searchable mapping closure.<br />
-                See the plugin/Compass documentation Mapping sections for details.</em>
-          </li>
-        </ul>
-      </g:if>
     </g:if>
 
     <g:if test="${searchResult?.suggestedQuery}">

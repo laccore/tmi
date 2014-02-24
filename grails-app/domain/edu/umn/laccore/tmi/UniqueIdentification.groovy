@@ -12,7 +12,9 @@ class UniqueIdentification extends Node implements Taggable {
 		uiTags(blank:true, nullable:true)
     }
 	
-	static searchable = true
+	static searchable = {
+		spellCheck "include"
+	}
 	
 	static hasMany = [images:Image, imposters:Imposter, externalResources:ExternalResource]
 	

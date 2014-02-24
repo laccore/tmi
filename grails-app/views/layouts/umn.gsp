@@ -164,7 +164,9 @@
 		<li><g:link controller="admin" action="index">Admin</g:link></li>
 		</sec:ifAllGranted>
 		<li id="tmiMenuSearchItem"><span><g:form url='[controller: "searchable", action: "index"]' id="searchableForm"  name="searchableForm" method="get">
-        	<g:textField class="input" name="q" value="${params.q}" size="30" style="border-style:inset;"/> <input id="tmiMenuSearchButton" type="submit" value="Search"/>
+        	<g:textField class="tmiSearchField" name="q" value="${params.q}" size="30" />
+        	<button type="submit">Search</button>
+        	<g:hiddenField name="suggestQuery" value="true"/>
         	<g:hiddenField name="max" value="25"/></g:form></span>
         </li>
 	</ul>

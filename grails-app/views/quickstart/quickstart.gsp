@@ -35,8 +35,10 @@
             <p style="margin-left:3em; margin-top:1em;">
             	Think it's in here, but don't know where? Search for it!
 				<g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get" style="margin-left:3.7em; margin-top:1em;">
-        		<g:textField class="inset" name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
-        		<g:hiddenField name="max" value="25"/>
+					<g:textField class="tmiSearchField" name="q" value="${params.q}" size="50"/>
+        			<button type="submit">Search</button>
+        			<g:hiddenField name="max" value="25"/>
+        			<g:hiddenField name="suggestQuery" value="true"/>
     			</g:form>
     		</p>
     		<h1>ImageSieve</h1>
