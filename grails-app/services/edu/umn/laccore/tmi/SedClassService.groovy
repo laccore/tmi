@@ -2,6 +2,8 @@ package edu.umn.laccore.tmi
 
 class SedClassService {
 
+	// brgtodo 2/24/2014: Handle null grain size and zero percentages correctly, unit tests
+	
     // String grainSize - silty clay, clayey sand, sandy silt, etc.
 	// components - list of SmearSlideComponents
 	def sedimentName = { grainSize, components -> 

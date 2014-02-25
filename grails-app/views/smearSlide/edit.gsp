@@ -30,12 +30,13 @@
         			<g:hiddenField name="id" value="${smearSlideInstance?.id}" />
                     <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
                     <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
-                    <span class="button"><g:submitToRemote value="Preview Sedclass" update="sedclasszone" url="[controller:'smearSlide', action:'sedclass']"/></span>
+                    <!--  2/20/2014 brg: Hide sedclass preview button. Clicks are simulated whenever an edit field's onChange event fires, freeing
+                    	user from manually clicking preview button to see updated sedclass. Couldn't find a way to update sedclass based on
+                    	the onChange event, thus the click simulation.  g:submitToForm tag ignores style attributes, hide in enclosing span instead. -->
+                    <span class="button" style="display:none;"><g:submitToRemote id="previewSedclassButton" value="Preview Sedclass" update="sedclasszone" url="[controller:'smearSlide', action:'sedclass']"/></span>
         		</div>
         	</g:form>
 		</div>
-		
-		<div id="sedclasszone"></div>
 		
 		<!--  Render the smear slide component template as hidden, provides us a base to clone from -->
     	<g:render template='sscomp' model="['sscomp':null,'i':'_clone','hidden':true]"/>
