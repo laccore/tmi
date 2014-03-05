@@ -265,6 +265,7 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate',
 		   'grails.app.jobs'
+	info 'grails.app.controllers' , 'grails.app.services', 'grails.app.domain', 'grails.app.jobs'
 }
 
 // Path to images, unlinked images and other static image resources in dev and test

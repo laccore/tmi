@@ -1,9 +1,12 @@
 package edu.umn.laccore.tmi
 
+import org.apache.commons.io.FilenameUtils
 import org.grails.plugins.imagetools.*
 
 class UtilsService {
 	def grailsApplication
+	
+	//static scope='prototype'
 	
 	def getGrailsApp() { return grailsApplication }
 	
@@ -64,7 +67,7 @@ class UtilsService {
 		//def fileExtension = "${filename}".split("\\.")[-1].toUpperCase()
 		def fileExtension = getExtension(filename)
 		
-		return allowedExtensions.contains(fileExtension)
+		return allowedExtensions.contains(fileExtension.toUpperCase())
 	}
 	
 	static getAllowedExtensions() {
@@ -83,15 +86,24 @@ class UtilsService {
 	
 	/*
 	 * used in when image domain class is edited, image knows new location
+	 * moves matching overlay, if it exists
 	 */
 	def moveImages(from, image) {
-		def files = [image.filename,image.filenameMedium,image.filenameThumb] 
-		 
-		//full
+		def files = [image.filename,image.filenameMedium,image.filenameThumb,image.filenameOverlay] //assume all 3 sizes exist, overlay might not
+
 		files.each { filename ->
-			File file = new File("${this.imagesDir}${File.separatorChar}${from}",filename)
-			println file.getAbsolutePath()
-			file.renameTo(new File("${this.imagesDir}${File.separatorChar}${image.imagesDir()}", filename))
+			log.info filename.getClass().getName()
+			if (filename) {
+				File file = new File("${this.imagesDir}${File.separatorChar}${from}",filename)
+				log.info file.getClass().getName()
+				if (file.exists()) { //not every file may exist, esp overlays
+					log.info "moving ${file.getAbsolutePath()} to ${image.imagesDir()}"
+					file.renameTo(new File("${this.imagesDir}${File.separatorChar}${image.imagesDir()}", filename))
+				} else {
+					log.info "cannot move ${file.getAbsolutePath()}, does not exist"
+				}
+			}
 		}
+		log.info "exiting moveImages()"
 	}
 }
