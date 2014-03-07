@@ -3,3 +3,5 @@ web-app/WEB-INF/tld
 target/
 target-eclipse/
 web-app/components/
+.DS_Store
+stacktrace.log
