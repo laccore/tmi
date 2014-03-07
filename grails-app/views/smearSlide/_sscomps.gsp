@@ -32,8 +32,8 @@ function addSmearSlideComponent()
     childCount++;
 }
 
-// update total component % text
-function sumPercentages()
+// update total component % text and sedclass preview text 
+function onAbundanceChange()
 {
 	var sum = 0;
 	$("input[name$='percentage']").each(function() {
@@ -42,23 +42,30 @@ function sumPercentages()
 			sum += parseInt(strPct);
 	});
 	
+	$("#previewSedclassButton").trigger("click") // simulate click to update sedclass
 	$("#totalPercentage").html("Total: " + sum.toString() + "%")
 }
 
-$(document).ready(sumPercentages()); // call as soon as page is loaded to update % text
+$(document).ready(onAbundanceChange()); // call as soon as page is loaded to update % text
 
 //bind click event on delete buttons using jquery live
 $('.del-sscomp').live('click', function() {
     var prnt = $(this).parents(".sscomp-div"); //find the parent div
     var delInput = prnt.find("input[id$='deleted']"); //find the deleted hidden input
 	
-	// set value to zero so we don't need to check deleted status in sumPercentages()
+	// set value to zero so we don't need to check deleted status in onAbundanceChange()
 	prnt.find("input[name$='percentage']").val(0)
-	sumPercentages();
+	onAbundanceChange();
 	
 	//  mark as deleted and hide div (removing div prevents proper deletion)
 	delInput.attr('value','true');
 	prnt.hide();
+});
+
+// copy suggested sedclass into Sediment Name field
+$("#useSuggestedSedclass").live('click', function() {
+	var suggestedSedclass = $("#sedclasszone").html()
+	$("#sedclassName").val(suggestedSedclass)
 });
 </r:script>
 
@@ -71,6 +78,5 @@ $('.del-sscomp').live('click', function() {
     
 </div>
 
-<input type="button" value="Add SmearSlideComponent" onclick="addSmearSlideComponent();" />
-<span id="totalPercentage" style="display:block;text-align:right;">Total: 0</span>
-
+<button type="button" onclick="addSmearSlideComponent();">Add Component</button>
+<span id="totalPercentage" style="float:right;">Total: 0%</span>

@@ -3,6 +3,8 @@ package edu.umn.laccore.tmi
 class SmearSlideController {
 	def sedClassService
 	
+	static scaffold=true
+	
 	def index() {
 		redirect(action: "list", params: params)
 	}
@@ -119,7 +121,7 @@ class SmearSlideController {
 		else
 			curSmearSlide.properties = params
 		
-		def _toBeRemoved = curSmearSlide.components.findAll {it?.deleted || (it == null)}
+		def _toBeRemoved = curSmearSlide.components.findAll {it?.deleted || (it == null) || it.percentage <= 0}
 		
 		// if there are components to be deleted
 		if (_toBeRemoved) {
@@ -128,8 +130,7 @@ class SmearSlideController {
 		
 		curSmearSlide.discard()
 		def sedclassName = sedClassService.sedimentName(curSmearSlide.grainSize, curSmearSlide.components)
-		print "sedclassName: " + sedclassName 
 		
-		render "<br/><h3>Sediment classification: ${sedclassName}</h3><br/>"
+		render "${sedclassName}"
 	}
 }

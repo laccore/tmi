@@ -265,31 +265,35 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate',
 		   'grails.app.jobs'
+	info 'grails.app.controllers' , 'grails.app.services', 'grails.app.domain', 'grails.app.jobs'
 }
+
+// Path to images, unlinked images and other static image resources in dev and test
+// environments: customize with your local path.
+tmi.imagePath = "/Users/bgrivna/Desktop/components"
 
 // set per-environment serverURL stem for creating absolute links
 environments {
 	production {
 		grails.serverURL = "https://tmi.laccore.umn.edu"
+		images.location.isRelative = false
 		images.parent.location = "/website/images.tmi.msi.umn.edu/images"
 		unlinked.images.location = "/website/images.tmi.msi.umn.edu/images/unlinked"
-		images.location.isRelative = false
-		//images.parent.location = "images"
-		//unlinked.images.location = "images/unlinked"
+		coreFace.images.location = "/website/images.tmi.msi.umn.edu/images/coreface"
+		edge.images.location = "/website/images.tmi.msi.umn.edu/images/edges"
+		question.images.location = "/website/images.tmi.msi.umn.edu/images/examples" // example images for Question nodes
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
-		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
 	}
 	development {
-		grails.serverURL = "http://localhost:8080/${appName}"
+		//grails.serverURL = "http://localhost:8080/${appName}"
 		//grails.serverURL = "http://localhost:8888/${appName}"
-		images.parent.location = "/Users/rmcewan/Desktop/TMI/dev-images"
-		unlinked.images.location = "/Users/rmcewan/Desktop/TMI/dev-images/unlinked"
-		edge.images.location = "/Users/rmcewan/Desktop/TMI/dev-images/edges"
 		images.location.isRelative = false
-		//images.parent.location = "images"
-		//unlinked.images.location = "images/unlinked"
-		training.video = "/Users/rmcewan/Desktop/tmi-images/mov/training_video_small.mov"
-		pivot.staging.dir = "/Users/rmcewan/pivot"
+		images.parent.location = "${tmi.imagePath}"
+		unlinked.images.location = "${tmi.imagePath}/unlinked"
+		coreFace.images.location = "${tmi.imagePath}/coreface"
+		edge.images.location = "${tmi.imagePath}/edges"
+		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
+		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
 	}
 	test {
 		grails.serverURL = "http://dbw23.msi.umn.edu:8081/${appName}-${version}"
