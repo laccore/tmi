@@ -99,8 +99,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- coreface here -->
-                <img src="images/"/>
                 <table>
                 	<tablebody>
                         <g:each in="${uniqueIdentificationInstance.imagesInDisplayOrder()}" var="imageInstance">
