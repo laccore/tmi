@@ -1,7 +1,9 @@
 package edu.umn.laccore.tmi
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
+@Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
 class CoreFaceImageController {
 	def utilsService
 	

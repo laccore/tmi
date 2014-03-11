@@ -75,10 +75,6 @@ class Image implements Taggable {
 		"${name}"
 	}
 	
-	String toDetailedString() {
-		"${this.id}: ${name} (${uniqueIdentification.name})" 
-	}
-	
 	String tooltip() {
 		String result = """Component: ${uniqueIdentification?.name}
 """

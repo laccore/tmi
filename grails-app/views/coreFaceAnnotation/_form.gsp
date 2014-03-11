@@ -7,7 +7,7 @@
 		<g:message code="coreFaceAnnotation.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" maxlength="50" required="" value="${coreFaceAnnotationInstance?.name}"/>
+	<g:textField name="name" maxlength="50" value="${coreFaceAnnotationInstance?.name}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'x', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="coreFaceAnnotation.x.label" default="X" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="x" type="number" value="${coreFaceAnnotationInstance.x}" required=""/>
+	<g:textField name="x" value="${fieldValue(bean: coreFaceAnnotationInstance, field: 'x')}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'y', 'error')} required">
@@ -23,7 +23,7 @@
 		<g:message code="coreFaceAnnotation.y.label" default="Y" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="y" type="number" value="${coreFaceAnnotationInstance.y}" required=""/>
+	<g:textField name="y" value="${fieldValue(bean: coreFaceAnnotationInstance, field: 'y')}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'width', 'error')} required">
@@ -31,7 +31,7 @@
 		<g:message code="coreFaceAnnotation.width.label" default="Width" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="width" type="number" value="${coreFaceAnnotationInstance.width}" required=""/>
+	<g:textField name="width" value="${fieldValue(bean: coreFaceAnnotationInstance, field: 'width')}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'height', 'error')} required">
@@ -39,7 +39,7 @@
 		<g:message code="coreFaceAnnotation.height.label" default="Height" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="height" type="number" value="${coreFaceAnnotationInstance.height}" required=""/>
+	<g:textField name="height" value="${fieldValue(bean: coreFaceAnnotationInstance, field: 'height')}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'coreFace', 'error')} required">
@@ -47,7 +47,7 @@
 		<g:message code="coreFaceAnnotation.coreFace.label" default="Core Face" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="coreFace" name="coreFace.id" from="${edu.umn.laccore.tmi.CoreFaceImage.list()}" optionKey="id" required="" value="${coreFaceAnnotationInstance?.coreFace?.id}" class="many-to-one"/>
+	<g:select name="coreFace.id" from="${edu.umn.laccore.tmi.CoreFaceImage.list()}" optionKey="id" value="${coreFaceAnnotationInstance?.coreFace?.id}"  />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coreFaceAnnotationInstance, field: 'image', 'error')} required">
@@ -55,6 +55,6 @@
 		<g:message code="coreFaceAnnotation.image.label" default="Image" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="image" name="image.id" from="${edu.umn.laccore.tmi.Image.list()}" optionKey="id" optionValue="${{it.toDetailedString()}}" required="" value="${coreFaceAnnotationInstance?.image?.id}" class="many-to-one"/>
+	<g:select name="image.id" from="${edu.umn.laccore.tmi.Image.list()}" optionKey="id" optionValue="${{'${it.id}: ${it.name} (${it.uniqueIdentification.name})'}}" value="${coreFaceAnnotationInstance?.image?.id}"  />
 </div>
 
