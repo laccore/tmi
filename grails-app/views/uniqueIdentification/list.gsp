@@ -21,37 +21,23 @@
                 <table>
                     <thead>
                         <tr>
-                        
                             <g:sortableColumn property="id" title="${message(code: 'uniqueIdentification.id.label', default: 'Id')}" />
-                        
                             <th><g:message code="uniqueIdentification.identificationType.label" default="Identification Type" /></th>
-                        
                             <g:sortableColumn property="name" title="${message(code: 'uniqueIdentification.name.label', default: 'Name')}" />
-                        
                             <g:sortableColumn property="description" title="${message(code: 'uniqueIdentification.description.label', default: 'Description')}" />
-                        
                             <g:sortableColumn property="distinguishingFeatures" title="${message(code: 'uniqueIdentification.distinguishingFeatures.label', default: 'Distinguishing Features')}" />
-                            
                             <g:sortableColumn property="uiTags" title="${message(code: 'uniqueIdentification.uiTags.label', default: 'Tags')}" />
-                        
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${uniqueIdentificationInstanceList}" status="i" var="uniqueIdentificationInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
                             <td><g:link action="show" id="${uniqueIdentificationInstance.id}">${fieldValue(bean: uniqueIdentificationInstance, field: "id")}</g:link></td>
-                        
                             <td>${fieldValue(bean: uniqueIdentificationInstance, field: "identificationType")}</td>
-                        
                             <td>${fieldValue(bean: uniqueIdentificationInstance, field: "name")}</td>
-                        
                             <td>${fieldValue(bean: uniqueIdentificationInstance, field: "description").replaceAll(/\n/, '<br />')}</td>
-                        
                             <td>${fieldValue(bean: uniqueIdentificationInstance, field: "distinguishingFeatures").replaceAll(/\n/, '<br />')}</td> 
-                            
                             <td>${fieldValue(bean: uniqueIdentificationInstance, field: "uiTags").replaceAll(' ', '<br />')}</td>                        
-
                         </tr>
                     </g:each>
                     </tbody>
