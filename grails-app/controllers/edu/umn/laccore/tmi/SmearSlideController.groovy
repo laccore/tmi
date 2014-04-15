@@ -3,42 +3,7 @@ package edu.umn.laccore.tmi
 class SmearSlideController {
 	def sedClassService
 	
-	static scaffold=true
-	
-	def index() {
-		redirect(action: "list", params: params)
-	}
-	
-	def list() {
-		[ssInstanceList: SmearSlide.list()]
-	}
-
-	def show() {
-		def smearSlideInstance = SmearSlide.get(params.id)
-		if (!smearSlideInstance) {
-			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), params.id])}"
-			redirect(action: "list")
-		}
-		else {
-			[smearSlideInstance: smearSlideInstance]
-		}
-	}
-	
-	
-	def create() {
-        [smearSlideInstance: new SmearSlide(params)]
-    }
-	
-	def edit() {
-		def smearSlideInstance = SmearSlide.get(params.id)
-		if (!smearSlideInstance) {
-			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), params.id])}"
-			redirect(action: "list")
-		}
-		else {
-			return [smearSlideInstance: smearSlideInstance]
-		}
-	}
+	static scaffold = true
 	
 	def save() {
 		def smearSlideInstance = new SmearSlide(params)
@@ -94,26 +59,8 @@ class SmearSlideController {
 			redirect(action: "list")
 		}
 	}
-	
-	def delete() {
-		def smearSlideInstance = SmearSlide.get(params.id)
-		if (smearSlideInstance) {
-			try {
-				smearSlideInstance.delete(flush: true)
-				flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), params.id])}"
-				redirect(action: "list")
-			}
-			catch (org.springframework.dao.DataIntegrityViolationException e) {
-				flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), params.id])}"
-				redirect(action: "show", id: params.id)
-			}
-		}
-		else {
-			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), params.id])}"
-			redirect(action: "list")
-		}
-	}
-	
+
+	// generate sedclass name from current SmearSlideComponents	
 	def sedclass() {
 		def curSmearSlide = SmearSlide.get(params.id)
 		if (!curSmearSlide)

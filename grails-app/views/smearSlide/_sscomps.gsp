@@ -64,7 +64,7 @@ $('.del-sscomp').live('click', function() {
 
 // copy suggested sedclass into Sediment Name field
 $("#useSuggestedSedclass").live('click', function() {
-	var suggestedSedclass = $("#sedclasszone").html()
+	var suggestedSedclass = $("#sedclassPreview").html()
 	$("#sedclassName").val(suggestedSedclass)
 });
 </r:script>
