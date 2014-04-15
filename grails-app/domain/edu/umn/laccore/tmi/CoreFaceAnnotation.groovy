@@ -4,7 +4,7 @@ class CoreFaceAnnotation {
 	String name // if nothing else, for internal use to distinguish annotations
 	Image image
 	int x = 0, y = 0
-	int width = 20, height = 20 // (x,y) is the *center* of the image
+	int width = 20, height = 20 // (x,y) is now upper-left hand corner of the annotation
 	
 	static belongsTo = [coreFace:CoreFaceImage]
 
@@ -17,10 +17,7 @@ class CoreFaceAnnotation {
     }
 	
 	String toString() {	"${name}" }
-	String cssStyle() { "left:${this.xcoord()}px;bottom:${this.ycoord()}px;width:${width}px;height:${height}px;" }
-	int xcoord() { x - width/2 }
-	int ycoord() { y - height/2 }
-	
+	String cssStyle() { "left:${x}px;top:${y}px;width:${width}px;height:${height}px;" }
 	String popupStyle() { "right:${this.popupx()}px;" }
 	
 	// adjust x position of popup to avoid drawing large % outside of visible area
