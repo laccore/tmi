@@ -21,93 +21,101 @@ class SedClassService {
 				abundances[countType] += it.percentage
 		}
 		
-		// find two most abundant types
-		def primTypeEntry = abundances.max() { it.value }
-		abundances.remove(primTypeEntry.key)
-		def secTypeEntry = abundances.max() { it.value }
-		
-		// rank components of each of the two most abundant component types
-		def primComps = components.findAll() { it.component.type == primTypeEntry.key }
-		primComps.sort() { -it.percentage }
-		
-		def secComps = components.findAll() { it.component.type == secTypeEntry?.key }
-		secComps.sort() { -it.percentage }
-
-		// if primary type is siliciclastics, use grainSize as primary name
-		def primaryName = null
-		switch (primTypeEntry.key)
-		{
-			case SedimentComponent.SedimentType.C: // carbonates
-				primaryName = "carbonate (" + (primComps[0].component.name) + ") mud"
-				break
-			case SedimentComponent.SedimentType.S: // siliciclastics
-				primaryName = grainSize
-				break
-			case SedimentComponent.SedimentType.M: // microfossils
-				primaryName = primComps[0].component.name
-				break
-			case SedimentComponent.SedimentType.OF: // catch-all for *both* organic types
-				def fine = 0, coarse = 0
-				components.each() {
-					if (it.component.isOrganic())
-						if (it.component.type == SedimentComponent.SedimentType.OF)
-							fine += it.percentage
-						else // ORGANIC_COARSE
-							coarse += it.percentage
-				}
-				primaryName = (fine > coarse) ? "sapropel" : "peat"
-				break
-			case SedimentComponent.SedimentType.O: // other
-				primaryName = primComps[0].component.name
-				break
-		}
-		
-		// if secondary type is siliciclastics, pull only noun portion of grainSize (if two words)
-		// and convert to adjective.
-		def secName = ""
-		if (secTypeEntry != null)
-		{
-			switch (secTypeEntry.key)
+		def sedclassName = "[requires 1+ components]"
+		if (abundances.size() > 0) {
+			// find two most abundant types
+			def primTypeEntry = abundances.max() { it.value }
+			abundances.remove(primTypeEntry.key)
+			def secTypeEntry = abundances.max() { it.value }
+			
+			// rank components of each of the two most abundant component types
+			def primComps = components.findAll() { it.component.type == primTypeEntry.key }
+			primComps.sort() { -it.percentage }
+			
+			def secComps = components.findAll() { it.component.type == secTypeEntry?.key }
+			secComps.sort() { -it.percentage }
+	
+			// if primary type is siliciclastics, use grainSize as primary name
+			def primaryName = null
+			switch (primTypeEntry.key)
 			{
-				case SedimentComponent.SedimentType.C:
-					secName = "calcareous (" + secComps[0].component.name + ")"
+				case SedimentComponent.SedimentType.C: // carbonates
+					primaryName = "carbonate (" + (primComps[0].component.name) + ") mud"
 					break
-				case SedimentComponent.SedimentType.S:
-					secName = makeSecondaryGrainSize(grainSize)
+				case SedimentComponent.SedimentType.S: // siliciclastics
+					if (grainSize.size() > 0)
+						primaryName = grainSize
+					else
+						primaryName = "[requires Grain Size]"
 					break
-				case SedimentComponent.SedimentType.M:
-					secName = secComps[0].component.modifier
+				case SedimentComponent.SedimentType.M: // microfossils
+					primaryName = primComps[0].component.name
 					break
-				case SedimentComponent.SedimentType.OF:
-				case SedimentComponent.SedimentType.OC:
-					secName = "organic-rich"
+				case SedimentComponent.SedimentType.OF: // catch-all for *both* organic types
+					def fine = 0, coarse = 0
+					components.each() {
+						if (it.component.isOrganic())
+							if (it.component.type == SedimentComponent.SedimentType.OF)
+								fine += it.percentage
+							else // ORGANIC_COARSE
+								coarse += it.percentage
+					}
+					primaryName = (fine > coarse) ? "sapropel" : "peat"
 					break
-				case SedimentComponent.SedimentType.O:
-					secName = secComps[0].component.modifier
+				case SedimentComponent.SedimentType.O: // other
+					primaryName = primComps[0].component.name
 					break
 			}
+			
+			// if secondary type is siliciclastics, pull only noun portion of grainSize (if two words)
+			// and convert to adjective.
+			def secName = ""
+			if (secTypeEntry != null)
+			{
+				switch (secTypeEntry.key)
+				{
+					case SedimentComponent.SedimentType.C:
+						secName = "calcareous (" + secComps[0].component.name + ")"
+						break
+					case SedimentComponent.SedimentType.S:
+						secName = makeSecondaryGrainSize(grainSize)
+						break
+					case SedimentComponent.SedimentType.M:
+						secName = secComps[0].component.modifier
+						break
+					case SedimentComponent.SedimentType.OF:
+					case SedimentComponent.SedimentType.OC:
+						secName = "organic-rich"
+						break
+					case SedimentComponent.SedimentType.O:
+						secName = secComps[0].component.modifier
+						break
+				}
+			}
+			
+			sedclassName = secName + " " + primaryName
 		}
-		
-		def sedclassName = secName + " " + primaryName
 		sedclassName
     }
 	
 	// return modified grain size appropriate for use as a modifier in sediment class name, i.e.
 	// pulling grain size modifier (silty/clayey/sandy) if present and turning noun into an adjective
 	def makeSecondaryGrainSize = { grainSize ->
-		def result = null
-		def words = grainSize?.split(' ')
-		if (words.length == 2)
-		{
-			result = adjectifyGrainMap[words[1]]
-		}
-		else if (words.length == 1)
-		{
-			result = adjectifyGrainMap[words[0]]
-		}
-		else // something is wrong
-			println "problem generating sedclass: 0 or 2+ words in provided grain size [${grainSize}], what the?"
-		
+		def result = "[requires Grain Size]"
+		if (grainSize.size() > 0) {
+			def words = grainSize.split(' ')
+			if (words.length == 2)
+			{
+				result = adjectifyGrainMap[words[1]]
+			}
+			else if (words.length == 1)
+			{
+				result = adjectifyGrainMap[words[0]]
+			}
+			else { // something is wrong
+				println "problem generating sedclass: 0 or 2+ words in provided grain size [${grainSize}]"
+			}
+		}		
 		result
 	}
 	

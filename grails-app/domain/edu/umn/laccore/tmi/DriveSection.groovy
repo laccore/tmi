@@ -8,4 +8,6 @@ class DriveSection {
 	User user
 	String driveSection
 	static hasMany = [smearSlides:SmearSlide]
+	
+	String toString() { "${driveSection}" }
 }

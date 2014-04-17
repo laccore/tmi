@@ -20,8 +20,14 @@ class SmearSlide {
 	
 	static constraints = {
 		name(blank:false, nullable:false)
-		sedclassName(blank:false, nullable:false)
+		driveSection()
+		coreSection()
+		depth()
 		grainSize(blank:false, nullable:false)
+		components()
+		sedclassName(blank:false, nullable:false)
+		reason()
+		comments()
 	}
 	
 	// list components in descending order
