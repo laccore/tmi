@@ -283,6 +283,7 @@ environments {
 		edge.images.location = "/website/images.tmi.msi.umn.edu/images/edges"
 		question.images.location = "/website/images.tmi.msi.umn.edu/images/examples" // example images for Question nodes
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
+		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
 	}
 	development {
 		//grails.serverURL = "http://localhost:8080/${appName}"
@@ -294,16 +295,30 @@ environments {
 		edge.images.location = "${tmi.imagePath}/edges"
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
+		pivot.staging.dir = "pivot"
+	}
+	reed {
+		tmi.imagePath = "/Users/rmcewan/Desktop/TMI/dev-images"
+		images.location.isRelative = false
+		images.parent.location = "${tmi.imagePath}"
+		unlinked.images.location = "${tmi.imagePath}/unlinked"
+		coreFace.images.location = "${tmi.imagePath}/coreface"
+		edge.images.location = "${tmi.imagePath}/edges"
+		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
+		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
+		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
 	}
 	test {
-		grails.serverURL = "http://dbw23.msi.umn.edu:8081/${appName}-${version}"
-		// Path to app: /website/tmi-test.msi.umn.edu/apache-tomcat-6.0.33/webapps/info-0.1/
-		//images.parent.location = "images"
-		//unlinked.images.location = "images/unlinked"
-		image.location.isRelative = false
-		images.parent.location = "/website/images.tmi.msi.umn.edu/images"
-		unlinked.images.location = "/website/images.tmi.msi.umn.edu/images/unlinked"
-		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
+		grails.serverURL = "http://geology-tmitest.oit.umn.edu:8080/tmi-2.0"
+		tmi.imagePath = "/swadm/images"
+		images.location.isRelative = false
+		images.parent.location = "${tmi.imagePath}"
+		unlinked.images.location = "${tmi.imagePath}/unlinked"
+		coreFace.images.location = "${tmi.imagePath}/coreface"
+		edge.images.location = "${tmi.imagePath}/edges"
+		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
+		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
+		pivot.staging.dir = "/swadm/pivot"
 	}
 
 }
