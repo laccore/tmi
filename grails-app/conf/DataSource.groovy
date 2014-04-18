@@ -33,12 +33,21 @@ environments {
 			url = "jdbc:mysql://127.0.0.1:3306/tmi_test_myrboa?autoReconnect=true"
         }	
     }
+	reed {
+		dataSource {
+			dbCreate = "update"
+			username = "tmi_web"
+			password = "yctL3.cq]"
+			url = "jdbc:mysql://127.0.0.1:3306/tmi_test_myrboa?autoReconnect=true"
+		}	
+	}
     test {
         dataSource {
 		    dbCreate = "" //test db refreshed from prod
-		    username = "tmi_web"
+		    username = "tmitest"
 		    password = "yctL3.cq]"
-			url = "jdbc:mysql://mysql.msi.umn.edu:3306/tmi_test_myrboa?autoReconnect=true"
+			//url = "jdbc:mysql://mysql.msi.umn.edu:3306/tmi_test_myrboa?autoReconnect=true"
+			url = "jdbc:mysql://localhost:3306/tmitest?autoReconnect=true"
         }	
     }
     production {
