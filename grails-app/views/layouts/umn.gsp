@@ -138,7 +138,7 @@
 				<li>Note: ImageSieve is machine-intensive and will take a moment to load.</li>
 			</ul>
 		</li>
-		<li><g:link controller="coreFace">Core Face</g:link></li>
+		<li><g:link controller="coreFace">Core face</g:link></li>
 		<li><g:link controller="inorganic" action="all">Inorganic</g:link>
 				<!--
 				<li><g:link controller="inorganic" action="list" params="[id: 'a']">A</g:link></li>
