@@ -131,13 +131,14 @@
 	</div>
 	<!-- Gigantic Menu -->
 	<ul id="nav" class="dropdown dropdown-linear" style="margin-top:0px; margin-left:0px; width:960px;">
-		<li><a href="${createLink(uri: '/')}">Home</a></li>
 		<li><g:link controller="quickstart">Quickstart</g:link></li>
+		<li><g:link controller="module" action="blog">Tutorials</g:link></li>
 		<li><g:link controller="imageSieve">ImageSieve</g:link>
 			<ul>
 				<li>Note: ImageSieve is machine-intensive and will take a moment to load.</li>
 			</ul>
 		</li>
+		<li><g:link controller="coreFace">Core Face</g:link></li>
 		<li><g:link controller="inorganic" action="all">Inorganic</g:link>
 				<!--
 				<li><g:link controller="inorganic" action="list" params="[id: 'a']">A</g:link></li>
@@ -147,7 +148,6 @@
 		<li><g:link controller="organic" action="all">Organic</g:link>
 			<tmi:organicLinks/>
 		</li>
-		<li><g:link controller="module" action="blog">Tutorials</g:link></li>
 		<li><g:link controller="help" action="show">Help</g:link>
 			<ul>
 				<li><g:link controller="help" action="show" fragment="contribute">How to Contribute</g:link></li>

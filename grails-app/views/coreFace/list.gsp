@@ -12,11 +12,22 @@
 		<style>
 			.coreFacePopup {
 				display: none;
-				background-color: #CCCCCC;
+				background-color: #05153e;
+				color: #FFFFFF;
 				width: 600px;
 				position: relative;
 				bottom: 200px;
-				z-index: 1; // otherwise popups draw behind next core face's core image
+				z-index: 1000; // otherwise popups draw behind next core face's core image
+			}
+			.coreFaceHeader {
+				height: 14px;
+				padding: 5px;
+				font-size: larger;
+			}
+			.coreFaceHeader a { color: #FFFFFF; }
+			.coreFaceDesc {
+				display: block;
+				padding: 5px;
 			}
 			.coreFaceAnnotation:hover .coreFacePopup {
 				display: block;
@@ -58,12 +69,14 @@
 				<g:each in="${it.annotations}" var="annot" status="count">
 					<div class="coreFaceAnnotation" style="${annot.cssStyle()}">
 						<div class="coreFacePopup" style="${annot.popupStyle()}">
-							<b>${annot.image.uniqueIdentification.name}</b>
-							<div style="float:right;">
-								<g:link controller="uniqueIdentification" action="show" id="${annot.image.uniqueIdentification.id}" params="[:]">Open Unique ID page</g:link>
+							<div class="coreFaceHeader">
+								<span style="float:left"><b>${annot.image.uniqueIdentification.name}</b></span>
+								<span style="float:right;">
+									<g:link controller="uniqueIdentification" action="show" id="${annot.image.uniqueIdentification.id}" params="[:]">Open Unique ID page</g:link>
+								</span>
 							</div>
 							<img src="${createLinkTo(dir:annot.image.viewDir(), file:annot.image.filenameMedium)}" alt="[no image]" title="${annot.image.filename}"/>
-							<g:annotImageMetadata id="${annot.image.id}" />
+							<span class="coreFaceDesc"><g:annotImageMetadata id="${annot.image.id}" /></span>
 						</div>
 					</div>
 				</g:each>
