@@ -224,11 +224,11 @@ class ImageController {
 	}
 	
 	private removeImagesFromDisk(imageInstance) {
-		imageInstanceDir = imageInstance.imagesDir()
+		def imageInstanceDir = imageInstance.imagesDir()
 		removeImageFile(imageInstanceDir, imageInstance.filename)
 		removeImageFile(imageInstanceDir, imageInstance.filenameMedium)
-		removeImageFile(imageInstanceDir, imageInstance, filenameThumb)
-		removeImageFile(imageInstanceDir, imageInstance, filenameOverlay)
+		removeImageFile(imageInstanceDir, imageInstance.filenameThumb)
+		removeImageFile(imageInstanceDir, imageInstance.filenameOverlay)
 	}
 	
 	def linkImage = {
