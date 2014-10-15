@@ -18,7 +18,6 @@ class CoreFaceImageController {
 	}
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
         [coreFaceImageInstanceList: CoreFaceImage.list(params), coreFaceImageInstanceTotal: CoreFaceImage.count()]
     }
 

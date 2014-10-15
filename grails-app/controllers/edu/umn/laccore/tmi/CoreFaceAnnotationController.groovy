@@ -13,7 +13,6 @@ class CoreFaceAnnotationController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
         [coreFaceAnnotationInstanceList: CoreFaceAnnotation.list(params), coreFaceAnnotationInstanceTotal: CoreFaceAnnotation.count()]
     }
 
