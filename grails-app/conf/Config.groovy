@@ -291,7 +291,7 @@ environments {
 		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
 	}
 	production {
-		grails.serverURL = "https://tmi-prod.oit.umn.edu"
+		grails.serverURL = "https://tmi.laccore.umn.edu"
 		tmi.imagePath = "/swadm/images"
 		images.location.isRelative = false
 		images.parent.location = "${tmi.imagePath}"
