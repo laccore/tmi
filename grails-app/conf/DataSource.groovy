@@ -50,13 +50,19 @@ environments {
 			url = "jdbc:mysql://localhost:3306/tmitest?autoReconnect=true"
         }	
     }
-    production {
+    msi {
         dataSource {
 		    dbCreate = "update"
 		    username = "tmi_web"
 		    password = "yctL3.cq]"
 			url = "jdbc:mysql://mysql.msi.umn.edu:3306/tmi_prod_myrboa?autoReconnect=true"
 		}
+    }
+	production {
+        dataSource {
+		    dbCreate = "update" 
+			url = "jdbc:mysql://localhost:3306/tmi?autoReconnect=true"
+        }	
     }
 }
 

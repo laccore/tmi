@@ -1,3 +1,5 @@
+import grails.util.Environment
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -7,9 +9,12 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-// if (System.properties["${appName}.config.location"]) {
+grails.config.locations = ["file:/swadm/grails-config/${Environment.current.name}.groovy", "file:~/tmi/grails-config/ds_${Environment.current.name}.groovy"]
+
+//grails -Dserver.port=8080 -Dtmi.config.location=~/tmi/ds_${Environment.current.name}.groovy run-app
+//if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+//}
 
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
@@ -274,7 +279,7 @@ tmi.imagePath = "/Users/bgrivna/Desktop/components"
 
 // set per-environment serverURL stem for creating absolute links
 environments {
-	production {
+	msi {
 		grails.serverURL = "https://tmi.laccore.umn.edu"
 		images.location.isRelative = false
 		images.parent.location = "/website/images.tmi.msi.umn.edu/images"
@@ -284,6 +289,18 @@ environments {
 		question.images.location = "/website/images.tmi.msi.umn.edu/images/examples" // example images for Question nodes
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
 		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
+	}
+	production {
+		grails.serverURL = "https://tmi.laccore.umn.edu"
+		tmi.imagePath = "/swadm/images"
+		images.location.isRelative = false
+		images.parent.location = "${tmi.imagePath}"
+		unlinked.images.location = "${tmi.imagePath}/unlinked"
+		coreFace.images.location = "${tmi.imagePath}/coreface"
+		edge.images.location = "${tmi.imagePath}/edges"
+		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
+		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
+		pivot.staging.dir = "/swadm/pivot"
 	}
 	development {
 		//grails.serverURL = "http://localhost:8080/${appName}"
