@@ -77,7 +77,7 @@
 				<i>Suggested Sedclass</i>
 			</td>
 			<td>
-			 	<i><b><span id="sedclassPreview"></span></b></i><br/>
+			 	<i><b><span id="sedclassPreview"></span></b></i><br/><br/>
 				<button id="useSuggestedSedclass" type="button">Use Suggested Sedclass</button>
 			</td>
 		</tr>

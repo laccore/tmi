@@ -23,10 +23,10 @@ class SmearSlide {
 		driveSection()
 		coreSection()
 		depth()
+		reason()
 		grainSize(blank:false, nullable:false)
 		components()
 		sedclassName(blank:false, nullable:false)
-		reason()
 		comments()
 	}
 	
