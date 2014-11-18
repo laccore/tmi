@@ -4,7 +4,9 @@ class TutorialController {
 
     //static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def templates = {
+    def index = { render(view:"index") }
+	
+	def templates = {
 		render(view:"template")
     }
 	
