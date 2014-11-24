@@ -35,6 +35,18 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 		build 'commons-collections:commons-collections:3.1'	//for image tools
         runtime 'mysql:mysql-connector-java:5.1.20'
+		
+		//for UserDetails and UserDetailsService
+		compile('org.springframework.security:spring-security-core:3.0.7.RELEASE') {
+//			transitive = false
+			excludes 'spring-expression', 'spring-core', 'spring-context', 'spring-tx',
+			         'spring-aop', 'spring-jdbc', 'spring-web', 'spring-test', 'aspectjrt',
+			         'aspectjweaver', 'cglib-nodep', 'ehcache', 'commons-collections',
+			         'hsqldb', 'jsr250-api', 'log4j', 'junit', 'mockito-core', 'jmock-junit4'
+		}
+		compile ('org.apache.poi:poi-ooxml:3.7') {
+			excludes "xmlbeans"	//needed, otherwise get linkage error; see https://jira.grails.org/browse/GPEXPORT-18
+		}
     }
 
     plugins {
@@ -53,5 +65,12 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.0'
 		compile ':jcaptcha:1.2.1'
+		
+		compile ":spring-security-core:1.2.7.3"
+		compile ":spring-security-ldap:1.0.6"
+		compile ":spring-security-ui:0.2"
+		compile (":export:1.6") {
+			//excludes "xmlbeans"
+		}
     }
 }
