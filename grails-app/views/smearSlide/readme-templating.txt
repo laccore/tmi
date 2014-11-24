@@ -1,1 +1,1 @@
-keep all but list and show
+keep all but show

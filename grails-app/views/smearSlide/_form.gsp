@@ -118,6 +118,17 @@
 			</td>
 		</tr>
 
+		<tr class="prop">
+			<td valign="top" class="name">
+				<label for="user">
+					<g:message code="smearSlide.user.label" default="User" />
+				</label>
+			</td>
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'user', 'errors')}">
+				${smearSlideInstance?.user?.username}
+				<g:hiddenField name="user.id" value="${smearSlideInstance?.user?.id}"/>
+			</td>
+		</tr>
 		<!--  2/20/2014 brg: Hide sedclass preview button. Clicks are simulated whenever an edit field's onChange event fires, freeing
         user from manually clicking preview button to see updated sedclass. Couldn't find a way to update sedclass based on
         the onChange event, thus the click simulation.  g:submitToForm tag ignores style attributes, hide in enclosing span instead. -->

@@ -9,6 +9,7 @@ class SmearSlide {
 	String coreSection		// core section containing sample from which slide was made 
 	float depth				// depth where sample was taken
 	List components = new ArrayList()
+	User user
 
 	static hasMany = [components:SmearSlideComponent]
 	static belongsTo = [driveSection:DriveSection]
@@ -24,9 +25,10 @@ class SmearSlide {
 		coreSection()
 		depth()
 		reason()
-		grainSize(blank:false, nullable:false)
 		components()
+		user(blank:false, nullable:false)
 		sedclassName(blank:false, nullable:false)
+		grainSize(blank:false, nullable:false)
 		comments()
 	}
 	

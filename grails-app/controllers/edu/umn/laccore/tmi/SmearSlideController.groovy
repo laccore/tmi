@@ -2,11 +2,46 @@ package edu.umn.laccore.tmi
 
 import grails.plugins.springsecurity.Secured
 
-@Secured(['ROLE_ADMIN', 'IS_AUTHENTICATED_FULLY'])
+@Secured(['ROLE_USER', 'IS_AUTHENTICATED_FULLY'])
 class SmearSlideController {
+	
 	def sedClassService
+	def springSecurityService
+	def exportService
+	def grailsApplication  //inject GrailsApplication
 	
 	static scaffold = true
+	
+	def create = {
+		def smearSlideInstance = new SmearSlide()
+		smearSlideInstance.properties = params
+		smearSlideInstance.user = springSecurityService.currentUser
+		return [smearSlideInstance: smearSlideInstance]
+	}
+	
+	def list = {
+		def user = springSecurityService.currentUser
+		def roles = springSecurityService.getPrincipal().getAuthorities().collect { it.toString() }
+		println user.getClass().getName()
+		def list
+		def admin = false
+		if ( roles.contains("ROLE_ADMIN") ) {
+			admin = true
+		}
+		params.max = Math.min(params.max ? params.int('max') : 20, 100)
+		list = admin ? SmearSlide.list(params) : SmearSlide.findAllByUser(user,params)	
+		//export plugin
+		
+		if(params?.format && params.format != "html"){
+			if(!params.max) params.max = 10
+			response.contentType = grailsApplication.config.grails.mime.types[params.format]
+			response.setHeader("Content-disposition", "attachment; filename=smear_slides_${springSecurityService.currentUser.username}.${params.extension}")
+			//println list
+			exportService.export(params.format, response.outputStream, list, [:], [:])
+		}
+		
+		[smearSlideInstanceList: list, smearSlideInstanceTotal: list.size()]
+	}
 	
 	def save() {
 		def smearSlideInstance = new SmearSlide(params)
