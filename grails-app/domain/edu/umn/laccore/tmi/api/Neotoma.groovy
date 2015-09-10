@@ -2,7 +2,7 @@ package edu.umn.laccore.tmi.api
 
 class Neotoma {
 	
-	static final BASE_URI = "api.neotomadb.org/v1/data/"
+	static final BASE_URI = "api.neotomadb.org/v1/data/"	//http://api.neotomadb.org/v1/data/taxa?taxonname=Abies
 
     static constraints = {
 		
