@@ -8,7 +8,7 @@ class Neotoma {
 		
     }
 	
-	String tmiTaxon
+	String tmiTaxon	//Image.taxon value
 	String endpoint	//taxa
-	String response
+	String response //{"success":1,"data":[{"TaxonName":"Abies","EcolGroups":["TRSH"],"TaxonCode":"Abi","Author":"Miller, 1754","PublicationID":299,"TaxonID":1,"TaxaGroupID":"VPL","HigherTaxonID":533,"Extinct":false,"Notes":null}]}
 }
