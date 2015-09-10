@@ -16,15 +16,18 @@
                 	<ul>
                 		<g:each in="${uniqueIdentifications}" status="i" var="ui">
                 			<li><g:link controller="uniqueIdentification" action="show" id="${ui.id}">${ui.name}</g:link></li>
-                		</g:each>
+   						</g:each>
                		</ul>
                	</g:if>
                	<g:if test="${images}">	
 	               <h2>Images</h2>
 	                <ul>
 	                <g:each in="${images}" status="i" var="image"> 
-		                   <li><g:link controller="image" action="show" id="${image.id}">Image of ${image.uniqueIdentification.name}</g:link></li>   
-	               </g:each>
+		                   <sec:ifAllGranted roles="ROLE_ADMIN"> 
+		                   		<li><g:link controller="image" action="show" id="${image.id}">${image.uniqueIdentification.name} - Admin Page</g:link></li>
+		                   </sec:ifAllGranted>
+		                   <li><a target="_blank" href="${createLinkTo(dir:image.viewDir(), file:''+image.filename)}">Image of ${image.uniqueIdentification.name}</a></li> 
+	                </g:each>
 	               </ul>
 	            </g:if>
             </div>
