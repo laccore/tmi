@@ -76,7 +76,7 @@ class UniqueIdentificationController {
 			if (uniqueIdentificationInstance.distinguishingFeatures) uniqueIdentificationInstance.parseTags(uniqueIdentificationInstance.distinguishingFeatures, "\n")
 
 			// update image display order where it differs from the database
-			if ( uniqueIdentificationInstance.imagesInDisplayOrder().size() == params.displayOrder.size() ) {
+			if ( uniqueIdentificationInstance.imagesInDisplayOrder().size() == params.displayOrder?.size() ) {
 				uniqueIdentificationInstance.imagesInDisplayOrder().eachWithIndex() { imageInstance, index ->
 					def displayIndex
 					try {
