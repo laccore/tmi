@@ -218,9 +218,11 @@ class ImageController {
     }
 	
 	private removeImageFile(imageInstanceDir, filename) {
-		def fileOriginal = new File(utilsService.getImagesDir() + "/" + imageInstanceDir, filename)
-		if ( fileOriginal.exists() )
-			fileOriginal.delete()
+		if (filename) {
+			def fileOriginal = new File(utilsService.getImagesDir() + "/" + imageInstanceDir, filename)
+			if ( fileOriginal.exists() )
+				fileOriginal.delete()
+		}
 	}
 	
 	private removeImagesFromDisk(imageInstance) {
