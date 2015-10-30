@@ -2,6 +2,8 @@
 <r:script>
 var childCount = ${smearSlideInstance?.components.size()} + 0;
 
+// clone base sscomp set of elements (see sscomp_clone in SmearSlide/create and /edit.gsp),
+// set values to defaults, and add row to componentTable
 function addSmearSlideComponent()
 {
     var clone = $("#sscomp_clone").clone()
@@ -42,31 +44,32 @@ function addSmearSlideComponent()
     childCount++;
 }
 
+// create and add table row using filled-out sscomp clone
 function makeComponentRow(clone) {
-    var c = clone.find("#comp");
-    var q = clone.find("#qty");
-    var w = clone.find("#with");
-    var d = clone.find("#delbutton");
-
     var row = $('<tr/>')
     row.attr('class','sscomp-row')
     var cell = $('<td/>')
     
+    // add hidden state elements to first cell
     var hidden = clone.find("input[type='hidden']")
-    //console.log("hidden items = " + hidden.length)
     hidden.each( function() {
-    	//console.log($(this).prop('outerHTML'))
-    	//$("#childList").append($(this))
     	cell.append($(this));
     });
     
-    cell.append(c.prop('outerHTML'))
+    // add component element to first cell
+    var component = clone.find("#comp");
+    cell.append(component.prop('outerHTML'))
     row.append(cell)
+
+	// fill remaining cells
+    var quantity = clone.find("#qty");
+    var withVal = clone.find("#with"); // 'with' is a protected word in JavaScript...should probably change to 'minor'
+    var delbutt = clone.find("#delbutton");
+    row.append(makeCell(quantity))
+    row.append(makeCell(withVal))
+    row.append(makeCell(delbutt))
     
-    row.append(makeCell(q))
-    row.append(makeCell(w))
-    row.append(makeCell(d))
-    
+    // add before last row of table (last row is special, contains "Add Component" and "Total")
     $("#componentTable tr:last").before(row)
     
     installCheckHandlers();
@@ -74,15 +77,14 @@ function makeComponentRow(clone) {
 
 function makeCell(elt) { return "<td>" + elt.prop('outerHTML') + "</td>"; }
 
+// install handler to update sedclass preview to reflect changes in "with" checkboxes
 function installCheckHandlers()
 {
 	$("input[id='with']").each(function(index) {
 		$(this).click(function() {
 			var $this = $(this);
 			var idstr = $(this).attr('name')
-			console.log("install click handler for " + idstr)
 			var hiddenVal = $("input[id$=\\[" + idstr + "\\]\\.withComponent]")
-			console.log("hidden val = " + hiddenVal)
 			hiddenVal.val(this.checked ? "true" : "false");
 			onAbundanceChange();
 		});
@@ -106,10 +108,8 @@ function onAbundanceChange()
 $(document).ready(onAbundanceChange()); // call as soon as page is loaded to update % text
 $(document).ready(installCheckHandlers());
 
-//bind click event on delete buttons using jquery live
+// bind delete click event
 $('.del-sscomp').live('click', function() {
-    //console.log("this = " + $(this).html())
-    //console.log("prnt = " + $(this).parents().parents().html())
     var prnt = $(this).parents(".sscomp-row") //find the parent div
     var delInput = prnt.find("input[id$='deleted']"); //find the deleted hidden input
 	
@@ -130,28 +130,18 @@ $("#useSuggestedSedclass").live('click', function() {
 </r:script>
 
 <table id="componentTable">
-<tr><th>Component</th><th>Qty (%)</th><th>Minor</th><th>Delete</th></tr>
+	<tr><th>Component</th><th>Qty (%)</th><th>Minor</th><th>Delete</th></tr>
 
-<div id="childList">
 	<g:if test="${smearSlideInstance.components.size() > 0}">
 	    <g:each var="sscomp" in="${smearSlideInstance.components}" status="i">
-       		<tr class="sscomp-row"><td>
-		    <g:hiddenField name='components[${i}].id' value='${sscomp?.id}'/>
-		    <g:hiddenField name='components[${i}].deleted' value='false'/>
-		    <g:hiddenField name='components[${i}].new' value="${sscomp?.id == null?'true':'false'}"/>
-		    <g:hiddenField name='components[${i}].withComponent' value='${sscomp?.withComponent}' />
-		
-		    <g:select id="comp" name='components[${i}].component.id' from="${edu.umn.laccore.tmi.SedimentComponent.descendingList()}" optionKey="id" value='${sscomp?.component?.id}' style='width:100%;' onchange='onAbundanceChange()' /></td>
-			<td><g:textField id="qty" type='number' size='4' name='components[${i}].percentage' value='${sscomp?.percentage}' onchange='onAbundanceChange()' /></td>
-			<td><input id="with" type="checkbox" name="${i}" value="${sscomp?.withComponent}" <g:if test="${sscomp?.withComponent}">checked</g:if> /></td>
-			<td><span id="delbutton" class="del-sscomp">
-				<img src="${resource(dir:'images/skin', file:'icon_delete.png')}" style="vertical-align:middle;"/>
-		    </span>
-			</td></tr>
+       		<tr class="sscomp-row">
+			    <g:render template="sscomp" model="['i':i, 'sscomp':sscomp]" />
+			</tr>
 	    </g:each>
     </g:if>
-</div>
 
-<tr><td><button type="button" onclick="addSmearSlideComponent();">Add Component</button><span style="float:right;">Total:</span></td>
-<td><span id="totalPercentage">0%</span></td></tr>
+	<tr>
+		<td><button type="button" onclick="addSmearSlideComponent();">Add Component</button><span style="float:right;">Total:</span></td>
+		<td><span id="totalPercentage">0%</span></td>
+	</tr>
 </table>
