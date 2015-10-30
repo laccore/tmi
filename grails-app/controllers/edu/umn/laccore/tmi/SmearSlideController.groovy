@@ -29,7 +29,7 @@ class SmearSlideController {
 			admin = true
 		}
 		params.max = Math.min(params.max ? params.int('max') : 20, 100)
-		list = admin ? SmearSlide.list(params) : SmearSlide.findAllByUser(user,params)	
+		list = admin ? SmearSlide.list(params) : SmearSlide.findAllByUser(user, params)	
 		//export plugin
 		
 		if(params?.format && params.format != "html"){

@@ -14,7 +14,7 @@
             <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
             <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
-        <div class="body">
+        <div class="body" style="width:600px;">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -40,7 +40,9 @@
                 </div>
             </g:form>
             <!-- Render the smear slide component template as hidden: provides us a base to clone from -->
-	    	<g:render template='sscomp' model="['sscomp':null,'i':'_clone','hidden':true]"/>
+            <div id="sscomp_clone" style="display:none;">
+	    		<g:render template='sscomp' model="['sscomp':null,'i':'_clone']"/>
+	    	</div>
         </div>
     </body>
 </html>

@@ -9,9 +9,10 @@ class SmearSlideComponent {
 	SedimentComponent component
 	int percentage
 	boolean deleted
+	boolean withComponent = false
 	
 	static transients = ['deleted']
 	static belongsTo = [slide:SmearSlide]
-	String toString() { "${component.name} @ ${percentage}%" }
+	String toString() { "${component.name} @ ${percentage}% ${withComponent ? 'with' : ''}" }
 	String getName() { component.name }
 }
