@@ -27,10 +27,6 @@
                         
                             <g:sortableColumn property="name" title="${message(code: 'smearSlide.name.label', default: 'Name')}" />
                         
-                            <th><g:message code="smearSlide.driveSection.label" default="Drive Section" /></th>
-                        
-                            <g:sortableColumn property="coreSection" title="${message(code: 'smearSlide.coreSection.label', default: 'Core Section')}" />
-                        
                             <g:sortableColumn property="depth" title="${message(code: 'smearSlide.depth.label', default: 'Depth')}" />
                         
                             <g:sortableColumn property="reason" title="${message(code: 'smearSlide.reason.label', default: 'Reason')}" />
@@ -48,10 +44,6 @@
                             <td><g:link action="show" id="${smearSlideInstance.id}">${fieldValue(bean: smearSlideInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: smearSlideInstance, field: "name")}</td>
-                        
-                            <td>${fieldValue(bean: smearSlideInstance, field: "driveSection")}</td>
-                        
-                            <td>${fieldValue(bean: smearSlideInstance, field: "coreSection")}</td>
                         
                             <td>${fieldValue(bean: smearSlideInstance, field: "depth")}</td>
                         

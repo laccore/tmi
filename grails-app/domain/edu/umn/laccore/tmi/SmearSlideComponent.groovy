@@ -13,6 +13,6 @@ class SmearSlideComponent {
 	
 	static transients = ['deleted']
 	static belongsTo = [slide:SmearSlide]
-	String toString() { "${component.name} @ ${percentage}% ${withComponent ? 'with' : ''}" }
+	String toString() { "${component.name} @ ${percentage}% ${withComponent ? '(minor)' : ''}" }
 	String getName() { component.name }
 }

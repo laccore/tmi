@@ -2,17 +2,20 @@ package edu.umn.laccore.tmi
 
 class SmearSlide {
 	String name				// user-provided slide name
+	String expedition
+	String lakeYear
+	String siteHole
+	String driveTool
+	String section
 	String sedclassName		// sediment name (major modifier + principal component)
 	String grainSize		// (sandy | silty | clayey) + (sand | silt | clay)
 	String reason			// reason for taking slide...redundant (name/comments field could be used for this)?
 	String comments			// comments
-	String coreSection		// core section containing sample from which slide was made 
 	float depth				// depth where sample was taken
 	List components = new ArrayList()
 	User user
 
 	static hasMany = [components:SmearSlideComponent]
-	static belongsTo = [driveSection:DriveSection]
 	
 	static mapping = {
 		// when we remove items from this.components, they become orphaned - delete them automatically
@@ -21,8 +24,11 @@ class SmearSlide {
 	
 	static constraints = {
 		name(blank:false, nullable:false)
-		driveSection()
-		coreSection()
+		expedition()
+		lakeYear()
+		siteHole()
+		driveTool()
+		section()
 		depth()
 		reason()
 		components()

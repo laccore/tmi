@@ -105,8 +105,37 @@ function onAbundanceChange()
 	$("#totalPercentage").html(sum.toString() + "%")
 }
 
+var nameComponentIds = ["#expedition", "#lakeYear", "#siteHole", "#driveTool", "#section", "#depth"]
+
+function installNameHandlers()
+{
+	for (var i = 0; i < nameComponentIds.length; i++) {
+		$(nameComponentIds[i]).live('input', function() {
+			updateSlideName();
+		});
+	}
+}
+
+function updateSlideName()
+{
+	var slidename = ""
+	for (var i = 0; i < nameComponentIds.length; i++) {
+		var str = $(nameComponentIds[i]).val()
+		if (str.length > 0) {
+			slidename += str
+			if (i < nameComponentIds.length - 1) {
+				slidename += (i < nameComponentIds.length - 2) ? '-' : ' ' // space after #section 
+			} else if (i == nameComponentIds.length - 1) { // #depth
+				slidename += ' cm'
+			}
+		}
+	}
+	$("#slideName").val(slidename)
+}
+
 $(document).ready(onAbundanceChange()); // call as soon as page is loaded to update % text
 $(document).ready(installCheckHandlers());
+$(document).ready(installNameHandlers());
 
 // bind delete click event
 $('.del-sscomp').live('click', function() {
@@ -126,6 +155,7 @@ $('.del-sscomp').live('click', function() {
 $("#useSuggestedSedclass").live('click', function() {
 	var suggestedSedclass = $("#sedclassPreview").html()
 	$("#sedclassName").val(suggestedSedclass)
+	updateSlideName();
 });
 </r:script>
 

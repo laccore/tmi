@@ -93,7 +93,11 @@ class SedClassService {
 				}
 			}
 			
-			sedclassName = secName + " " + primaryName
+			// add "with" components
+			def withComps = components.findAll { it.withComponent == true }.collect { it.name }
+			def withStr = withComps.size() > 0 ? " with " + withComps.join(", ") : ""
+			
+			sedclassName = secName + " " + primaryName + withStr
 		}
 		sedclassName
     }

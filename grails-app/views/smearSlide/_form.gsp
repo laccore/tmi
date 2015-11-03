@@ -3,36 +3,55 @@
 		<tr class="prop">
 			<td valign="top" class="name">
 				<label for="name">
-					<g:message code="smearSlide.name.label" default="Name" />
-					<span class="required-indicator">*</span>
+					<g:message code="smearSlide.expedition.label" default="Expedition" />
 				</label>
 			</td>
-			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'name', 'errors')}">
-				<g:textField name="name" size="40" value="${smearSlideInstance?.name}" />
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'expedition', 'errors')}">
+				<g:textField id="expedition" name="expedition" size="40" value="${smearSlideInstance?.expedition}" />
 			</td>
 		</tr>
-
+		
 		<tr class="prop">
 			<td valign="top" class="name">
-				<label for="driveSection">
-					<g:message code="smearSlide.driveSection.label" default="Drive Section" />
-					<span class="required-indicator">*</span>
+				<label for="name">
+					<g:message code="smearSlide.lakeYear.label" default="Lake and Year" />
 				</label>
 			</td>
-			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'driveSection', 'errors')}">
-				<g:select name="driveSection.id" from="${edu.umn.laccore.tmi.DriveSection.list()}" optionKey="id" value="${smearSlideInstance?.driveSection?.id}"  />
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'lakeYear', 'errors')}">
+				<g:textField id="lakeYear" name="lakeYear" size="40" value="${smearSlideInstance?.lakeYear}" />
 			</td>
 		</tr>
-
+		
 		<tr class="prop">
 			<td valign="top" class="name">
-				<label for="coreSection">
-					<g:message code="smearSlide.coreSection.label" default="Core Section" />
-					
+				<label for="name">
+					<g:message code="smearSlide.siteHole.label" default="Site and Hole" />
 				</label>
 			</td>
-			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'coreSection', 'errors')}">
-				<g:textField name="coreSection" value="${smearSlideInstance?.coreSection}" />
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'siteHole', 'errors')}">
+				<g:textField id="siteHole" name="siteHole" size="40" value="${smearSlideInstance?.siteHole}" />
+			</td>
+		</tr>
+		
+		<tr class="prop">
+			<td valign="top" class="name">
+				<label for="name">
+					<g:message code="smearSlide.driveTool.label" default="Drive and Tool" />
+				</label>
+			</td>
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'driveTool', 'errors')}">
+				<g:textField id="driveTool" name="driveTool" size="40" value="${smearSlideInstance?.driveTool}" />
+			</td>
+		</tr>
+		
+		<tr class="prop">
+			<td valign="top" class="name">
+				<label for="name">
+					<g:message code="smearSlide.section.label" default="Section" />
+				</label>
+			</td>
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'section', 'errors')}">
+				<g:textField id="section" name="section" size="40" value="${smearSlideInstance?.section}" />
 			</td>
 		</tr>
 
@@ -44,7 +63,30 @@
 				</label>
 			</td>
 			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'depth', 'errors')}">
-				<g:textField name="depth" value="${fieldValue(bean: smearSlideInstance, field: 'depth')}" />
+				<g:textField id="depth" name="depth" value="${fieldValue(bean: smearSlideInstance, field: 'depth')}" />cm
+			</td>
+		</tr>
+		
+		<tr class="prop">
+			<td valign="top" class="name">
+				<label for="name">
+					<g:message code="smearSlide.name.label" default="Name" />
+					<span class="required-indicator">*</span>
+				</label>
+			</td>
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'name', 'errors')}">
+				<g:textField id="slideName" name="name" size="40" value="${smearSlideInstance?.name}" />
+			</td>
+		</tr>
+		
+		<tr class="prop">
+			<td valign="top" class="name">
+				<label for="reason">
+					<g:message code="smearSlide.reason.label" default="Reason" />
+				</label>
+			</td>
+			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'reason', 'errors')}" style="padding-bottom:2em;">
+				<g:textField name="reason" size="40" value="${smearSlideInstance?.reason}" />
 			</td>
 		</tr>
 
@@ -77,7 +119,7 @@
 				<i>Suggested Sedclass</i>
 			</td>
 			<td>
-			 	<i><b><span id="sedclassPreview"></span></b></i><br/><br/>
+			 	<i><b><span id="sedclassPreview" style="font-size:125%;"></span></b></i><br/><br/>	
 				<button id="useSuggestedSedclass" type="button">Use Suggested Sedclass</button>
 			</td>
 		</tr>
@@ -91,18 +133,6 @@
 			</td>
 			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'sedclassName', 'errors')}">
 				<g:textField name="sedclassName" size="40" value="${smearSlideInstance?.sedclassName}" />
-			</td>
-		</tr>
-
-		<tr class="prop">
-			<td valign="top" class="name">
-				<label for="reason">
-					<g:message code="smearSlide.reason.label" default="Reason" />
-					
-				</label>
-			</td>
-			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'reason', 'errors')}">
-				<g:textField name="reason" size="40" value="${smearSlideInstance?.reason}" />
 			</td>
 		</tr>
 
