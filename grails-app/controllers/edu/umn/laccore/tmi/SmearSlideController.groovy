@@ -54,7 +54,13 @@ class SmearSlideController {
 		 }
 				
 		if (smearSlideInstance.save(flush: true)) {
-			flash.message = "${message(code: 'default.created.message', args: [message(code: 'smearSlide.label', default: 'SmearSlide'), smearSlideInstance.id])}"
+			def msg = "Smear Slide created!"
+			def createElts = makeCreateLinks(smearSlideInstance)
+			createElts.each { elt ->
+				def newLink = g.createLink(action:'create', params:elt[0])
+				msg += "<br/><a href=$newLink>Create new Smear Slide from ${elt[1]}</a>"
+			}
+			flash.message = msg
 			redirect(action: "show", id: smearSlideInstance.id)
 		}
 		else {
@@ -117,5 +123,40 @@ class SmearSlideController {
 		def sedclassName = sedClassService.sedimentName(curSmearSlide.grainSize, curSmearSlide.components)
 		
 		render "${sedclassName}"
+	}
+	
+	// create param maps for createLink(), and link text for "Create New Smear Slide from
+	// expedition/lake/hole/drive/section". Result is list of element pairs: first element is param list,
+	// second is text describing the link
+	def makeCreateLinks(smearSlideInstance) {
+		def idElts = []
+		def eltMap = [:]
+		def idStr = ""
+		if (smearSlideInstance.expedition != "") {
+			idStr += smearSlideInstance.expedition
+			eltMap.expedition = smearSlideInstance.expedition
+			idElts.add([eltMap.clone(), idStr])
+		}
+		if (smearSlideInstance.lakeYear != "") {
+			idStr += (idStr.length() > 0 ? '-' : '') + smearSlideInstance.lakeYear
+			eltMap.lakeYear = smearSlideInstance.lakeYear
+			idElts.add([eltMap.clone(), idStr])
+		}
+		if (smearSlideInstance.siteHole != "") {
+			idStr += (idStr.length() > 0 ? '-' : '') + smearSlideInstance.siteHole
+			eltMap.siteHole = smearSlideInstance.siteHole
+			idElts.add([eltMap.clone(), idStr])
+		}
+		if (smearSlideInstance.driveTool != "") {
+			idStr += (idStr.length() > 0 ? '-' : '') + smearSlideInstance.driveTool
+			eltMap.driveTool = smearSlideInstance.driveTool
+			idElts.add([eltMap.clone(), idStr])
+		}
+		if (smearSlideInstance.section != "") {
+			idStr += (idStr.length() > 0 ? '-' : '') + smearSlideInstance.section
+			eltMap.section = smearSlideInstance.section
+			idElts.add([eltMap.clone(), idStr])
+		}
+		return idElts
 	}
 }

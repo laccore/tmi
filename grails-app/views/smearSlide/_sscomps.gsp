@@ -105,19 +105,24 @@ function onAbundanceChange()
 	$("#totalPercentage").html(sum.toString() + "%")
 }
 
-var nameComponentIds = ["#expedition", "#lakeYear", "#siteHole", "#driveTool", "#section", "#depth"]
 
-function installNameHandlers()
+// logic to generate full slide name from components
+var nameComponentIds = ["#expedition", "#lakeYear", "#siteHole", "#driveTool", "#section", "#depth"]
+function installNameHandlers() // listen to each component
 {
 	for (var i = 0; i < nameComponentIds.length; i++) {
 		$(nameComponentIds[i]).live('input', function() {
-			updateSlideName();
+			updateSlideName(true);
 		});
 	}
 }
 
-function updateSlideName()
+function updateSlideName(overwrite) // update full name on any change to ID component
 {
+	// should we overwrite existing slide name?
+	if (!overwrite && $("#slideName").val() != "")
+		return
+	
 	var slidename = ""
 	for (var i = 0; i < nameComponentIds.length; i++) {
 		var str = $(nameComponentIds[i]).val()
@@ -134,8 +139,14 @@ function updateSlideName()
 }
 
 $(document).ready(onAbundanceChange()); // call as soon as page is loaded to update % text
+$(document).ready(installNameHandlers()); 	// listen to name field changes
+
+// if existing slide is loaded for Edit and its name somehow differs from that generated
+// from its components, don't overwrite with generated name...presumably the user changed
+// the generated name for a reason
+$(document).ready(updateSlideName(false));
 $(document).ready(installCheckHandlers());
-$(document).ready(installNameHandlers());
+
 
 // bind delete click event
 $('.del-sscomp').live('click', function() {
@@ -155,7 +166,6 @@ $('.del-sscomp').live('click', function() {
 $("#useSuggestedSedclass").live('click', function() {
 	var suggestedSedclass = $("#sedclassPreview").html()
 	$("#sedclassName").val(suggestedSedclass)
-	updateSlideName();
 });
 </r:script>
 
