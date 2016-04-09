@@ -6,6 +6,7 @@ class User {
 
 	String username
 	String password
+	String email	//added Dec 2015 to support self registration
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
