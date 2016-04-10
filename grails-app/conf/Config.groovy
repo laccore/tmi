@@ -288,6 +288,7 @@ environments {
 		images.parent.location = "/website/images.tmi.msi.umn.edu/images"
 		unlinked.images.location = "/website/images.tmi.msi.umn.edu/images/unlinked"
 		coreFace.images.location = "/website/images.tmi.msi.umn.edu/images/coreface"
+		artifact.images.location = "/website/images.tmi.msi.umn.edu/images/artifact"
 		edge.images.location = "/website/images.tmi.msi.umn.edu/images/edges"
 		question.images.location = "/website/images.tmi.msi.umn.edu/images/examples" // example images for Question nodes
 		training.video = "/website/images.tmi.msi.umn.edu/mov/training_video_small.mov"
@@ -300,6 +301,7 @@ environments {
 		images.parent.location = "${tmi.imagePath}"
 		unlinked.images.location = "${tmi.imagePath}/unlinked"
 		coreFace.images.location = "${tmi.imagePath}/coreface"
+		artifact.images.location = "${tmi.imagePath}/artifact"
 		edge.images.location = "${tmi.imagePath}/edges"
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
@@ -312,6 +314,7 @@ environments {
 		images.parent.location = "${tmi.imagePath}"
 		unlinked.images.location = "${tmi.imagePath}/unlinked"
 		coreFace.images.location = "${tmi.imagePath}/coreface"
+		artifact.images.location = "${tmi.imagePath}/artifact"
 		edge.images.location = "${tmi.imagePath}/edges"
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
@@ -323,6 +326,7 @@ environments {
 		images.parent.location = "${tmi.imagePath}"
 		unlinked.images.location = "${tmi.imagePath}/unlinked"
 		coreFace.images.location = "${tmi.imagePath}/coreface"
+		artifact.images.location = "${tmi.imagePath}/artifact"
 		edge.images.location = "${tmi.imagePath}/edges"
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
@@ -335,6 +339,7 @@ environments {
 		images.parent.location = "${tmi.imagePath}"
 		unlinked.images.location = "${tmi.imagePath}/unlinked"
 		coreFace.images.location = "${tmi.imagePath}/coreface"
+		artifact.images.location = "${tmi.imagePath}/artifact"
 		edge.images.location = "${tmi.imagePath}/edges"
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"

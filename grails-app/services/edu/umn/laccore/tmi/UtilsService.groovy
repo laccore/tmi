@@ -39,6 +39,13 @@ class UtilsService {
 		return f.path
 	}
 	
+	def getArtifactImagesDir() {
+		def f = new File(grailsApplication.config.artifact.images.location)
+		if (!f.exists())
+			f.mkdir()
+		return f.path
+	}
+	
 	def createImageThumbnails = { filename, imageInstance, imageDir ->
 		imageInstance.filename = filename
 		def imageTool = new ImageTool()

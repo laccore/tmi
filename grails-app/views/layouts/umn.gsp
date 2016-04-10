@@ -138,7 +138,15 @@
 				<li>Note: ImageSieve is machine-intensive and will take a moment to load.</li>
 			</ul>
 		</li>
-		<li><g:link controller="coreFace">Core face</g:link></li>
+		
+		<!-- Only case where a top-level menu item is not also a g:link. Use <span>, whose style matches g:link. -->
+		<li><span>Core face</span>
+			<ul>
+				<li><g:link controller="coreFace">Sediment Textures</g:link></li>
+				<li><g:link controller="artifactCatalogue">Artifact Catalogue</g:link></li>
+			</ul>
+		</li>
+			
 		<li><g:link controller="inorganic" action="all">Inorganic</g:link>
 				<!--
 				<li><g:link controller="inorganic" action="list" params="[id: 'a']">A</g:link></li>
