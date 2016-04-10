@@ -306,6 +306,14 @@ environments {
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
 		pivot.staging.dir = "/swadm/pivot"
+		//Added for use with relay.tc.umn.edu,
+		grails {
+			mail {
+				from = "amyrbo@umn.edu"
+				host = "relay.tc.umn.edu"
+				port = 25
+			}
+		}
 	}
 	development {
 		//grails.serverURL = "http://localhost:8080/${appName}"
@@ -331,6 +339,14 @@ environments {
 		question.images.location = "${tmi.imagePath}/examples" // example images for Question nodes
 		training.video = "${tmi.imagePath}/mov/training_video_small.mov"
 		pivot.staging.dir = "/website/images.tmi.msi.umn.edu/pivot"
+		grails {
+			mail {
+				host = "smtp.gmail.com"
+				username = "laccore.tmi"
+				password = "tmitesting."
+				props = ["mail.smtps.auth":"true","mail.smtp.socketFactory.port":"465","mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory","mail.smtp.socketFactory.fallback":"false"]
+			}
+		}
 	}
 	test {
 		grails.serverURL = "http://geology-tmitest.oit.umn.edu:8080/tmi-2.0"
@@ -356,7 +372,7 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/aclObjectIdentity/**': ['ROLE_ADMIN'],
 	'/aclSid/**': ['ROLE_ADMIN'],
 	'/persistentLogin/**': ['ROLE_ADMIN'],
-	'/register/**': ['ROLE_ADMIN'],
+	'/register/**': ['ROLE_ANONYMOUS'],
 	'/registrationCode/**': ['ROLE_ADMIN'],
 	'/requestmap/**': ['ROLE_ADMIN'],
 	'/securityInfo/**': ['ROLE_ADMIN']
@@ -384,38 +400,13 @@ grails.plugins.springsecurity.requestMap.className = 'edu.umn.laccore.tmi.Reques
 grails.plugins.springsecurity.securityConfigType = 'Annotation'
 grails.plugins.springsecurity.providerNames = ['ldapAuthProvider','daoAuthenticationProvider','anonymousAuthenticationProvider']
 
-//Added for contact-form
-grails {
-	mail {
-		to = "amyrbo@umn.edu"
-		host = "smtp.umn.edu"
-		port = 465
-		username = "laccore"
-		password = "Shepbury17!"
-		props = ["mail.smtps.auth":"true",
-			"mail.smtp.socketFactory.port":"465",
-			"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-			"mail.smtp.socketFactory.fallback":"false"]
-			//"mail.smtps.starttls.enable":"true",
-			//"mail.transport.protocol":"smtps"]
-		/*props = [
-			//from confluence instance
-			"mail.smtps.username":"rmcewan",
-			"mail.smtps.host":"smtp.umn.edu",
-			"mail.transport.protocol":"smtps",
-			"mail.smtps.port":"465",
-			"mail.smtps.auth":"true",
-			"mail.smtps.user":"rmcewan",
-			"password":"",
-			"mail.smtps.starttls.enable":"true"
-			//mail.debug="false"
-			]*/
-	}
-}
-
 //Added for taggable plugin
 grails.taggable.tag.autoImport=true
 grails.taggable.tagLink.autoImport=true
+
+//Added for user Spring Security UI plugin registration and forgot password emails
+grails.plugins.springsecurity.ui.forgotPassword.emailSubject='TMI Password Reset'
+grails.plugins.springsecurity.ui.register.emailSubject='TMI User Registration'
 
 jcaptchas {
 	captchaImage = new GenericManageableCaptchaService(
