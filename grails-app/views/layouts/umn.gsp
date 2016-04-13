@@ -140,7 +140,7 @@
 		</li>
 		
 		<!-- Only case where a top-level menu item is not also a g:link. Use <span>, whose style matches g:link. -->
-		<li><span>Core face</span>
+		<li><span>Core Face</span>
 			<ul>
 				<li><g:link controller="coreFace">Sediment Textures</g:link></li>
 				<li><g:link controller="artifactCatalogue">Artifact Catalogue</g:link></li>
