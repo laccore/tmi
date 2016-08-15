@@ -9,7 +9,7 @@ class Artifact {
 	
 	static constraints = {
 		name(blank:false)
-		description(blank:false)
+		description(blank:false, maxSize:4096)
 		artifactType(blank:false)
 		artifactImage(blank:false, unique:true)
 		annotationImage(blank:false, unique:true)
