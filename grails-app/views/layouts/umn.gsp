@@ -87,7 +87,7 @@
 						<sec:username /> (<g:link controller="logout">Logout</g:link>)
 					</sec:ifLoggedIn>
 		<!-- BEGNIN CAMPUS LINKS -->
-        <div id="campus_links">
+        <!-- <div id="campus_links">
 			<p>Campuses: </p>
             <ul>
               <li><a href="http://www.umn.edu">Twin Cities</a></li>
@@ -97,7 +97,7 @@
               <li><a href="http://www.r.umn.edu">Rochester</a></li>
               <li><a href="http://www.umn.edu/campuses.php">Other Locations</a></li>
             </ul>
-        </div>
+        </div> -->
         <!-- END CAMPUS LINKS -->
             
           
@@ -106,7 +106,7 @@
             <div id="logo_uofm"><a href="http://www.umn.edu/">Go to the U of M home page</a></div>
 
             <!--BEGIN search div-->
-            <div id="search_area">
+            <!-- <div id="search_area">
                 <div id="search_nav"><a href="http://onestop.umn.edu/" id="btn_onestop">OneStop</a> <a href="https://www.myu.umn.edu/" id="btn_myu">myU</a></div>
                 <div class="search"> 
                    <form action="http://google.umn.edu/search" method="get" name="gsearch" id="gsearch" title="Search U of M Web sites">
@@ -117,8 +117,8 @@
                        <input name="proxystylesheet" value="searchumn" type="hidden" />
                        <input name="output" value="xml_no_dtd" type="hidden" />
                    </form>  
-                </div> 
-            </div>
+                </div>  
+            </div>-->
         </div>
        <!-- end "search" area -->
     </div>
