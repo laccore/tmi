@@ -80,12 +80,13 @@ class SmearSlideController {
 					return
 				}
 			}
+
 			smearSlideInstance.properties = params
 			
-			// find the phones that are marked for deletion
+			// find components that are marked for deletion
 			def _toBeDeleted = smearSlideInstance.components.findAll {it?.deleted || !it}
 			
-			// if there are phones to be deleted remove them all
+			// if there are components to be deleted, remove them all
 			if (_toBeDeleted) {
 				smearSlideInstance.components.removeAll(_toBeDeleted)
 			}

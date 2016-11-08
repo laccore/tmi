@@ -21,23 +21,23 @@
 
 			<div class="dialog"><table><tbody>
 				<tr class="prop">
-            		<td valign="top" class="name"><g:message code="edimentComponent.name.label" default="Name" /></td>
+            		<td valign="top" class="name"><g:message code="sedimentComponent.name.label" default="Name" /></td>
             		<td valign="top" class="value">${fieldValue(bean: sedimentComponentInstance, field: "name")}</td>
             	</tr>
 				<tr class="prop">
-            		<td valign="top" class="name"><g:message code="edimentComponent.modifier.label" default="Modifier" /></td>
+            		<td valign="top" class="name"><g:message code="sedimentComponent.modifier.label" default="Modifier" /></td>
             		<td valign="top" class="value">${fieldValue(bean: sedimentComponentInstance, field: "modifier")}</td>
             	</tr>
 				<tr class="prop">
-            		<td valign="top" class="name"><g:message code="edimentComponent.type.label" default="Type" /></td>
+            		<td valign="top" class="name"><g:message code="sedimentComponent.type.label" default="Type" /></td>
             		<td valign="top" class="value">${fieldValue(bean: sedimentComponentInstance, field: "type")}</td>
             	</tr>
 				<tr class="prop">
-            		<td valign="top" class="name"><g:message code="edimentComponent.isStandardComponent.label" default="Is Standard Component" /></td>
+            		<td valign="top" class="name"><g:message code="sedimentComponent.isStandardComponent.label" default="Is Standard Component" /></td>
             		<td valign="top" class="value">${fieldValue(bean: sedimentComponentInstance, field: "isStandardComponent")}</td>
             	</tr>
 				<tr class="prop">
-            		<td valign="top" class="name"><g:message code="edimentComponent.speechToTextMappings.label" default="Speech To Text Mappings" /></td>
+            		<td valign="top" class="name"><g:message code="sedimentComponent.speechToTextMappings.label" default="Speech To Text Mappings" /></td>
             		<td valign="top" class="value">${fieldValue(bean: sedimentComponentInstance, field: "speechToTextMappings")}</td>
             	</tr>
             </tbody></table></div>
