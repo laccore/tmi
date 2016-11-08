@@ -156,6 +156,14 @@
 		<li><g:link controller="organic" action="all">Organic</g:link>
 			<tmi:organicLinks/>
 		</li>
+		
+		<li><span>My TMI</span>
+			<ul>
+				<li><g:link controller="smearSlide" action="index">Smear Slides</g:link></li>
+				<li><g:link controller="admin" action="index">Admin (privileged users only)</g:link></li>
+			</ul>
+		</li>
+		
 		<li><g:link controller="help" action="show">Help</g:link>
 			<ul>
 				<li><g:link controller="help" action="show" fragment="contribute">How to Contribute</g:link></li>
@@ -168,9 +176,7 @@
 			</ul>
 		</li>
 		<li><a href="http://lrc.geo.umn.edu/laccore/">LacCore</a></li>
-		<sec:ifAllGranted roles="ROLE_ADMIN">
-		<li><g:link controller="admin" action="index">Admin</g:link></li>
-		</sec:ifAllGranted>
+
 		<li id="tmiMenuSearchItem"><span><g:form url='[controller: "searchable", action: "index"]' id="searchableForm"  name="searchableForm" method="get">
         	<g:textField class="tmiSearchField" name="q" value="${params.q}" size="30" />
         	<button type="submit">Search</button>
