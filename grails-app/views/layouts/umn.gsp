@@ -159,7 +159,7 @@
 		
 		<li><span>My TMI</span>
 			<ul>
-				<li><g:link controller="smearSlide" action="index">Smear Slides</g:link></li>
+				<li><g:link controller="smearSlide" action="list">Smear Slides</g:link></li>
 				<li><g:link controller="admin" action="index">Admin (privileged users only)</g:link></li>
 			</ul>
 		</li>

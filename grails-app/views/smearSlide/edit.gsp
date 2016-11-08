@@ -15,7 +15,7 @@
             <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
         </div>
         <div class="body" style="width:600px;">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <h1>Sediment Classification Generator: Edit smear slide</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>

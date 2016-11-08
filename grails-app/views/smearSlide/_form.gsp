@@ -63,7 +63,7 @@
 				</label>
 			</td>
 			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'depth', 'errors')}">
-				<g:textField id="depth" name="depth" value="${fieldValue(bean: smearSlideInstance, field: 'depth')}" />cm
+				<g:textField id="depth" name="depth" value="${fieldValue(bean: smearSlideInstance, field: 'depth')}" /> <span style="font-size:0.9em">cm</span>
 			</td>
 		</tr>
 		
@@ -98,7 +98,7 @@
 				</label>
 			</td>
 			<td valign="top" class="value ${hasErrors(bean: smearSlideInstance, field: 'grainSize', 'errors')}">
-				<g:textField name="grainSize" size="30" value="${smearSlideInstance?.grainSize}" onchange='onAbundanceChange()' />
+				<g:textField name="grainSize" size="30" value="${smearSlideInstance?.grainSize}" onchange='onAbundanceChange()' /> <span style="font-size:0.9em">e.g., silty clay</span>
 			</td>
 		</tr>
 
