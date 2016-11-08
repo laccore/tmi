@@ -98,11 +98,13 @@ function onAbundanceChange()
 	$("input[name$='percentage']").each(function() {
 		var strPct = $(this).val();
 		if (strPct != "")
-			sum += parseInt(strPct);
+			sum += parseFloat(strPct);
 	});
 	
 	$("#previewSedclassButton").trigger("click") // simulate click to update sedclass
-	$("#totalPercentage").html(sum.toString() + "%")
+	
+	var roundedTotal = Math.round(sum * 100) / 100
+	$("#totalPercentage").html(roundedTotal.toString() + "%")
 }
 
 

@@ -23,9 +23,9 @@
                     <thead>
                         <tr>
                         
-                            <g:sortableColumn property="id" title="${message(code: 'smearSlide.id.label', default: 'Id')}" />
+                            <g:sortableColumn property="id" title="${message(code: 'smearSlide.id.label', default: 'ID')}" />
                         
-                            <g:sortableColumn property="name" title="${message(code: 'smearSlide.name.label', default: 'Name')}" />
+                            <g:sortableColumn property="name" title="${message(code: 'smearSlide.name.label', default: 'Slide Name')}" />
                         
                             <g:sortableColumn property="depth" title="${message(code: 'smearSlide.depth.label', default: 'Depth')}" />
                         

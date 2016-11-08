@@ -7,7 +7,7 @@ package edu.umn.laccore.tmi
 // rename to SedimentComponent?
 class SmearSlideComponent {
 	SedimentComponent component
-	int percentage
+	float percentage
 	boolean deleted
 	boolean withComponent = false
 	

@@ -70,7 +70,7 @@
 		<tr class="prop">
 			<td valign="top" class="name">
 				<label for="name">
-					<g:message code="smearSlide.name.label" default="Name" />
+					<g:message code="smearSlide.name.label" default="Slide Name" />
 					<span class="required-indicator">*</span>
 				</label>
 			</td>

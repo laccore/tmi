@@ -16,7 +16,7 @@ i: component/row number
 	<g:select id="comp" name='components[${i}].component.id' from="${edu.umn.laccore.tmi.SedimentComponent.descendingList()}" optionKey="id" value='${sscomp?.component?.id}' style="width:210px;" onchange='onAbundanceChange()' />
 </td>
 <td>
-	<g:textField id="qty" type='number' size='4' name='components[${i}].percentage' value='${sscomp?.percentage}' onchange='onAbundanceChange()' />
+	<g:textField id="qty" type='number' size='4' name='components[${i}].percentage' value='${sscomp?.percentage}' onchange='onAbundanceChange()' required='true'/>
 </td>
 <td>
 	<input id="with" type="checkbox" name="${i}" value="${sscomp?.withComponent}" <g:if test="${sscomp?.withComponent}">checked</g:if> />
