@@ -13,3 +13,6 @@ New environment/refreshed current env steps:
 - refresh dependencies
 - look at markers window - rename the FlashHelperTagLib private getMsgs method to avoid the markers error, if necessary.
 - re-enable the ImageTool import and reference in UtilsService
+
+11.Apr.2017 migrated Git repo to github.umn.edu usuing https://gist.github.com/niksumeiko/8972566 as a guide
+    to switch local get repo to new remote follow from Step 2 on using  "git remote add new-origin git@github.umn.edu:laccore-apps/tmi.git" to hook into the migrated repo and deprecate the old remote origin at github.com
