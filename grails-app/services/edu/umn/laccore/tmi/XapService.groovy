@@ -57,6 +57,7 @@ class XapService {
 					f << row.toRowResult().values().collect{ (it!=null)?/"${it.replaceAll(/"/,/'/)}"/:'\\N' }.join(",")
 					f << "\n"
 				}
+		sql.close()
 	}
 	
 	def packageXap() {
