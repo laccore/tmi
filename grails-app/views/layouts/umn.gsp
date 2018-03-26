@@ -133,11 +133,7 @@
 	<ul id="nav" class="dropdown dropdown-linear" style="margin-top:0px; margin-left:0px; width:960px;">
 		<li><g:link controller="quickstart">Quickstart</g:link></li>
 		<li><g:link controller="module" action="blog">Tutorials</g:link></li>
-		<li><g:link controller="imageSieve">ImageSieve</g:link>
-			<ul>
-				<li>Note: ImageSieve is machine-intensive and will take a moment to load.</li>
-			</ul>
-		</li>
+		<li><g:link controller="imageSieve">ImageSieve</g:link></li>
 		
 		<!-- Only case where a top-level menu item is not also a g:link. Use <span>, whose style matches g:link. -->
 		<li><span>Core Face</span>

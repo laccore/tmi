@@ -43,7 +43,7 @@
     		</p>
     		<h1>ImageSieve</h1>
             <p style="margin-left:3em; margin-top:1em;">
-            	Filter by multiple tags! <a href="${createLink(controller:"is")}">Sort, zoom, slice and dice</a> the database.  (Machine intensive.)
+            	Filter by multiple tags! <a href="${createLink(controller:"is")}">Sort, zoom, slice and dice</a> the database.
             </p>
 			<h1>Browse Images</h1>
             <p style="margin-left:3em; margin-top:1em;">

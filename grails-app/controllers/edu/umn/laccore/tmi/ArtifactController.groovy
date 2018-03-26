@@ -27,7 +27,7 @@ class ArtifactController {
 	
 	def save() {
         def artifactInstance = new Artifact(params)
-		println "save: ${artifactInstance.properties}"
+		//println "save: ${artifactInstance.properties}"
 		
         if (!updateArtifactImages(request, artifactInstance) || !artifactInstance.save(flush: true)) {
             render(view: "create", model: [artifactInstance: artifactInstance])
@@ -78,6 +78,7 @@ class ArtifactController {
             }
         }
 
+		println "Artifact Instance parameters: $params"
         artifactInstance.properties = params
         if (!updateArtifactImages(request, artifactInstance) || !artifactInstance.save(flush: true)) {
             render(view: "edit", model: [artifactInstance: artifactInstance])
