@@ -40,7 +40,7 @@
 	</div>
     <form id="form1" runat="server" style="height:100%">
 	    <div id="silverlightControlHost">
-    		<embed src="http://suave-dev.sdsc.edu/main/file=briangee_TMI_ImageSieve.csv&views=111000&view=grid" width="100%" height="100%" />
+    		<embed src="https://suave-dev.sdsc.edu/main/file=briangee_TMI_ImageSieve.csv&views=111000&view=grid" width="100%" height="100%" />
     	</div>
     </form>
 </body>
